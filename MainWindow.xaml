@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt4GruppeA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="270.313" Width="478.126">
     <Grid>
-        
+        <Button x:Name="btn1" Content="SpawnCar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="23,23,0,0" Click="btn1_Click"/>
+        <Canvas x:Name="RoadCasual" Height="60" Margin="0" VerticalAlignment="Center" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}">
+            <Button x:Name="btnTimer" Content="Start Timer" Width="75" Canvas.Left="116" Canvas.Top="-68" Click="btnTimer_Click"/>
+        </Canvas>
+
     </Grid>
 </Window>
