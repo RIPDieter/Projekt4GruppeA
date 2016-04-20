@@ -10,10 +10,6 @@ using System.Windows.Media; // für Brushes
 
 namespace Projekt4GruppeA
 {
-    /// <summary>
-    /// Klasse für Autos
-    /// </summary>
-
 
     public class CarCasual 
     {
@@ -29,18 +25,13 @@ namespace Projekt4GruppeA
         //Form
         public Ellipse body { get; set; }
 
-        /// <summary>
-        /// Konstruktor
-        /// - ID hochzählen
-        /// - Standardwerte
-        /// </summary>
-        
+        //Konstruktor, ID hochzählen, Standardparameter  
         public CarCasual()
         {
             MainWindow.idCounter++;
             iD = MainWindow.idCounter;
 
-            speed = 10;
+            speed = 20;
             location = 0;
         }
     }

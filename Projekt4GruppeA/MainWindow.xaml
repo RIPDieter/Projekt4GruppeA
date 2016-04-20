@@ -8,9 +8,10 @@
         Title="MainWindow" Height="400" Width="600">
     <Grid>
         <Canvas x:Name="roadHorizontal" HorizontalAlignment="Left" Height="100" Margin="10,130,0,0" VerticalAlignment="Top" Width="572" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-        <Slider x:Name="sldLapse" ValueChanged="sldSpawn_ValueChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Margin="20,78,0,0" Minimum="1"/>
+        <Slider x:Name="sldTime" ValueChanged="sldTime_ValueChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="168,84,0,0" Minimum="1"/>
         <Button x:Name="btnSpawn" Click="btnSpawn_Click" Content="Spawn Cars" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,37,0,0"/>
         <Button x:Name="btnTimer" Click="btnTimer_Click" Content="Start Timer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="168,37,0,0"/>
+        <Slider x:Name="sldSpawn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,84,0,0" ValueChanged="sldSpawn_ValueChanged"/>
 
     </Grid>
 </Window>

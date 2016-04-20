@@ -27,6 +27,7 @@ namespace Projekt4GruppeA
         DispatcherTimer timer = new DispatcherTimer();
         //Global ID Counter
         public static int idCounter = 0;
+        
 
         private List<CarCasual> carList = new List<CarCasual>();
 
@@ -40,9 +41,12 @@ namespace Projekt4GruppeA
             //spawnCars(5);   
         }
 
-        private void spawnCars(int carsToSpawn)
+        public void spawnCars(int carsToSpawn)
         {
-            Brush[] carColors = new Brush[]
+
+            carsToSpawn = Convert.ToInt16(sldSpawn.Value);
+
+        Brush[] carColors = new Brush[]
             {
                 Brushes.Red,
                 Brushes.Blue,
@@ -104,9 +108,14 @@ namespace Projekt4GruppeA
         
 
 
+        private void sldTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            timer.Interval = TimeSpan.FromSeconds(sldTime.Value);
+        }
+
         private void sldSpawn_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            timer.Interval = TimeSpan.FromSeconds(sldLapse.Value);
+           
         }
     }
 }
