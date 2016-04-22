@@ -21,6 +21,13 @@ namespace Projekt4GruppeA
 
     public partial class MainWindow : Window
     {
+
+        /*
+        <Grid Margin="0,0,0,0">
+        Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1"
+        Grid.Column="2" Grid.Row="1"
+        Grid.Column="2" Grid.Row="1"
+    */
         //Global Random Declaration
         Random rnd = new Random();
         //Global Timer Declaration
@@ -38,7 +45,7 @@ namespace Projekt4GruppeA
 
         public void btnSpawn_Click(object sender, RoutedEventArgs e)
         {
-            //spawnCars(5);   
+            spawnCars(1);   
         }
 
         public void spawnCars(int carsToSpawn)
@@ -85,7 +92,7 @@ namespace Projekt4GruppeA
 
         public void timerTick(object sender, EventArgs e)
         {
-            spawnCars(1);
+            spawnCars(Convert.ToInt16(sldSpawn.Value));
             moveCars();
         }
 
