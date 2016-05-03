@@ -13,8 +13,9 @@
         <Button x:Name="btnSpawn" Click="btnSpawn_Click" Content="Spawn Cars" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,26,-84,-35" Height="20" Grid.Column="2" Grid.Row="1"/>
         <Button x:Name="btnTimer" Click="btnTimer_Click" Content="Start Timer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="168,26,-232,-35" Height="20" Grid.Column="2" Grid.Row="1"/>
         <Slider x:Name="sldSpawn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,73,-84,-80" ValueChanged="sldSpawn_ValueChanged" Height="18" Grid.Column="2" Grid.Row="1"/>
-        
-    <Grid HorizontalAlignment="Left" Height="100" Margin="0,119,-580,-208" VerticalAlignment="Top" Width="592" Grid.ColumnSpan="3" Grid.Row="1"/>
+
+        <Grid HorizontalAlignment="Left" Height="100" Margin="0,119,-580,-208" VerticalAlignment="Top" Width="592" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <Canvas x:Name="Light" HorizontalAlignment="Left" Height="25" Margin="545,89,-559,-103" VerticalAlignment="Top" Width="25" Grid.Column="2" Grid.Row="1" Background="Black"/>
         <Grid.RowDefinitions>
             <RowDefinition Height="10" />
             <RowDefinition Height="10" />
