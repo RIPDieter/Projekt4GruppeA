@@ -46,6 +46,7 @@ namespace Projekt4GruppeA
         public void btnSpawn_Click(object sender, RoutedEventArgs e)
         {
             spawnCars(1);   
+            spawntrafficlight(1);
         }
 
         public void spawnCars(int carsToSpawn)
@@ -79,6 +80,30 @@ namespace Projekt4GruppeA
                 Grid.SetRow(car.body, 3);
                 gr_mainGrid.Children.Add(car.body);
 
+            }
+        }
+        public void spawntrafficlight(int trafficlights)
+        {
+            startTimer(1);
+            Brush[] trafficlight = new Brush[]
+            {
+                Brushes.Black,
+                Brushes.DarkRed,
+                Brushes.LightYellow,
+                Brushes.DarkGreen,
+                Brushes.Red,
+            };
+
+
+            Ellipse Kreis = new Ellipse();
+            Kreis.Fill = trafficlight[4];
+            Kreis.Width = 25;
+            Kreis.Height = 25;
+
+            Light.Children.Add(Kreis);
+            if (timer.Equals(20))
+            {
+                Kreis.Fill = trafficlight[3];
             }
         }
 

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="600
         ">
+
     <Grid x:Name="gr_mainGrid">
             <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -16,8 +17,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />   
-        </Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+       
             <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="50"/>
@@ -34,9 +38,9 @@
         <Slider x:Name="sldTime" Grid.Row="1" Grid.Column="1"></Slider>
         
     </Grid>
-    
-    
-    
-   
-   
+
+
+
+
+
 </Window>
