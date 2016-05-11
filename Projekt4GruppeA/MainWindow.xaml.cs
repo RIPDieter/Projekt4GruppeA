@@ -53,15 +53,15 @@ namespace Projekt4GruppeA
 
             carsToSpawn = Convert.ToInt16(sldSpawn.Value);
 
-        Brush[] carColors = new Brush[]
-            {
+            Brush[] carColors = new Brush[]
+                {
                 Brushes.Red,
                 Brushes.Blue,
                 Brushes.Black,
                 Brushes.Green,
                 Brushes.Yellow,
                 Brushes.Fuchsia
-            };
+                };
 
             for (int j = 0; j < carsToSpawn; j++)
             {
@@ -74,7 +74,11 @@ namespace Projekt4GruppeA
                 car.body.Height = 10;
                 car.body.Fill = carColors[rnd.Next(carColors.Length)];
                 carList.Add(car);
-                roadHorizontal.Children.Add(car.body);
+
+                Grid.SetColumn(car.body,0);
+                Grid.SetRow(car.body, 3);
+                gr_mainGrid.Children.Add(car.body);
+
             }
         }
 
@@ -99,20 +103,14 @@ namespace Projekt4GruppeA
         private void moveCars()
         {
             foreach (CarCasual thisCar in carList)
-            {               
-                thisCar.location = thisCar.location + thisCar.speed;
-
-                Canvas.SetLeft(thisCar.body, thisCar.location);
-
-                //var y = carList.Find(x => x.iD.Equals(thisCar.iD));
-                //if ()
-                //{
-
-                //}
+            {
+                var x = Grid.GetColumn(thisCar.body);
+                x++;
+                Grid.SetColumn(thisCar.body,x);
             }
         }
 
-        
+
 
 
         private void sldTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -122,7 +120,7 @@ namespace Projekt4GruppeA
 
         private void sldSpawn_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-           
+
         }
     }
 }

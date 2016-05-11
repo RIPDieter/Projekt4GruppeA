@@ -7,23 +7,36 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="600
         ">
-    <Grid Margin="0,0,0,0">
-        <Canvas x:Name="roadHorizontal" HorizontalAlignment="Left" Height="100" Margin="0,119,-569,-208" VerticalAlignment="Top" Width="592" Background="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1"/>
-        <Slider x:Name="sldTime" ValueChanged="sldTime_ValueChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="168,73,-232,-80" Minimum="1" Height="18" Grid.Column="2" Grid.Row="1"/>
-        <Button x:Name="btnSpawn" Click="btnSpawn_Click" Content="Spawn Cars" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,26,-84,-35" Height="20" Grid.Column="2" Grid.Row="1"/>
-        <Button x:Name="btnTimer" Click="btnTimer_Click" Content="Start Timer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="168,26,-232,-35" Height="20" Grid.Column="2" Grid.Row="1"/>
-        <Slider x:Name="sldSpawn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="20,73,-84,-80" ValueChanged="sldSpawn_ValueChanged" Height="18" Grid.Column="2" Grid.Row="1"/>
-        
-    <Grid HorizontalAlignment="Left" Height="100" Margin="0,119,-580,-208" VerticalAlignment="Top" Width="592" Grid.ColumnSpan="3" Grid.Row="1"/>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
+    <Grid x:Name="gr_mainGrid">
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />   
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0" />
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="10" />
-        </Grid.ColumnDefinitions>
-
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+        <Button x:Name="button" Content="Spawn" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnSpawn_Click"/>
+        <Slider x:Name="sldSpawn" Grid.Row="1" Grid.Column="0"></Slider>
+        <Button x:Name="button2" Content="Timer" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnTimer_Click"/>
+        <Slider x:Name="sldTime" Grid.Row="1" Grid.Column="1"></Slider>
+        
     </Grid>
+    
+    
+    
+   
+   
 </Window>

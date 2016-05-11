@@ -60,9 +60,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\SlowCar.cs" />
-    <Compile Include="TrafficSimulation.xaml.cs">
-      <DependentUpon>TrafficSimulation.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CarCasual.cs" />
@@ -95,10 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TrafficSimulation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
