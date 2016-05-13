@@ -44,7 +44,31 @@ namespace Projekt4GruppeA
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+
+            createGrid(20, 40);
+
             spawntrafficlight();
+        }
+
+        private void createGrid(int rowCount, int columnCount)
+        {
+            for (int i = 0; i < rowCount; i++)
+            {
+                var gridRow = new RowDefinition();
+                gridRow.Height = new GridLength(20);
+                gr_mainGrid.RowDefinitions.Add(gridRow);
+            }
+            for (int i = 0; i < columnCount; i++)
+            {
+                var gridColumn = new ColumnDefinition();
+                gridColumn.Width = new GridLength(20);
+                gr_mainGrid.ColumnDefinitions.Add(gridColumn);
+            }
         }
 
         #region BUTTON CLICK EVENTS
@@ -222,9 +246,10 @@ namespace Projekt4GruppeA
 
 
 
+
         #endregion AMPEL
 
-
+       
     }
 }
 
