@@ -16,6 +16,9 @@ namespace Projekt4GruppeA.Classes
         //Form
         public Ellipse body { get; set; }
 
+        //Blocker UIElement
+        public Ellipse blocker { get; set; }
+
         //Zustand
         public bool isRed { get; set; }
         

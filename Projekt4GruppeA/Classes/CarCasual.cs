@@ -17,7 +17,7 @@ namespace Projekt4GruppeA
         public double iD { get; set; }
 
         //Geschwindigkeit
-        public int speed { get; set; }
+        public int v { get; set; }
 
         //Ort
         public int location { get; set; }
@@ -31,8 +31,10 @@ namespace Projekt4GruppeA
             MainWindow.idCounter++;
             iD = MainWindow.idCounter;
 
-            speed = 20;
+            v = 1;
             location = 0;
+
+           
         }
     }
 }

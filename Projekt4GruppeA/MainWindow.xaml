@@ -7,8 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="600
         ">
+    
+    <Grid>
+        <StackPanel>
+            <Button x:Name="button" Content="Spawn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnSpawn_Click"/>
+            <Slider x:Name="sldSpawn" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="button2" Content="Timer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnTimer_Click"/>
+            <Slider x:Name="sldTime" ValueChanged="sldTime_ValueChanged" Minimum="1" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </StackPanel>
+        
 
-    <Grid x:Name="gr_mainGrid">
+    <Grid x:Name="gr_mainGrid" Margin="50,50,0,0">
             <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -41,15 +50,12 @@
         <Border Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="10" Background="Gray" />
  
         
-        <Button x:Name="button" Content="Spawn" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnSpawn_Click"/>
-        <Slider x:Name="sldSpawn" Grid.Row="1" Grid.Column="0"></Slider>
-        <Button x:Name="button2" Content="Timer" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnTimer_Click"/>
-        <Slider x:Name="sldTime" Grid.Row="3" Grid.Column="0" ValueChanged="sldTime_ValueChanged" Minimum="1"></Slider>
+        
         
     </Grid>
 
 
 
-
+    </Grid>
 
 </Window>

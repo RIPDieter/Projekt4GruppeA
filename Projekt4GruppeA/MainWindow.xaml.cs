@@ -76,13 +76,19 @@ namespace Projekt4GruppeA
             timerCount++;
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
             switchLight();
-            spawnCars(1);
+           
+            if (rnd.Next(0, 3) == 2)
+            {
+                spawnCars(1);
+            }
+           
             moveCars();
 
         }
 
 
         #endregion TIMER RELATED
+
 
         public void spawnCars(int carsToSpawn)
         {
@@ -99,16 +105,16 @@ namespace Projekt4GruppeA
                 };
 
                 CarCasual car = new CarCasual
-                {
-                    speed = 10,
+                {                   
                     body = new Ellipse(),
                 };
+
                 car.body.Width = 10;
                 car.body.Height = 10;
                 car.body.Fill = carColors[rnd.Next(carColors.Length)];
                 carList.Add(car);
 
-                Grid.SetColumn(car.body,1);
+                Grid.SetColumn(car.body, 2);
                 Grid.SetRow(car.body, 5);
                 gr_mainGrid.Children.Add(car.body);
         }
@@ -117,17 +123,39 @@ namespace Projekt4GruppeA
         {
             foreach (CarCasual thisCar in carList)
             {
-                var placeOfCar = Grid.GetColumn(thisCar.body);
-                var placeOfTrafficLight = Grid.GetColumn(ampel.body);
-                if (placeOfCar != placeOfTrafficLight || ampel.isRed == false)
+                var gapSize = checkGapSize(thisCar);
+
+                //var placeOfCar = Grid.GetColumn(thisCar.body);
+                //var placeOfTrafficLight = Grid.GetColumn(ampel.body);
+
+                if (gapSize >= 1 || gapSize == null)
                 {
-                    var moveSize = Grid.GetColumn(thisCar.body);
-                    moveSize++;
-                    Grid.SetColumn(thisCar.body, moveSize);
+                    var v = Grid.GetColumn(thisCar.body);
+                    v++;
+                    Grid.SetColumn(thisCar.body, v);
                 }              
             }
         }
 
+        private int? checkGapSize(CarCasual thisCar)
+        {
+            var placeOfCar = Grid.GetColumn(thisCar.body);
+            var placeOfNextCar = placeOfCar + 1;
+
+            for (int i = placeOfNextCar; i < gr_mainGrid.ColumnDefinitions.Count; i++)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+                    if (Grid.GetColumn(uiE) == placeOfNextCar)
+                    {
+                        var gapSize = Grid.GetColumn(uiE) - placeOfCar;
+                        return gapSize;
+                    }
+                }
+            }
+            return null;
+        }
 
         #region SLIDER
 
@@ -149,7 +177,7 @@ namespace Projekt4GruppeA
         public void spawntrafficlight()
         {
             ampel.body = new Ellipse();
-
+            ampel.blocker = new Ellipse();
 
             Brush[] trafficLightColors = new Brush[]
             {
@@ -157,11 +185,17 @@ namespace Projekt4GruppeA
                 Brushes.Green,
                 Brushes.Red,
             };
-
-            ampel.body.Fill = trafficLightColors[1];
-
+            
+            //Set Amepl Body
             Grid.SetColumn(ampel.body, 6);
             Grid.SetRow(ampel.body, 4);
+            ampel.body.Fill = trafficLightColors[1];
+
+            //Set Ampel Blocker
+            Grid.SetRow(ampel.blocker, Grid.GetRow(ampel.body) + 1);
+            Grid.SetColumn(ampel.blocker, Grid.GetColumn(ampel.body));
+            ampel.blocker.Fill = (new SolidColorBrush(Colors.Yellow));
+
             gr_mainGrid.Children.Add(ampel.body);
         }
 
@@ -172,11 +206,13 @@ namespace Projekt4GruppeA
                 //TODO auto change color of ampel when isRed changes
                 if (ampel.isRed == true)
                 {
+                    gr_mainGrid.Children.Remove(ampel.blocker);
                     ampel.isRed = false;
                     ampel.body.Fill = (new SolidColorBrush(Colors.Green));
                 }
                 else
                 {
+                    gr_mainGrid.Children.Add(ampel.blocker);
                     ampel.isRed = true;
                     ampel.body.Fill = (new SolidColorBrush(Colors.Red));
                 }
