@@ -22,13 +22,7 @@ namespace Projekt4GruppeA
 
     public partial class MainWindow : Window
     {
-
-        /*
-        <Grid Margin="0,0,0,0">
-        Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1"
-        Grid.Column="2" Grid.Row="1"
-        Grid.Column="2" Grid.Row="1"
-    */
+      
         //Global Random Declaration
         Random rnd = new Random();
         //Global Timer Declaration
@@ -36,7 +30,7 @@ namespace Projekt4GruppeA
         //Global ID Counter
         public static int idCounter = 0;
 
-        //
+
         public int timerCount = 0;
 
         private List<CarCasual> carList = new List<CarCasual>();
@@ -47,13 +41,11 @@ namespace Projekt4GruppeA
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-
+        {          
             createGrid(20, 40);
-
             spawntrafficlight();
         }
+        #region GRID
 
         private void createGrid(int rowCount, int columnCount)
         {
@@ -70,6 +62,7 @@ namespace Projekt4GruppeA
                 gr_mainGrid.ColumnDefinitions.Add(gridColumn);
             }
         }
+        #endregion GRID
 
         #region BUTTON CLICK EVENTS
 
@@ -113,12 +106,15 @@ namespace Projekt4GruppeA
 
         #endregion TIMER RELATED
 
+        #region SPAWN
 
         public void spawnCars(int carsToSpawn)
         {
             //carsToSpawn = Convert.ToInt16(sldSpawn.Value);
 
-            Brush[] carColors = new Brush[]
+            if (checkSpawn() == false)
+            {
+                Brush[] carColors = new Brush[]
                 {
                 Brushes.Red,
                 Brushes.Blue,
@@ -129,7 +125,7 @@ namespace Projekt4GruppeA
                 };
 
                 CarCasual car = new CarCasual
-                {                   
+                {
                     body = new Ellipse(),
                 };
 
@@ -141,8 +137,26 @@ namespace Projekt4GruppeA
                 Grid.SetColumn(car.body, 2);
                 Grid.SetRow(car.body, 5);
                 gr_mainGrid.Children.Add(car.body);
+            }
         }
-        
+
+        private bool checkSpawn()
+        {
+            for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+            {
+                UIElement uiE = gr_mainGrid.Children[j];
+                if (Grid.GetColumn(uiE) == 2 && Grid.GetRow(uiE) == 5)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        #endregion SPAWN
+
+        #region  MOVE
+
         private void moveCars()
         {
             foreach (CarCasual thisCar in carList)
@@ -152,34 +166,72 @@ namespace Projekt4GruppeA
                 //var placeOfCar = Grid.GetColumn(thisCar.body);
                 //var placeOfTrafficLight = Grid.GetColumn(ampel.body);
 
-                if (gapSize >= 1 || gapSize == null)
+
+                //Stehen
+                if (gapSize == 0)
                 {
-                    var v = Grid.GetColumn(thisCar.body);
-                    v++;
-                    Grid.SetColumn(thisCar.body, v);
-                }              
+                    thisCar.v = 0;
+                }
+                // Bremsen
+                else if (gapSize <= thisCar.v)
+                {
+                    thisCar.v = gapSize;
+                    var CurrentColumn = Grid.GetColumn(thisCar.body);
+                    CurrentColumn += thisCar.v;
+                    Grid.SetColumn(thisCar.body, CurrentColumn);
+                }
+                //Beschleunigen
+                else if (gapSize > thisCar.v && thisCar.v < 2)
+                {
+                    var CurrentColumn = Grid.GetColumn(thisCar.body);
+                    CurrentColumn += thisCar.v;
+                    Grid.SetColumn(thisCar.body, CurrentColumn);
+
+                    if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
+                    {
+                        thisCar.v--;
+                    }
+                    thisCar.v++;
+                }
+                // Höchstgeschw.
+                else if (gapSize > thisCar.v && thisCar.v >= 2)
+                {        
+                    var CurrentColumn = Grid.GetColumn(thisCar.body);
+                    CurrentColumn += thisCar.v;
+                    Grid.SetColumn(thisCar.body, CurrentColumn);
+
+                    if (rnd.Next(0, 3) == 2)
+                    {
+                        thisCar.v--;
+                    }
+                }  
             }
         }
 
-        private int? checkGapSize(CarCasual thisCar)
-        {
-            var placeOfCar = Grid.GetColumn(thisCar.body);
-            var placeOfNextCar = placeOfCar + 1;
+        #endregion  MOVE
 
-            for (int i = placeOfNextCar; i < gr_mainGrid.ColumnDefinitions.Count; i++)
+        #region GAP
+        private int checkGapSize(CarCasual thisCar)
+        {
+            var placeOfCarColumn = Grid.GetColumn(thisCar.body);
+            var firstSearchPointColumn = placeOfCarColumn + 1;
+            var placeOfCarRow = Grid.GetRow(thisCar.body);         
+
+            for (int i = firstSearchPointColumn; i < gr_mainGrid.ColumnDefinitions.Count; i++)
             {
                 for (int j = 0; j < gr_mainGrid.Children.Count; j++)
                 {
                     UIElement uiE = gr_mainGrid.Children[j];
-                    if (Grid.GetColumn(uiE) == placeOfNextCar)
+                    if (Grid.GetColumn(uiE) == firstSearchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                     {
-                        var gapSize = Grid.GetColumn(uiE) - placeOfCar;
+                        var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 1;
                         return gapSize;
                     }
                 }
             }
-            return null;
+            return 5;
         }
+        #endregion GAP
 
         #region SLIDER
 
@@ -210,15 +262,15 @@ namespace Projekt4GruppeA
                 Brushes.Red,
             };
             
-            //Set Amepl Body
-            Grid.SetColumn(ampel.body, 6);
-            Grid.SetRow(ampel.body, 4);
+            //Set Ampel Body
+            Grid.SetColumn(ampel.body, 10);
+            Grid.SetRow(ampel.body, 3);
             ampel.body.Fill = trafficLightColors[1];
 
             //Set Ampel Blocker
-            Grid.SetRow(ampel.blocker, Grid.GetRow(ampel.body) + 1);
+            Grid.SetRow(ampel.blocker, Grid.GetRow(ampel.body) + 2);
             Grid.SetColumn(ampel.blocker, Grid.GetColumn(ampel.body));
-            ampel.blocker.Fill = (new SolidColorBrush(Colors.Yellow));
+            ampel.blocker.Fill = (new SolidColorBrush(Colors.Black));
 
             gr_mainGrid.Children.Add(ampel.body);
         }
@@ -243,9 +295,6 @@ namespace Projekt4GruppeA
 
             }
         }
-
-
-
 
         #endregion AMPEL
 
