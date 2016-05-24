@@ -44,6 +44,8 @@ namespace Projekt4GruppeA
         {          
             createGrid(20, 40);
             spawntrafficlight();
+           
+            
         }
         #region GRID
 
@@ -250,10 +252,18 @@ namespace Projekt4GruppeA
         #region AMPEL
 
         Trafficlight ampel = new Trafficlight();
+        Trafficlight ampel2 = new Trafficlight();
+        Trafficlight ampel3 = new Trafficlight();
         public void spawntrafficlight()
         {
             ampel.body = new Ellipse();
             ampel.blocker = new Ellipse();
+
+            ampel2.body = new Ellipse();
+            ampel2.blocker = new Ellipse();
+
+            ampel3.body = new Ellipse();
+            ampel3.blocker = new Ellipse();
 
             Brush[] trafficLightColors = new Brush[]
             {
@@ -264,15 +274,28 @@ namespace Projekt4GruppeA
             
             //Set Ampel Body
             Grid.SetColumn(ampel.body, 10);
-            Grid.SetRow(ampel.body, 3);
+            Grid.SetRow(ampel.body, 7);
             ampel.body.Fill = trafficLightColors[1];
 
             //Set Ampel Blocker
-            Grid.SetRow(ampel.blocker, Grid.GetRow(ampel.body) + 2);
+            Grid.SetRow(ampel.blocker, Grid.GetRow(ampel.body) - 2);
             Grid.SetColumn(ampel.blocker, Grid.GetColumn(ampel.body));
             ampel.blocker.Fill = (new SolidColorBrush(Colors.Black));
 
             gr_mainGrid.Children.Add(ampel.body);
+           
+            // Ampel 2
+            //Set Ampel Body
+            Grid.SetColumn(ampel2.body, 20);
+            Grid.SetRow(ampel2.body, 7);
+            ampel2.body.Fill = trafficLightColors[1];
+
+            //Set Ampel Blocker
+            Grid.SetRow(ampel2.blocker, Grid.GetRow(ampel2.body) - 2);
+            Grid.SetColumn(ampel2.blocker, Grid.GetColumn(ampel2.body));
+            ampel2.blocker.Fill = (new SolidColorBrush(Colors.Black));
+
+            gr_mainGrid.Children.Add(ampel2.body);
         }
 
         private void switchLight()
@@ -293,8 +316,34 @@ namespace Projekt4GruppeA
                     ampel.body.Fill = (new SolidColorBrush(Colors.Red));
                 }
 
+                if (rdb1street.IsChecked == true)
+                {
+
+                }
+
+
             }
+
+            if (timerCount % 5 == 0)
+            {
+                //TODO auto change color of ampel when isRed changes
+                if (ampel2.isRed == true)
+                {
+                    gr_mainGrid.Children.Remove(ampel2.blocker);
+                    ampel2.isRed = false;
+                    ampel2.body.Fill = (new SolidColorBrush(Colors.Green));
+                }
+                else
+                {
+                    gr_mainGrid.Children.Add(ampel2.blocker);
+                    ampel2.isRed = true;
+                    ampel2.body.Fill = (new SolidColorBrush(Colors.Red));
+                }
+
+            }
+
         }
+
 
         #endregion AMPEL
 
