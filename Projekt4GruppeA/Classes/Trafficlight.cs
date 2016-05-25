@@ -26,8 +26,8 @@ namespace Projekt4GruppeA.Classes
         public Trafficlight()
         {
             Ellipse body = new Ellipse();
-            body.Width = 25;
-            body.Height = 25;
+            body.Width = 10;
+            body.Height = 10;
             isRed = false;
         }
     }

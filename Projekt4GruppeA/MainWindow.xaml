@@ -27,7 +27,7 @@
         <Slider x:Name="sldLight1" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="11.501,1.161" Height="19" Width="61" Margin="125,1,0,0"/>
         <Slider x:Name="sldLight2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="297,1,0,0"/>
         <Slider x:Name="sldLight3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="474,0,0,0"/>
-        <RadioButton x:Name="rdb1street" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="109,20,0,0" ClickMode="Press" IsEnabled="False" IsChecked="True"/>
+        <RadioButton x:Name="rdb1street" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="109,20,0,0" ClickMode="Press"/>
 
 
 
