@@ -42,7 +42,7 @@ namespace Projekt4GruppeA
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {          
-            createGrid(20, 40);
+            createGrid(40, 200);
             spawntrafficlight();
            
             
@@ -60,7 +60,7 @@ namespace Projekt4GruppeA
             for (int i = 0; i < columnCount; i++)
             {
                 var gridColumn = new ColumnDefinition();
-                gridColumn.Width = new GridLength(20);
+                gridColumn.Width = new GridLength(10);
                 gr_mainGrid.ColumnDefinitions.Add(gridColumn);
             }
         }
@@ -70,6 +70,7 @@ namespace Projekt4GruppeA
 
         public void btnSpawn_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Nothing happens here");
             //spawnCars(1);   
             //spawntrafficlight(1);
         }
@@ -96,10 +97,10 @@ namespace Projekt4GruppeA
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
             switchLight();
            
-            if (rnd.Next(0, 3) == 2)
-            {
-                spawnCars(1);
-            }
+            //if (rnd.Next(0, 3) == 2)
+            //{
+            //    spawnCars(1);
+            //}
            
             moveCars();
 
@@ -108,7 +109,7 @@ namespace Projekt4GruppeA
 
         #endregion TIMER RELATED
 
-        #region SPAWN
+        #region SPAWN CARS
 
         public void spawnCars(int carsToSpawn)
         {
@@ -139,6 +140,8 @@ namespace Projekt4GruppeA
                 Grid.SetColumn(car.body, 2);
                 Grid.SetRow(car.body, 5);
                 gr_mainGrid.Children.Add(car.body);
+
+                Console.WriteLine("Spawned car_ " + car.iD +"---"+ Grid.GetColumn(car.body));
             }
         }
 
@@ -157,34 +160,43 @@ namespace Projekt4GruppeA
 
         #endregion SPAWN
 
-        #region  MOVE
+        #region  MOVE CARS
 
         private void moveCars()
         {
             foreach (CarCasual thisCar in carList)
             {
-                var gapSize = checkGapSize(thisCar);
+                Console.WriteLine("Next cycle!");
+                
+                var gapSize = checkGapSize2(thisCar);
 
                 //var placeOfCar = Grid.GetColumn(thisCar.body);
                 //var placeOfTrafficLight = Grid.GetColumn(ampel.body);
-
-
+                
                 //Stehen
                 if (gapSize == 0)
                 {
+                    Console.WriteLine("Stehen!");
+                    Console.WriteLine("Stehe: " +thisCar.iD);
                     thisCar.v = 0;
                 }
                 // Bremsen
                 else if (gapSize <= thisCar.v)
                 {
+                    Console.WriteLine("Bremsen!");
+                    Console.WriteLine("Bremse: " + thisCar.iD + " --- " + Grid.GetColumn(thisCar.body) );
                     thisCar.v = gapSize;
                     var CurrentColumn = Grid.GetColumn(thisCar.body);
                     CurrentColumn += thisCar.v;
                     Grid.SetColumn(thisCar.body, CurrentColumn);
+                    Console.WriteLine("Gebremst: " + thisCar.iD + " --- " + Grid.GetColumn(thisCar.body));
                 }
                 //Beschleunigen
                 else if (gapSize > thisCar.v && thisCar.v < 2)
                 {
+                    Console.WriteLine("Accelerating:");
+                    Console.WriteLine("Moving: " + thisCar.iD + " --- " + Grid.GetColumn(thisCar.body));
+
                     var CurrentColumn = Grid.GetColumn(thisCar.body);
                     CurrentColumn += thisCar.v;
                     Grid.SetColumn(thisCar.body, CurrentColumn);
@@ -194,10 +206,13 @@ namespace Projekt4GruppeA
                         thisCar.v--;
                     }
                     thisCar.v++;
+                    Console.WriteLine("Moved: " + thisCar.iD + " to: " + Grid.GetColumn(thisCar.body));
                 }
                 // Höchstgeschw.
                 else if (gapSize > thisCar.v && thisCar.v >= 2)
-                {        
+                {
+                    Console.WriteLine("TopSpeed:");
+                    Console.WriteLine("Moving: " + thisCar.iD + " --- " + Grid.GetColumn(thisCar.body));
                     var CurrentColumn = Grid.GetColumn(thisCar.body);
                     CurrentColumn += thisCar.v;
                     Grid.SetColumn(thisCar.body, CurrentColumn);
@@ -206,19 +221,22 @@ namespace Projekt4GruppeA
                     {
                         thisCar.v--;
                     }
-                }  
+                    Console.WriteLine("Moved: " + thisCar.iD + " --- "+ Grid.GetColumn(thisCar.body));
+                }
+                Console.WriteLine();
             }
         }
 
         #endregion  MOVE
 
         #region GAP
+
         private int checkGapSize(CarCasual thisCar)
         {
             var placeOfCarColumn = Grid.GetColumn(thisCar.body);
             var firstSearchPointColumn = placeOfCarColumn + 1;
-            var placeOfCarRow = Grid.GetRow(thisCar.body);         
-
+            var placeOfCarRow = Grid.GetRow(thisCar.body);       
+            
             for (int i = firstSearchPointColumn; i < gr_mainGrid.ColumnDefinitions.Count; i++)
             {
                 for (int j = 0; j < gr_mainGrid.Children.Count; j++)
@@ -233,6 +251,37 @@ namespace Projekt4GruppeA
             }
             return 5;
         }
+
+        private int checkGapSize2(CarCasual thisCar)
+        {
+            var placeOfCarColumn = Grid.GetColumn(thisCar.body);
+            var searchPointColumn = placeOfCarColumn + 1;
+
+            for (int i = Grid.GetColumn(thisCar.body) + 1; i < gr_mainGrid.ColumnDefinitions.Count; i++)
+            {
+                foreach (CarCasual carCasual in carList)
+                {
+                    if (Grid.GetColumn(carCasual.body) == Grid.GetColumn(thisCar.body) && carCasual != thisCar)
+                    {
+                        Console.WriteLine("Aufeinenader!");
+                        Console.WriteLine(thisCar.iD + " --- " + Grid.GetColumn(thisCar.body));
+                        Console.WriteLine(carCasual.iD + " --- " + Grid.GetColumn(carCasual.body));
+                        Console.WriteLine();
+                    }
+                    else if (Grid.GetColumn(carCasual.body) == i && carCasual != thisCar)
+                    {
+                        Console.WriteLine("Nicht aufeinenader!");
+                        Console.WriteLine(thisCar.iD + " --- " + Grid.GetColumn(thisCar.body));
+                        Console.WriteLine(carCasual.iD + " --- " + Grid.GetColumn(carCasual.body));
+                        Console.WriteLine();
+                        //TODO Rückgabewert falsch
+                        return searchPointColumn - placeOfCarColumn;
+                    }
+                }
+            }
+            return 5;
+        }
+
         #endregion GAP
 
         #region SLIDER
@@ -525,9 +574,13 @@ namespace Projekt4GruppeA
         }
 
 
+
         #endregion AMPEL
 
-       
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            spawnCars(1);
+        }
     }
 }
 
