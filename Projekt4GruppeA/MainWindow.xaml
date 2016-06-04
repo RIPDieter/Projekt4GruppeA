@@ -16,6 +16,7 @@
             <Button x:Name="button2" Content="Timer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnTimer_Click"/>
             <Slider x:Name="sldTime" ValueChanged="sldTime_ValueChanged" Minimum="1" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button x:Name="button1" Content="Button" Click="button1_Click"/>
+            <Button x:Name="btnAnalysis" Content="Auswertung" Click="btnAnalysis_Click"/>
         </StackPanel>
 
 

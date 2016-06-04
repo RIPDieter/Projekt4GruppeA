@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using Projekt4GruppeA.Classes;
+
 
 
 namespace Projekt4GruppeA
@@ -29,6 +29,8 @@ namespace Projekt4GruppeA
         DispatcherTimer timer = new DispatcherTimer();
         //Global ID Counter
         public static int idCounter = 0;
+        //Klasse TrafficlightCircuit instanziieren
+        
 
 
         public int timerCount = 0;
@@ -42,6 +44,8 @@ namespace Projekt4GruppeA
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {          
+            
+
             createGrid(40, 200);
             spawntrafficlight();
            
@@ -95,7 +99,7 @@ namespace Projekt4GruppeA
         {
             timerCount++;
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
-            switchLight();
+           // trafficlightCircuit.switchLight();
            
             //if (rnd.Next(0, 3) == 2)
             //{
@@ -168,7 +172,7 @@ namespace Projekt4GruppeA
             {
                 Console.WriteLine("Next cycle!");
                 
-                var gapSize = checkGapSize2(thisCar);
+                var gapSize = checkGapSize(thisCar);
 
                 //var placeOfCar = Grid.GetColumn(thisCar.body);
                 //var placeOfTrafficLight = Grid.GetColumn(ampel.body);
@@ -234,15 +238,14 @@ namespace Projekt4GruppeA
         private int checkGapSize(CarCasual thisCar)
         {
             var placeOfCarColumn = Grid.GetColumn(thisCar.body);
-            var firstSearchPointColumn = placeOfCarColumn + 1;
             var placeOfCarRow = Grid.GetRow(thisCar.body);       
-            
-            for (int i = firstSearchPointColumn; i < gr_mainGrid.ColumnDefinitions.Count; i++)
+                 
+            for (var searchPointColumn = placeOfCarColumn + 1; searchPointColumn < gr_mainGrid.ColumnDefinitions.Count; searchPointColumn++)
             {
                 for (int j = 0; j < gr_mainGrid.Children.Count; j++)
                 {
                     UIElement uiE = gr_mainGrid.Children[j];
-                    if (Grid.GetColumn(uiE) == firstSearchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
+                    if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                     {
                         var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 1;
                         return gapSize;
@@ -252,53 +255,9 @@ namespace Projekt4GruppeA
             return 5;
         }
 
-        private int checkGapSize2(CarCasual thisCar)
-        {
-            var placeOfCarColumn = Grid.GetColumn(thisCar.body);
-            var searchPointColumn = placeOfCarColumn + 1;
-
-            for (int i = Grid.GetColumn(thisCar.body) + 1; i < gr_mainGrid.ColumnDefinitions.Count; i++)
-            {
-                foreach (CarCasual carCasual in carList)
-                {
-                    if (Grid.GetColumn(carCasual.body) == Grid.GetColumn(thisCar.body) && carCasual != thisCar)
-                    {
-                        Console.WriteLine("Aufeinenader!");
-                        Console.WriteLine(thisCar.iD + " --- " + Grid.GetColumn(thisCar.body));
-                        Console.WriteLine(carCasual.iD + " --- " + Grid.GetColumn(carCasual.body));
-                        Console.WriteLine();
-                    }
-                    else if (Grid.GetColumn(carCasual.body) == i && carCasual != thisCar)
-                    {
-                        Console.WriteLine("Nicht aufeinenader!");
-                        Console.WriteLine(thisCar.iD + " --- " + Grid.GetColumn(thisCar.body));
-                        Console.WriteLine(carCasual.iD + " --- " + Grid.GetColumn(carCasual.body));
-                        Console.WriteLine();
-                        //TODO Rückgabewert falsch
-                        return searchPointColumn - placeOfCarColumn;
-                    }
-                }
-            }
-            return 5;
-        }
-
         #endregion GAP
-
-        #region SLIDER
-
-        private void sldTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            //TODO Umdrehen
-            timer.Interval = TimeSpan.FromSeconds(sldTime.Value);
-        }
-
-        private void sldSpawn_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-        #endregion SLIDER
-
-        #region AMPEL
+       
+        #region TRAFFICLIGHT
 
         Trafficlight ampel = new Trafficlight();
         Trafficlight ampel12 = new Trafficlight();
@@ -308,10 +267,12 @@ namespace Projekt4GruppeA
         Trafficlight ampel2 = new Trafficlight();
         Trafficlight ampel3 = new Trafficlight();
 
-     
+        //MainWindow main = new MainWindow();
+
 
         public void spawntrafficlight()
         {
+
             //Kreuzung 1
             ampel.body = new Ellipse();
             ampel.blocker = new Ellipse();
@@ -319,7 +280,7 @@ namespace Projekt4GruppeA
             ampel12.body = new Ellipse();
             ampel12.blocker = new Ellipse();
 
-            ampel13.body = new Ellipse(); 
+            ampel13.body = new Ellipse();
             ampel13.blocker = new Ellipse();
 
             ampel14.body = new Ellipse();
@@ -331,15 +292,15 @@ namespace Projekt4GruppeA
 
             ampel3.body = new Ellipse();
             ampel3.blocker = new Ellipse();
-       
+
 
             Brush[] trafficLightColors = new Brush[]
             {
-                Brushes.Black,         
+                Brushes.Black,
                 Brushes.Green,
                 Brushes.Red,
             };
-            
+
             //Kreuzung 1
             //Ampel1
             Grid.SetColumn(ampel.body, 7);
@@ -358,8 +319,8 @@ namespace Projekt4GruppeA
             Grid.SetRow(ampel12.body, 2);
             ampel12.body.Fill = trafficLightColors[1];
 
-            Grid.SetRow(ampel12.blocker, Grid.GetRow(ampel12.body) );
-            Grid.SetColumn(ampel12.blocker, Grid.GetColumn(ampel12.body)+2);
+            Grid.SetRow(ampel12.blocker, Grid.GetRow(ampel12.body));
+            Grid.SetColumn(ampel12.blocker, Grid.GetColumn(ampel12.body) + 2);
             ampel12.blocker.Fill = (new SolidColorBrush(Colors.Black));
 
             gr_mainGrid.Children.Add(ampel12.body);
@@ -381,7 +342,7 @@ namespace Projekt4GruppeA
             ampel14.body.Fill = trafficLightColors[1];
 
             Grid.SetRow(ampel14.blocker, Grid.GetRow(ampel14.body));
-            Grid.SetColumn(ampel14.blocker, Grid.GetColumn(ampel14.body)-2);
+            Grid.SetColumn(ampel14.blocker, Grid.GetColumn(ampel14.body) - 2);
             ampel14.blocker.Fill = (new SolidColorBrush(Colors.Black));
 
             gr_mainGrid.Children.Add(ampel14.body);
@@ -400,15 +361,15 @@ namespace Projekt4GruppeA
             gr_mainGrid.Children.Add(ampel2.body);
         }
 
-        private void switchLight()
+        public void switchLight()
         {
-            
+
             //Kreuzung 1
             if (rdb1street.IsChecked == true)
             {
-                
-                
-                if (timerCount % 5 == 0)
+
+
+                if (timerCount%5 == 0)
                 {
                     //TODO auto change color of ampel when isRed changes
                     if (ampel.isRed == true)
@@ -449,19 +410,19 @@ namespace Projekt4GruppeA
                         ampel14.isRed = false;
                         ampel14.body.Fill = (new SolidColorBrush(Colors.Green));
                     }
-                 }
+                }
 
-              }
+            }
 
 
-          if (rdb1clock.IsChecked == true)
-           {
-              
+            if (rdb1clock.IsChecked == true)
+            {
 
-                if (timerCount % 5 == 0)
+
+                if (timerCount%5 == 0)
                 {
-                    
-                    if (ampel.isRed==true)
+
+                    if (ampel.isRed == true)
                     {
                         ampel.isRed = false;
                         ampel.body.Fill = (new SolidColorBrush(Colors.Green));
@@ -542,46 +503,67 @@ namespace Projekt4GruppeA
 
                     }
                 }
-               
+
 
 
             }
-
-
-
-
-
-
-            ////2 Ampel
-            //if (timerCount % 5 == 0)
-            //{
-            //    //TODO auto change color of ampel when isRed changes
-            //    if (ampel2.isRed == true)
-            //    {
-            //        gr_mainGrid.Children.Remove(ampel2.blocker);
-            //        ampel2.isRed = false;
-            //        ampel2.body.Fill = (new SolidColorBrush(Colors.Green));
-            //    }
-            //    else
-            //    {
-            //        gr_mainGrid.Children.Add(ampel2.blocker);
-            //        ampel2.isRed = true;
-            //        ampel2.body.Fill = (new SolidColorBrush(Colors.Red));
-            //    }
-
-            //}
-
         }
 
 
 
-        #endregion AMPEL
+
+
+
+        //    ////2 Ampel
+            //    //if (timerCount % 5 == 0)
+            //    //{
+            //    //    //TODO auto change color of ampel when isRed changes
+            //    //    if (ampel2.isRed == true)
+            //    //    {
+            //    //        gr_mainGrid.Children.Remove(ampel2.blocker);
+            //    //        ampel2.isRed = false;
+            //    //        ampel2.body.Fill = (new SolidColorBrush(Colors.Green));
+            //    //    }
+            //    //    else
+            //    //    {
+            //    //        gr_mainGrid.Children.Add(ampel2.blocker);
+            //    //        ampel2.isRed = true;
+            //    //        ampel2.body.Fill = (new SolidColorBrush(Colors.Red));
+            //    //    }
+
+            //    //}
+
+            //}
+
+            #endregion TRAFFICLIGHT
+
+        #region SLIDER
+
+        private void sldTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //TODO Umdrehen
+            timer.Interval = TimeSpan.FromSeconds(sldTime.Value);
+        }
+
+        private void sldSpawn_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+        #endregion SLIDER
+
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             spawnCars(1);
         }
+
+        private void btnAnalysis_Click(object sender, RoutedEventArgs e)
+        {
+            Analysis analysisWindow = new Analysis();
+            analysisWindow.Show();
+        }
     }
 }
+
 
 

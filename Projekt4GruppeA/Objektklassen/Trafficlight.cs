@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Projekt4GruppeA.Classes
+namespace Projekt4GruppeA
 {
-    public class Trafficlight
+    public class Trafficlight 
     {
         //Ort
         public int location { get; set; }
