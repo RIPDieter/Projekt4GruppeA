@@ -47,7 +47,10 @@ namespace Projekt4GruppeA
             
 
             createGrid(40, 200);
-            spawntrafficlight();
+            spawntrafficlight(7,7);
+            spawntrafficlight(30, 7);
+            
+            
            
             
         }
@@ -256,24 +259,25 @@ namespace Projekt4GruppeA
         }
 
         #endregion GAP
-       
+
         #region TRAFFICLIGHT
+
+
+
+        //MainWindow main = new MainWindow();
 
         Trafficlight ampel = new Trafficlight();
         Trafficlight ampel12 = new Trafficlight();
         Trafficlight ampel13 = new Trafficlight();
         Trafficlight ampel14 = new Trafficlight();
 
-        Trafficlight ampel2 = new Trafficlight();
-        Trafficlight ampel3 = new Trafficlight();
-
-        //MainWindow main = new MainWindow();
-
-
-        public void spawntrafficlight()
+        
+        public void spawntrafficlight(int a, int b)
         {
+            //a die Reihe der Ampel unten rechts
+            //b gibt Zeile der Ampel unten rechts
 
-            //Kreuzung 1
+            //Kreuzung 
             ampel.body = new Ellipse();
             ampel.blocker = new Ellipse();
 
@@ -286,13 +290,6 @@ namespace Projekt4GruppeA
             ampel14.body = new Ellipse();
             ampel14.blocker = new Ellipse();
 
-            //Kreuzung 2
-            ampel2.body = new Ellipse();
-            ampel2.blocker = new Ellipse();
-
-            ampel3.body = new Ellipse();
-            ampel3.blocker = new Ellipse();
-
 
             Brush[] trafficLightColors = new Brush[]
             {
@@ -303,8 +300,8 @@ namespace Projekt4GruppeA
 
             //Kreuzung 1
             //Ampel1
-            Grid.SetColumn(ampel.body, 7);
-            Grid.SetRow(ampel.body, 7);
+            Grid.SetColumn(ampel.body, a);
+            Grid.SetRow(ampel.body, b);
             ampel.body.Fill = trafficLightColors[1];
 
             //Set Ampel Blocker
@@ -315,8 +312,8 @@ namespace Projekt4GruppeA
             gr_mainGrid.Children.Add(ampel.body);
 
             //Ampel2
-            Grid.SetColumn(ampel12.body, 7);
-            Grid.SetRow(ampel12.body, 2);
+            Grid.SetColumn(ampel12.body, a);
+            Grid.SetRow(ampel12.body, b-5);
             ampel12.body.Fill = trafficLightColors[1];
 
             Grid.SetRow(ampel12.blocker, Grid.GetRow(ampel12.body));
@@ -326,8 +323,8 @@ namespace Projekt4GruppeA
             gr_mainGrid.Children.Add(ampel12.body);
 
             //Ampel3
-            Grid.SetColumn(ampel13.body, 13);
-            Grid.SetRow(ampel13.body, 2);
+            Grid.SetColumn(ampel13.body, a+5);
+            Grid.SetRow(ampel13.body, b-5);
             ampel13.body.Fill = trafficLightColors[1];
 
             Grid.SetRow(ampel13.blocker, Grid.GetRow(ampel13.body) + 2);
@@ -337,8 +334,8 @@ namespace Projekt4GruppeA
             gr_mainGrid.Children.Add(ampel13.body);
 
             //Ampel4
-            Grid.SetColumn(ampel14.body, 13);
-            Grid.SetRow(ampel14.body, 7);
+            Grid.SetColumn(ampel14.body, a+5);
+            Grid.SetRow(ampel14.body, b);
             ampel14.body.Fill = trafficLightColors[1];
 
             Grid.SetRow(ampel14.blocker, Grid.GetRow(ampel14.body));
@@ -347,29 +344,22 @@ namespace Projekt4GruppeA
 
             gr_mainGrid.Children.Add(ampel14.body);
 
-            // Kreuzung 2
-            //Set Ampel Body
-            Grid.SetColumn(ampel2.body, 20);
-            Grid.SetRow(ampel2.body, 7);
-            ampel2.body.Fill = trafficLightColors[1];
+            switchLight();
 
-            //Set Ampel Blocker
-            Grid.SetRow(ampel2.blocker, Grid.GetRow(ampel2.body) - 2);
-            Grid.SetColumn(ampel2.blocker, Grid.GetColumn(ampel2.body));
-            ampel2.blocker.Fill = (new SolidColorBrush(Colors.Black));
 
-            gr_mainGrid.Children.Add(ampel2.body);
+
         }
 
         public void switchLight()
         {
+           
 
             //Kreuzung 1
             if (rdb1street.IsChecked == true)
             {
 
 
-                if (timerCount%5 == 0)
+                if (timerCount % 5 == 0)
                 {
                     //TODO auto change color of ampel when isRed changes
                     if (ampel.isRed == true)
@@ -510,30 +500,6 @@ namespace Projekt4GruppeA
         }
 
 
-
-
-
-
-        //    ////2 Ampel
-            //    //if (timerCount % 5 == 0)
-            //    //{
-            //    //    //TODO auto change color of ampel when isRed changes
-            //    //    if (ampel2.isRed == true)
-            //    //    {
-            //    //        gr_mainGrid.Children.Remove(ampel2.blocker);
-            //    //        ampel2.isRed = false;
-            //    //        ampel2.body.Fill = (new SolidColorBrush(Colors.Green));
-            //    //    }
-            //    //    else
-            //    //    {
-            //    //        gr_mainGrid.Children.Add(ampel2.blocker);
-            //    //        ampel2.isRed = true;
-            //    //        ampel2.body.Fill = (new SolidColorBrush(Colors.Red));
-            //    //    }
-
-            //    //}
-
-            //}
 
             #endregion TRAFFICLIGHT
 
