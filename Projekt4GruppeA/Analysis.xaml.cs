@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Projekt4GruppeA
 {
@@ -19,9 +22,35 @@ namespace Projekt4GruppeA
     /// </summary>
     public partial class Analysis : Window
     {
+
+        Bitmap bmp;
+        Graphics z;
+        
+
         public Analysis()
         {
             InitializeComponent();
+
+            //System.Drawing.Bitmap b = new Bitmap(imag);
+            //z = Graphics.FromImage(b);
         }
+
+        private void image_Paint(object sender, PaintEventArgs e)
+        {
+
+
+            Graphics z = e.Graphics;
+            z.SmoothingMode = SmoothingMode.AntiAlias;            
+
+            System.Drawing.Drawing2D.Matrix myMatrix = new System.Drawing.Drawing2D.Matrix();
+
+            System.Drawing.Pen pKoord = new System.Drawing.Pen(System.Drawing.Color.Gray, 0.01f);
+
+                    
+        }
+
+
     }
+
 }
+
