@@ -28,7 +28,7 @@ namespace Projekt4GruppeA
             Ellipse body = new Ellipse();
             body.Width = 10;
             body.Height = 10;
-            isRed = false;
+            isRed = true;
         }
     }
 }
