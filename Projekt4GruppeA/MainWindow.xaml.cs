@@ -29,13 +29,11 @@ namespace Projekt4GruppeA
         DispatcherTimer timer = new DispatcherTimer();
         //Global ID Counter
         public static int idCounter = 0;
-<<<<<<< HEAD
         // Skalierungsvariable
         int s;
         
-=======
         //Klasse TrafficlightCircuit instanziieren
->>>>>>> origin/master
+
 
 
 
@@ -116,7 +114,7 @@ namespace Projekt4GruppeA
             switchLight();
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
             // trafficlightCircuit.switchLight();
-<<<<<<< HEAD
+
             int z = 10 - (Convert.ToInt16(sldSpawn.Value));
 
             if (rnd.Next(0, z) == 0)
@@ -124,13 +122,13 @@ namespace Projekt4GruppeA
                 spawnCars(1);
             }
            
-=======
+
 
             //if (rnd.Next(0, 3) == 2)
             //{
             //    spawnCars(1);
             //}
->>>>>>> origin/master
+
 
             moveCars();
 
