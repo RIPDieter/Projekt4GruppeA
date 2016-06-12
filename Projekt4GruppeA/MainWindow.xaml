@@ -30,8 +30,8 @@
         <Slider x:Name="sldLight2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="297,1,0,0"/>
         <Slider x:Name="sldLight3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="474,0,0,0"/>
         <CheckBox x:Name="cbstreet" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,20
-                  ,0,0"/>
-        <CheckBox x:Name="cbclock" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,35,0,0"/>
+                  ,0,0" Checked="cbstreet_Checked"/>
+        <CheckBox x:Name="cbclock" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,35,0,0" Checked="cbclock_Checked"/>
         <Label x:Name="label" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="297,0,0,726"/>
 
 
