@@ -6,8 +6,5 @@
         xmlns:local="clr-namespace:Projekt4GruppeA"
         mc:Ignorable="d"
         Title="Analysis" Height="300" Width="300">
-    <Grid x:Name="Grid1" HorizontalAlignment="Left" Width="290" Margin="0,0,0,-20" Height="290" VerticalAlignment="Bottom">
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
-    </Grid>
-
+    <Image x:Name="image" HorizontalAlignment="Left" Height="275" Margin="0,0,0,-5" VerticalAlignment="Top" Width="290"/>
 </Window>

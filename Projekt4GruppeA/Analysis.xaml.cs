@@ -23,17 +23,39 @@ namespace Projekt4GruppeA
     public partial class Analysis : Window
     {
 
-        //Bitmap bmp;
-        //Graphics z;
+        Bitmap bmp;
+        Graphics z;
         
 
         public Analysis()
         {
-            InitializeComponent();
+            InitializeComponent();         
 
-            //System.Drawing.Bitmap b = new Bitmap(imag);
-            //z = Graphics.FromImage(b);
+            
         }
+
+        private void image_Paint(object sender, EventArgs e)
+        {
+            float minX = -1.1f;
+            float maxX = 1.1f;
+
+            float minY = -1.1f;
+            float maxY = 1.1f;
+
+            float breite = maxX - minX;
+            float hoehe = maxY - minY; // Deklarieren von Maßen
+
+            //System.Drawing.Drawing2D.Matrix myMatrix = new System.Drawing.Drawing2D.Matrix();
+            //myMatrix.Scale(image.RenderSize.Width / (double)breite, image.RenderSize.Height / (double)hoehe); // Skalierung der Matrix
+            //myMatrix.Translate(-minX, -minY, MatrixOrder.Prepend);
+
+            System.Drawing.Pen p = new System.Drawing.Pen(System.Drawing.Color.Black, 1f);
+
+            z.DrawEllipse(p, 5, 5, 2, 2);
+            
+        }
+
+
 
         //private void image_Paint(object sender, PaintEventArgs e)
         //{
@@ -65,17 +87,17 @@ namespace Projekt4GruppeA
 
         #region GRID_CHART
 
-        private void grid(int row, int column)
-        {
-            var Crow = new RowDefinition();
-            Crow.Height = new GridLength(20);
-            Grid1.RowDefinitions.Add(Crow);
+        //private void grid(int row, int column)
+        //{
+        //    var Crow = new RowDefinition();
+        //    Crow.Height = new GridLength(20);
+        //    Grid1.RowDefinitions.Add(Crow);
 
-            var Chcolumn = new ColumnDefinition();
-            Chcolumn.Width = new GridLength(10);
-            Grid1.ColumnDefinitions.Add(Chcolumn);
+        //    var Chcolumn = new ColumnDefinition();
+        //    Chcolumn.Width = new GridLength(10);
+        //    Grid1.ColumnDefinitions.Add(Chcolumn);
 
-        }
+        //}
 
         #endregion GRID_CHART
 
@@ -83,24 +105,26 @@ namespace Projekt4GruppeA
 
         #region XY_Axis
 
-        private void Paint(object sender, PaintEventArgs e)
-        {
+        //private void Paint(object sender, PaintEventArgs e)
+        //{
 
-            Graphics z = e.Graphics;
+        //    Graphics z = e.Graphics;
 
-            System.Drawing.Pen Koord = new System.Drawing.Pen(System.Drawing.Color.Black, 10f);
+        //    System.Drawing.Pen Koord = new System.Drawing.Pen(System.Drawing.Color.Black, 10f);
 
-            PointF[] kurve = new PointF[1000];
-            for (int i = 0; i < kurve.Length; i++)
-            {
-                kurve[i].X = (float)i * 7 / 1000f;
-                kurve[i].Y = -(float)Math.Sin(kurve[i].X * 5 / 10f);
-            }
+        //    PointF[] kurve = new PointF[1000];
+        //    for (int i = 0; i < kurve.Length; i++)
+        //    {
+        //        kurve[i].X = (float)i * 7 / 1000f;
+        //        kurve[i].Y = -(float)Math.Sin(kurve[i].X * 5 / 10f);
+        //    }
 
-            System.Drawing.Pen pKurve = new System.Drawing.Pen(System.Drawing.Color.Red, 0.01f);
-            z.DrawLines(pKurve, kurve);
+        //    System.Drawing.Pen pKurve = new System.Drawing.Pen(System.Drawing.Color.Red, 0.01f);
+        //    z.DrawLines(pKurve, kurve);
 
-        }
+            
+
+        //}
 
 
 
