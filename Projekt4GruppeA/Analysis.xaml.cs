@@ -30,7 +30,6 @@ namespace Projekt4GruppeA
         public Analysis()
         {
             InitializeComponent();         
-
             
         }
 
@@ -52,7 +51,8 @@ namespace Projekt4GruppeA
             System.Drawing.Pen p = new System.Drawing.Pen(System.Drawing.Color.Black, 1f);
 
             z.DrawEllipse(p, 5, 5, 2, 2);
-            
+         
+               
         }
 
 
