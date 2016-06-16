@@ -37,7 +37,7 @@ namespace Projekt4GruppeA
 
 
 
-        public int timerCount;
+         int timerCount;
 
         public static List<CarCasual> carList = new List<CarCasual>();
 
@@ -52,10 +52,9 @@ namespace Projekt4GruppeA
 
             createGrid(40, 200);
             spawntrafficlight(7,7);
-            
-            
-           
-            
+            spawntrafficlight(30,7);
+
+
         }
 
         #region GRID
@@ -109,9 +108,11 @@ namespace Projekt4GruppeA
         public void timerTick(object sender, EventArgs e)
         {
             timerCount++;
-            label.Content = timerCount.ToString();
             
-            switchLight();
+
+
+            //switchLight();
+            
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
             // trafficlightCircuit.switchLight();
 
@@ -122,8 +123,6 @@ namespace Projekt4GruppeA
                 spawnCars(1);
             }
            
-
-
             //if (rnd.Next(0, 3) == 2)
             //{
             //    spawnCars(1);
@@ -249,7 +248,6 @@ namespace Projekt4GruppeA
 
 
         //MainWindow main = new MainWindow();
-
         Trafficlight ampel = new Trafficlight();
         Trafficlight ampel12 = new Trafficlight();
         Trafficlight ampel13 = new Trafficlight();
@@ -258,9 +256,11 @@ namespace Projekt4GruppeA
 
         public void spawntrafficlight(int a, int b)
         {
+
+            
             //a die Reihe der Ampel unten rechts
             //b gibt Zeile der Ampel unten rechts
-           
+
             //Kreuzung 
             ampel.body = new Ellipse();
             ampel.blocker = new Ellipse();
@@ -327,14 +327,16 @@ namespace Projekt4GruppeA
 
             gr_mainGrid.Children.Add(ampel14.body);
 
-            
+            switchLight();
             
         }
 
         public void switchLight()
         {
-             
-            //Kreuzung 1
+
+
+            label.Content = timerCount.ToString();
+            //traffic light Circuit 1
             if (cbstreet.IsChecked == true)
             {
                 
@@ -382,6 +384,7 @@ namespace Projekt4GruppeA
 
             }
 
+            //traffic Light circuit 2
             if (cbclock.IsChecked == true)
             {
 
@@ -498,13 +501,18 @@ namespace Projekt4GruppeA
         private void cbstreet_Checked(object sender, RoutedEventArgs e)
         {
             cbclock.IsChecked = false;
-            
+            gr_mainGrid.Children.Add(ampel.blocker);
+            gr_mainGrid.Children.Remove(ampel12.blocker);
+            gr_mainGrid.Children.Add(ampel13.blocker);
+            gr_mainGrid.Children.Remove(ampel14.blocker);
+
         }
 
         private void cbclock_Checked(object sender, RoutedEventArgs e)
         {
             cbstreet.IsChecked = false;
-           
+            
+
         }
         #endregion Checkbox
     }
