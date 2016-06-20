@@ -487,7 +487,7 @@ namespace Projekt4GruppeA
 
         private void sldSpawn_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            
         }
         #endregion SLIDER
 

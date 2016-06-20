@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Projekt4GruppeA"
         mc:Ignorable="d"
         Title="Analysis" Height="301.176" Width="300">
-    <Grid x:Name="grid" Height="183" Margin="48,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="0,0" HorizontalAlignment="Left" Width="189"/>
-
+    <Canvas x:Name="can1" HorizontalAlignment="Left" Height="70" Margin="59,118,0,0" VerticalAlignment="Top" Width="15" Background="#FF0E0101">
+        <Canvas x:Name="can2" Height="50" Canvas.Left="41" Canvas.Top="19" Width="15" Background="Black"/>
+    </Canvas>
 </Window>

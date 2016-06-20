@@ -21,6 +21,7 @@ namespace Projekt4GruppeA
     /// </summary>
     public partial class Analysis : Window
     {
+        
 
         //Bitmap bmp;
         //Graphics z;
@@ -37,7 +38,11 @@ namespace Projekt4GruppeA
             
         }
 
-
+        private void canvas(object sender, PaintEventArgs e)
+        {
+         //   can1.Height == // vmax
+         //   can2.Height == // vdurchschnitt
+        }
 
 
 
