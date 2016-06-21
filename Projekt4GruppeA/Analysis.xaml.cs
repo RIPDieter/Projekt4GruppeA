@@ -40,6 +40,9 @@ namespace Projekt4GruppeA
 
         private void canvas(object sender, PaintEventArgs e)
         {
+
+            
+
          //   can1.Height == // vmax
          //   can2.Height == // vdurchschnitt
         }
