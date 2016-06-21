@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt4GruppeA
 {
-    public class SlowCar : CarCasual
+    public class SlowCar 
     {
         private int speed = 5;
     }

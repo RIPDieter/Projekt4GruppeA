@@ -37,9 +37,10 @@ namespace Projekt4GruppeA
 
 
 
-         int timerCount;
+        int timerCount;
 
-        public static List<CarCasual> carList = new List<CarCasual>();
+        public static List<CarCasual> carListLeftToRight = new List<CarCasual>();
+        public static List<CarCasual> carListRightToLeft = new List<CarCasual>();
 
         public MainWindow()
         {
@@ -47,14 +48,10 @@ namespace Projekt4GruppeA
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {          
-            
-
+        {                    
             createGrid(40, 200);
             spawntrafficlight(7,7);
             spawntrafficlight(30,7);
-
-
         }
 
         #region GRID
@@ -91,7 +88,20 @@ namespace Projekt4GruppeA
             {
                 MessageBox.Show("Already running!");
             }
+        }
+        private void cbstreet_Checked(object sender, RoutedEventArgs e)
+        {
+            cbclock.IsChecked = false;
+            gr_mainGrid.Children.Add(ampel.blocker);
+            gr_mainGrid.Children.Remove(ampel12.blocker);
+            gr_mainGrid.Children.Add(ampel13.blocker);
+            gr_mainGrid.Children.Remove(ampel14.blocker);
 
+        }
+
+        private void cbclock_Checked(object sender, RoutedEventArgs e)
+        {
+            cbstreet.IsChecked = false;
         }
 
         #endregion BUTTON CLICK EVENTS
@@ -144,10 +154,21 @@ namespace Projekt4GruppeA
         {
             if (checkSpawn() == false)
             {
-                CarCasual car = new CarCasual();
+                if (rnd.Next(0,2) == 0)
+                {
+                    CarCasual car = new CarCasual(2, 5);
 
-                gr_mainGrid.Children.Add(car.body);
-                carList.Add(car);
+                    gr_mainGrid.Children.Add(car.body);
+                    carListLeftToRight.Add(car);
+                }
+                else
+                {
+                    CarCasual car = new CarCasual(30, 4);
+
+                    gr_mainGrid.Children.Add(car.body);
+                    carListRightToLeft.Add(car);
+                }
+               
            } 
         }
 
@@ -158,8 +179,13 @@ namespace Projekt4GruppeA
                 UIElement uiE = gr_mainGrid.Children[j];
                 if (Grid.GetColumn(uiE) == 2 && Grid.GetRow(uiE) == 5)
                 {
+                   return false;
+                }
+                else if (Grid.GetColumn(uiE) == 30 && Grid.GetRow(uiE) == 4)
+                {
                     return false;
                 }
+
             }
             return true;
         }
@@ -170,7 +196,8 @@ namespace Projekt4GruppeA
 
         private void moveCars()
         {
-            foreach (CarCasual thisCar in carList)
+            #region  LEFTtoRIGHT
+            foreach (CarCasual thisCar in carListLeftToRight)
             {        
                 var gapSize = checkGapSize(thisCar);
 
@@ -213,9 +240,59 @@ namespace Projekt4GruppeA
                         thisCar.v--;
                     }
                 }
-                Console.WriteLine();
+                
             }
+            #endregion  LEFTtoRIGHT 
+
+            #region RIGHTtoLEFT
+            foreach (CarCasual thisCar in carListRightToLeft)
+            {
+                var gapSize = checkGapSize(thisCar);
+
+                //Stehen
+                if (gapSize == 0)
+                {
+                    thisCar.v = 0;
+                }
+                // Bremsen
+                else if (gapSize <= thisCar.v)
+                {
+                    thisCar.v = gapSize;
+                    var CurrentColumn = Grid.GetColumn(thisCar.body);
+                    CurrentColumn -= thisCar.v;
+                    Grid.SetColumn(thisCar.body, CurrentColumn);
+                }
+                //Beschleunigen
+                else if (gapSize > thisCar.v && thisCar.v < 2)
+                {
+                    var CurrentColumn = Grid.GetColumn(thisCar.body);
+                    CurrentColumn -= thisCar.v;
+                    Grid.SetColumn(thisCar.body, CurrentColumn);
+
+                    if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
+                    {
+                        thisCar.v--;
+                    }
+                    thisCar.v++;
+
+                }
+                // Höchstgeschw.
+                else if (gapSize > thisCar.v && thisCar.v >= 2)
+                {
+                    var CurrentColumn = Grid.GetColumn(thisCar.body);
+                    CurrentColumn -= thisCar.v;
+                    Grid.SetColumn(thisCar.body, CurrentColumn);
+
+                    if (rnd.Next(0, 3) == 2)
+                    {
+                        thisCar.v--;
+                    }
+                }
+
+            }
+            #endregion RIGHTtoLEFT
         }
+
 
         #endregion  MOVE
 
@@ -224,19 +301,44 @@ namespace Projekt4GruppeA
         private int checkGapSize(CarCasual thisCar)
         {
             var placeOfCarColumn = Grid.GetColumn(thisCar.body);
-            var placeOfCarRow = Grid.GetRow(thisCar.body);       
-                 
-            for (var searchPointColumn = placeOfCarColumn + 1; searchPointColumn < gr_mainGrid.ColumnDefinitions.Count; searchPointColumn++)
+            var placeOfCarRow = Grid.GetRow(thisCar.body);
+
+            if (placeOfCarRow == 5)
             {
-                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+
+                for (var searchPointColumn = placeOfCarColumn + 1;
+                    searchPointColumn < gr_mainGrid.ColumnDefinitions.Count;
+                    searchPointColumn++)
                 {
-                    UIElement uiE = gr_mainGrid.Children[j];
-                    if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
+                    for (int j = 0; j < gr_mainGrid.Children.Count; j++)
                     {
-                        var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 1;
-                        return gapSize;
+                        UIElement uiE = gr_mainGrid.Children[j];
+                        if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
+                        {
+                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 1;
+                            return gapSize;
+                        }
                     }
                 }
+                return 5;
+            }
+            else if (placeOfCarRow == 4)
+            {
+                for (var searchPointColumn = placeOfCarColumn - 1;
+                 searchPointColumn >= 0;
+                 searchPointColumn--)
+                {
+                    for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                    {
+                        UIElement uiE = gr_mainGrid.Children[j];
+                        if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
+                        {
+                            var gapSize = placeOfCarColumn - Grid.GetColumn(uiE) - 1;
+                            return gapSize;
+                        }
+                    }
+                }
+                return 5;
             }
             return 5;
         }
@@ -491,30 +593,14 @@ namespace Projekt4GruppeA
         }
         #endregion SLIDER
 
+        #region ANALYSIS
         private void btnAnalysis_Click(object sender, RoutedEventArgs e)
         {
             Analysis analysisWindow = new Analysis();
             analysisWindow.Show();
         }
+        #endregion ANALYSIS
 
-        #region Checkbox
-        private void cbstreet_Checked(object sender, RoutedEventArgs e)
-        {
-            cbclock.IsChecked = false;
-            gr_mainGrid.Children.Add(ampel.blocker);
-            gr_mainGrid.Children.Remove(ampel12.blocker);
-            gr_mainGrid.Children.Add(ampel13.blocker);
-            gr_mainGrid.Children.Remove(ampel14.blocker);
-
-        }
-
-        private void cbclock_Checked(object sender, RoutedEventArgs e)
-        {
-            cbstreet.IsChecked = false;
-            
-
-        }
-        #endregion Checkbox
     }
 }
 

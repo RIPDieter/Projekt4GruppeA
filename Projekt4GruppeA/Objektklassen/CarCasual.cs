@@ -30,7 +30,7 @@ namespace Projekt4GruppeA
         public Ellipse body { get; set; }
 
         //Konstruktor, ID hochzählen, Standardparameter  
-        public CarCasual()
+        public CarCasual(int columnSpawn, int rowSpawn)
         {
             Random rnd = new Random();
             
@@ -60,14 +60,21 @@ namespace Projekt4GruppeA
             body.HorizontalAlignment = HorizontalAlignment.Left;
 
             ImageBrush ib = new ImageBrush();
-            ib.ImageSource = new BitmapImage(new Uri("Icons/CarIcon.png", UriKind.Relative));
+            var x =
+                new BitmapImage(new Uri("Icons/" + rnd.Next(1, 9) + ".png", UriKind.Relative));
+         
+            //TODO Rotationnotwurkung
+            x.Rotation = Rotation.Rotate180;
+            ib.ImageSource = x;
+            
+            
             body.Fill = ib;
 
             //for debugging
             //car.body.Fill = carColors[rnd.Next(carColors.Length)];
             
-            Grid.SetColumn(body, 2);
-            Grid.SetRow(body, 5);
+            Grid.SetColumn(body, columnSpawn);
+            Grid.SetRow(body, rowSpawn);
         }
 
 
