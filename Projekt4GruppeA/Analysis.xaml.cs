@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Threading;
 
 namespace Projekt4GruppeA
 {
@@ -21,8 +22,7 @@ namespace Projekt4GruppeA
     /// </summary>
     public partial class Analysis : Window
     {
-        
-
+        #region CRAP von CRAPMENE
         //Bitmap bmp;
         //Graphics z;
 
@@ -30,22 +30,44 @@ namespace Projekt4GruppeA
         //const float maxX = 7.5f;
         //const float minY = -1.1f;
         //const float maxY = 1.1f;
+        #endregion CRAP von CRAPMENE
 
+       
+
+        //Optimale Methode hier wäre DataBinding, dann müsste man aber die Listen in ObservableCollections umbauen
+        DispatcherTimer timer = new DispatcherTimer();
 
         public Analysis()
         {
-            InitializeComponent();         
-            
+            InitializeComponent();
+
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += tickThat;
+            timer.Start();
+        }
+
+        private void tickThat(object sender, EventArgs e)
+        {
+            tb_totalCarCountOnMap.Text = (MainWindow.carListLeftToRight.Count + MainWindow.carListRightToLeft.Count).ToString();
+            tb_leftToRightCars.Text = MainWindow.carListLeftToRight.Count.ToString();
+            tb_rightToLeftCars.Text = MainWindow.carListRightToLeft.Count.ToString();
+        }
+
+        #region CRAP von CRAPMENE2
         private void canvas(object sender, PaintEventArgs e)
         {
 
-            
 
-         //   can1.Height == // vmax
-         //   can2.Height == // vdurchschnitt
+
+            //   can1.Height == // vmax
+            //   can2.Height == // vdurchschnitt
         }
+
+
 
 
 
@@ -106,67 +128,58 @@ namespace Projekt4GruppeA
 
 
 
-        //private void image_Paint(object sender, PaintEventArgs e)
-        //{
-        //    //const float a = 0;
-        //    //const float b = 20; // for trying
+    //private void image_Paint(object sender, PaintEventArgs e)
+    //{
+    //    //const float a = 0;
+    //    //const float b = 20; // for trying
 
-        //    //Graphics z = e.Graphics;
-        //    //z.SmoothingMode = SmoothingMode.AntiAlias;            
+    //    //Graphics z = e.Graphics;
+    //    //z.SmoothingMode = SmoothingMode.AntiAlias;            
 
-        //    //System.Drawing.Drawing2D.Matrix myMatrix = new System.Drawing.Drawing2D.Matrix(); // generating a matrix
+    //    //System.Drawing.Drawing2D.Matrix myMatrix = new System.Drawing.Drawing2D.Matrix(); // generating a matrix
 
-        //    //System.Drawing.Pen pKoord = new System.Drawing.Pen(System.Drawing.Color.Black, 10f);
+    //    //System.Drawing.Pen pKoord = new System.Drawing.Pen(System.Drawing.Color.Black, 10f);
 
-        //    //z.DrawLine(pKoord, a, b , b, a);
-
-
-        //    Line objline = new Line();
-
-        //    objline.Stroke = System.Windows.Media.Brushes.Black; 
-        //    objline.Fill = System.Windows.Media.Brushes.Black;
-
-        //    objline.X1 = (image.ActualWidth + image.Margin.Left);
-        //    objline.Y1 = (image.ActualHeight + image.Margin.Bottom);
-
-        //    objline.X2 = image.ActualWidth + 20;
-        //    objline.Y2 = image.ActualHeight + 20;
-
-        //#############################################################################
-
-        #region GRID_CHART
-
-        //private void grid(int row, int column)
-        //{
-        //    var Crow = new RowDefinition();
-        //    Crow.Height = new GridLength(20);
-        //    Grid1.RowDefinitions.Add(Crow);
-
-        //    var Chcolumn = new ColumnDefinition();
-        //    Chcolumn.Width = new GridLength(10);
-        //    Grid1.ColumnDefinitions.Add(Chcolumn);
-
-        //}
-
-        #endregion GRID_CHART
-
-        //##########################
-
-        #region XY_Axis
+    //    //z.DrawLine(pKoord, a, b , b, a);
 
 
+    //    Line objline = new Line();
 
+    //    objline.Stroke = System.Windows.Media.Brushes.Black; 
+    //    objline.Fill = System.Windows.Media.Brushes.Black;
 
-        #endregion XY_Axis
+    //    objline.X1 = (image.ActualWidth + image.Margin.Left);
+    //    objline.Y1 = (image.ActualHeight + image.Margin.Bottom);
 
+    //    objline.X2 = image.ActualWidth + 20;
+    //    objline.Y2 = image.ActualHeight + 20;
 
-    }
+    //#############################################################################
 
+    #region GRID_CHART
 
-    
+    //private void grid(int row, int column)
+    //{
+    //    var Crow = new RowDefinition();
+    //    Crow.Height = new GridLength(20);
+    //    Grid1.RowDefinitions.Add(Crow);
 
+    //    var Chcolumn = new ColumnDefinition();
+    //    Chcolumn.Width = new GridLength(10);
+    //    Grid1.ColumnDefinitions.Add(Chcolumn);
 
-    
+    //}
+
+    #endregion GRID_CHART
+
+    //##########################
+
+    #region XY_Axis
 
 
 
+
+    #endregion XY_Axis
+
+    #endregion CRAP von CRAPMENE2
+}
