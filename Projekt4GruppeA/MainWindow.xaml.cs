@@ -41,6 +41,7 @@ namespace Projekt4GruppeA
 
         public static List<CarCasual> carListLeftToRight = new List<CarCasual>();
         public static List<CarCasual> carListRightToLeft = new List<CarCasual>();
+        public static List<CarCasual> carListTopToBottom = new List<CarCasual>();
 
         public MainWindow()
         {
@@ -154,17 +155,9 @@ namespace Projekt4GruppeA
             {
                 spawnCars(1);
             }
-           
-            //if (rnd.Next(0, 3) == 2)
-            //{
-            //    spawnCars(1);
-            //}
-
 
             moveCars();
-
-            
-
+        
         }
 
 
@@ -176,22 +169,28 @@ namespace Projekt4GruppeA
         {
             if (checkSpawn() == false)
             {
-                if (rnd.Next(0,2) == 0)
+                if (rnd.Next(0,3) == 0)
                 {
                     CarCasual car = new CarCasual(2, 5);
 
                     gr_mainGrid.Children.Add(car.body);
                     carListLeftToRight.Add(car);
                 }
-                else
+                else if (rnd.Next(0, 3) == 1)
                 {
                     CarCasual car = new CarCasual(30, 4);
 
                     gr_mainGrid.Children.Add(car.body);
                     carListRightToLeft.Add(car);
                 }
-               
-           } 
+                else
+                 {
+                    CarCasual car = new CarCasual(31, 0);
+
+                    gr_mainGrid.Children.Add(car.body);
+                    carListTopToBottom.Add(car);
+                }
+            } 
         }
 
         private bool checkSpawn()
@@ -204,6 +203,10 @@ namespace Projekt4GruppeA
                    return false;
                 }
                 else if (Grid.GetColumn(uiE) == 30 && Grid.GetRow(uiE) == 4)
+                {
+                    return false;
+                }
+                else if (Grid.GetColumn(uiE) == 31 && Grid.GetRow(uiE) == 0)
                 {
                     return false;
                 }
@@ -223,51 +226,117 @@ namespace Projekt4GruppeA
             {        
                 var gapSize = checkGapSize(thisCar);
 
-                //Stehen
-                if (gapSize == 0)
+                if (Grid.GetColumn(thisCar.body) <= 40)
                 {
-                    thisCar.v = 0;
-                }
-                // Bremsen
-                else if (gapSize <= thisCar.v)
-                {
-                    thisCar.v = gapSize;
-                    var CurrentColumn = Grid.GetColumn(thisCar.body);
-                    CurrentColumn += thisCar.v;
-                    Grid.SetColumn(thisCar.body, CurrentColumn);
-                }
-                //Beschleunigen
-                else if (gapSize > thisCar.v && thisCar.v < 2)
-                {
-                    var CurrentColumn = Grid.GetColumn(thisCar.body);
-                    CurrentColumn += thisCar.v;
-                    Grid.SetColumn(thisCar.body, CurrentColumn);
-
-                    if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
+                    //Stehen
+                    if (gapSize == 0)
                     {
-                        thisCar.v--;
+                        thisCar.v = 0;
                     }
-                    thisCar.v++;
-
-                }
-                // Höchstgeschw.
-                else if (gapSize > thisCar.v && thisCar.v >= 2)
-                {
-                    var CurrentColumn = Grid.GetColumn(thisCar.body);
-                    CurrentColumn += thisCar.v;
-                    Grid.SetColumn(thisCar.body, CurrentColumn);
-
-                    if (rnd.Next(0, 3) == 2)
+                    // Bremsen
+                    else if (gapSize <= thisCar.v)
                     {
-                        thisCar.v--;
+                        thisCar.v = gapSize;
+                        var CurrentColumn = Grid.GetColumn(thisCar.body);
+                        CurrentColumn += thisCar.v;
+                        Grid.SetColumn(thisCar.body, CurrentColumn);
                     }
+                    //Beschleunigen
+                    else if (gapSize > thisCar.v && thisCar.v < 2)
+                    {
+                        var CurrentColumn = Grid.GetColumn(thisCar.body);
+                        CurrentColumn += thisCar.v;
+                        Grid.SetColumn(thisCar.body, CurrentColumn);
+
+                        if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
+                        {
+                            thisCar.v--;
+                        }
+                        thisCar.v++;
+
+                    }
+                    // Höchstgeschw.
+                    else if (gapSize > thisCar.v && thisCar.v >= 2)
+                    {
+                        var CurrentColumn = Grid.GetColumn(thisCar.body);
+                        CurrentColumn += thisCar.v;
+                        Grid.SetColumn(thisCar.body, CurrentColumn);
+
+                        if (rnd.Next(0, 3) == 2)
+                        {
+                            thisCar.v--;
+                        }
+                    }
+                }
+                else
+                {
+                    //carListLeftToRight.Remove(thisCar);
+                    gr_mainGrid.Children.Remove(thisCar.body);
                 }
                 
             }
             #endregion  LEFTtoRIGHT 
 
             #region RIGHTtoLEFT
+
             foreach (CarCasual thisCar in carListRightToLeft)
+            {
+                var gapSize = checkGapSize(thisCar);
+
+                if (Grid.GetColumn(thisCar.body) >= 3)
+                {
+                    //Stehen
+                    if (gapSize == 0)
+                    {
+                        thisCar.v = 0;
+                    }
+                    // Bremsen
+                    else if (gapSize <= thisCar.v)
+                    {
+                        thisCar.v = gapSize;
+                        var CurrentColumn = Grid.GetColumn(thisCar.body);
+                        CurrentColumn -= thisCar.v;
+                        Grid.SetColumn(thisCar.body, CurrentColumn);
+                    }
+                    //Beschleunigen
+                    else if (gapSize > thisCar.v && thisCar.v < 2)
+                    {
+                        var CurrentColumn = Grid.GetColumn(thisCar.body);
+                        CurrentColumn -= thisCar.v;
+                        Grid.SetColumn(thisCar.body, CurrentColumn);
+
+                        if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
+                        {
+                            thisCar.v--;
+                        }
+                        thisCar.v++;
+
+                    }
+                    // Höchstgeschw.
+                    else if (gapSize > thisCar.v && thisCar.v >= 2)
+                    {
+                        var CurrentColumn = Grid.GetColumn(thisCar.body);
+                        CurrentColumn -= thisCar.v;
+                        Grid.SetColumn(thisCar.body, CurrentColumn);
+
+                        if (rnd.Next(0, 3) == 2)
+                        {
+                            thisCar.v--;
+                        }
+                    }
+
+                }
+                else
+                {
+                    //carListRightToLeft.Remove(thisCar);
+                    gr_mainGrid.Children.Remove(thisCar.body);
+                }
+                            
+            }
+            #endregion RIGHTtoLEFT
+
+            #region TOPtoBOTTOM
+            foreach (CarCasual thisCar in carListTopToBottom)
             {
                 var gapSize = checkGapSize(thisCar);
 
@@ -280,16 +349,16 @@ namespace Projekt4GruppeA
                 else if (gapSize <= thisCar.v)
                 {
                     thisCar.v = gapSize;
-                    var CurrentColumn = Grid.GetColumn(thisCar.body);
-                    CurrentColumn -= thisCar.v;
-                    Grid.SetColumn(thisCar.body, CurrentColumn);
+                    var CurrentRow = Grid.GetRow(thisCar.body);
+                    CurrentRow += thisCar.v;
+                    Grid.SetRow(thisCar.body, CurrentRow);
                 }
                 //Beschleunigen
                 else if (gapSize > thisCar.v && thisCar.v < 2)
                 {
-                    var CurrentColumn = Grid.GetColumn(thisCar.body);
-                    CurrentColumn -= thisCar.v;
-                    Grid.SetColumn(thisCar.body, CurrentColumn);
+                    var CurrentRow = Grid.GetRow(thisCar.body);
+                    CurrentRow += thisCar.v;
+                    Grid.SetRow(thisCar.body, CurrentRow);
 
                     if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
                     {
@@ -301,10 +370,10 @@ namespace Projekt4GruppeA
                 // Höchstgeschw.
                 else if (gapSize > thisCar.v && thisCar.v >= 2)
                 {
-                    var CurrentColumn = Grid.GetColumn(thisCar.body);
-                    CurrentColumn -= thisCar.v;
-                    Grid.SetColumn(thisCar.body, CurrentColumn);
-                                          
+                    var CurrentRow = Grid.GetRow(thisCar.body);
+                    CurrentRow += thisCar.v;
+                    Grid.SetRow(thisCar.body, CurrentRow);
+
                     if (rnd.Next(0, 3) == 2)
                     {
                         thisCar.v--;
@@ -312,7 +381,8 @@ namespace Projekt4GruppeA
                 }
 
             }
-            #endregion RIGHTtoLEFT
+            #endregion TOPtoBOTTOM
+
         }
 
 
@@ -324,6 +394,8 @@ namespace Projekt4GruppeA
         {
             var placeOfCarColumn = Grid.GetColumn(thisCar.body);
             var placeOfCarRow = Grid.GetRow(thisCar.body);
+
+            #region  LEFTtoRIGHT
 
             if (placeOfCarRow == 5)
             {
@@ -344,11 +416,16 @@ namespace Projekt4GruppeA
                 }
                 return 5;
             }
-            else if (placeOfCarRow == 4)
+
+            #endregion  LEFTtoRIGHT
+
+            #region  RIGHTtoLEFT
+
+            if (placeOfCarRow == 4)
             {
                 for (var searchPointColumn = placeOfCarColumn - 1;
-                 searchPointColumn >= 0;
-                 searchPointColumn--)
+                    searchPointColumn >= 0;
+                    searchPointColumn--)
                 {
                     for (int j = 0; j < gr_mainGrid.Children.Count; j++)
                     {
@@ -362,26 +439,52 @@ namespace Projekt4GruppeA
                 }
                 return 5;
             }
+
+
+
+            #endregion RIGHTtoLEFT
+
+            #region TOPtoBOTTOM
+
+            if (placeOfCarColumn == 30)
+            {
+
+                for (var searchPointRow = placeOfCarRow + 1;
+                    searchPointRow < gr_mainGrid.RowDefinitions.Count;
+                    searchPointRow++)
+                {
+                    for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                    {
+                        UIElement uiE = gr_mainGrid.Children[j];
+                        if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
+                        {
+                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 1;
+                            return gapSize;
+                        }
+                    }
+                }
+                return 5;
+            }
+
+
+            #endregion TOPtoBOTTOM
+
             return 5;
         }
 
         #endregion GAP
 
         #region TRAFFICLIGHT
-
-
-
-        //MainWindow main = new MainWindow();
+        
+            
         Trafficlight ampel = new Trafficlight();
         Trafficlight ampel12 = new Trafficlight();
         Trafficlight ampel13 = new Trafficlight();
         Trafficlight ampel14 = new Trafficlight();
-
+        
 
         public void spawntrafficlight(int a, int b)
         {
-
-            
             //a die Reihe der Ampel unten rechts
             //b gibt Zeile der Ampel unten rechts
 
@@ -595,11 +698,7 @@ namespace Projekt4GruppeA
 
           }
 
-            
-
-
-
-            #endregion TRAFFICLIGHT
+        #endregion TRAFFICLIGHT
 
         #region SLIDER
 

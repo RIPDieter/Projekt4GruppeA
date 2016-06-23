@@ -21,19 +21,7 @@ namespace Projekt4GruppeA
     /// Interaktionslogik für Analysis.xaml
     /// </summary>
     public partial class Analysis : Window
-    {
-        #region CRAP von CRAPMENE
-        //Bitmap bmp;
-        //Graphics z;
-
-        //const float minX = -0.5f;
-        //const float maxX = 7.5f;
-        //const float minY = -1.1f;
-        //const float maxY = 1.1f;
-        #endregion CRAP von CRAPMENE
-
-       
-
+    {    
         //Optimale Methode hier wäre DataBinding, dann müsste man aber die Listen in ObservableCollections umbauen
         DispatcherTimer timer = new DispatcherTimer();
 
@@ -48,6 +36,8 @@ namespace Projekt4GruppeA
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += tickThat;
             timer.Start();
+
+            ch_p1.Value = 10;
         }
 
         private void tickThat(object sender, EventArgs e)
@@ -57,7 +47,16 @@ namespace Projekt4GruppeA
             tb_rightToLeftCars.Text = MainWindow.carListRightToLeft.Count.ToString();
         }
 
-        #region CRAP von CRAPMENE2
+        #region OLD
+        //Bitmap bmp;
+        //Graphics z;
+
+        //const float minX = -0.5f;
+        //const float maxX = 7.5f;
+        //const float minY = -1.1f;
+        //const float maxY = 1.1f;
+
+
         private void canvas(object sender, PaintEventArgs e)
         {
 
@@ -181,5 +180,5 @@ namespace Projekt4GruppeA
 
     #endregion XY_Axis
 
-    #endregion CRAP von CRAPMENE2
+    #endregion OLD
 }

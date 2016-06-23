@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt4GruppeA"
+        xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
         mc:Ignorable="d"
         Title="Analysis" Height="400" Width="400"
         ResizeMode="NoResize"
@@ -22,6 +23,22 @@
         <Label Content="Von Rechts nach Links" Height="30" Margin="31,101,203,241" Width="160"/>
         <TextBlock x:Name="tb_rightToLeftCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="177,106,157,236"/>
 
+        <sparrow:SparrowChart Margin="10,162,10,10" x:Name="ch_sparrowChart">
+            <sparrow:SparrowChart.XAxis>
+                <sparrow:LinearXAxis/>
+            </sparrow:SparrowChart.XAxis>
+            <sparrow:SparrowChart.YAxis>
+                <sparrow:LinearYAxis/>
+            </sparrow:SparrowChart.YAxis>
+            <sparrow:LineSeries>
+                <sparrow:LineSeries.Points>
+                    <sparrow:DoublePoint Data="0" Value="1" x:Name="ch_p1"/>
+                    <sparrow:DoublePoint Data="1" Value="5"/>
+                    <sparrow:DoublePoint Data="2" Value="3"/>
+                    <sparrow:DoublePoint Data="3" Value="4"/>
+                </sparrow:LineSeries.Points>
+            </sparrow:LineSeries>
+        </sparrow:SparrowChart>
 
     </Grid>
 
