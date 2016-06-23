@@ -50,8 +50,10 @@ namespace Projekt4GruppeA
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {                    
             createGrid(40, 200);
-            spawntrafficlight(7,7);
             spawntrafficlight(30,7);
+
+            
+
         }
 
         #region GRID
@@ -89,19 +91,39 @@ namespace Projekt4GruppeA
                 MessageBox.Show("Already running!");
             }
         }
-        private void cbstreet_Checked(object sender, RoutedEventArgs e)
+        private void cbstreet_Click(object sender, RoutedEventArgs e)
         {
             cbclock.IsChecked = false;
-            gr_mainGrid.Children.Add(ampel.blocker);
+            gr_mainGrid.Children.Remove(ampel.blocker);
             gr_mainGrid.Children.Remove(ampel12.blocker);
-            gr_mainGrid.Children.Add(ampel13.blocker);
+            gr_mainGrid.Children.Remove(ampel13.blocker);
             gr_mainGrid.Children.Remove(ampel14.blocker);
+
+            
+            gr_mainGrid.Children.Add(ampel.blocker);
+            ampel.body.Fill = (new SolidColorBrush(Colors.Red));
+            gr_mainGrid.Children.Add(ampel13.blocker);
+            ampel13.body.Fill = (new SolidColorBrush(Colors.Red));
+
 
         }
 
-        private void cbclock_Checked(object sender, RoutedEventArgs e)
+        private void cbclock_Click(object sender, RoutedEventArgs e)
         {
             cbstreet.IsChecked = false;
+            gr_mainGrid.Children.Remove(ampel.blocker);
+            gr_mainGrid.Children.Remove(ampel12.blocker);
+            gr_mainGrid.Children.Remove(ampel13.blocker);
+            gr_mainGrid.Children.Remove(ampel14.blocker);
+
+            gr_mainGrid.Children.Add(ampel12.blocker);
+            ampel.body.Fill = (new SolidColorBrush(Colors.Green));
+            gr_mainGrid.Children.Add(ampel13.blocker);
+            gr_mainGrid.Children.Add(ampel14.blocker);
+            ampel12.body.Fill = (new SolidColorBrush(Colors.Red));
+            ampel13.body.Fill = (new SolidColorBrush(Colors.Red));
+            ampel14.body.Fill = (new SolidColorBrush(Colors.Red));
+
         }
 
         #endregion BUTTON CLICK EVENTS
@@ -121,7 +143,7 @@ namespace Projekt4GruppeA
             
 
 
-            //switchLight();
+            switchLight();
             
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
             // trafficlightCircuit.switchLight();
@@ -282,7 +304,7 @@ namespace Projekt4GruppeA
                     var CurrentColumn = Grid.GetColumn(thisCar.body);
                     CurrentColumn -= thisCar.v;
                     Grid.SetColumn(thisCar.body, CurrentColumn);
-
+                                          
                     if (rnd.Next(0, 3) == 2)
                     {
                         thisCar.v--;
@@ -601,6 +623,7 @@ namespace Projekt4GruppeA
         }
         #endregion ANALYSIS
 
+        
     }
 }
 
