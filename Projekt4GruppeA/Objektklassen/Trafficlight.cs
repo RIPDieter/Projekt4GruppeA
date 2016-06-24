@@ -42,8 +42,8 @@ namespace Projekt4GruppeA
            };
 
             body = new Ellipse();
-            body.Width = 10;
-            body.Height = 10;
+            body.Width = 15;
+            body.Height = 15;
             isRed = true;
 
             Grid.SetColumn(body, trafficLightcolumn);

@@ -60,14 +60,17 @@ namespace Projekt4GruppeA
             body.HorizontalAlignment = HorizontalAlignment.Left;
 
             ImageBrush ib = new ImageBrush();
+            
             var x =
                 new BitmapImage(new Uri("Icons/" + rnd.Next(1, 9) + ".png", UriKind.Relative));
-         
+            
+
             //TODO Rotationnotwurkung
             x.Rotation = Rotation.Rotate180;
+          
             ib.ImageSource = x;
-            
-            
+         
+
             body.Fill = ib;
 
             //for debugging

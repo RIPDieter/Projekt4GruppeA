@@ -12,7 +12,7 @@
         <StackPanel>
             <Button x:Name="button" Content="Spawn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnSpawn_Click"/>
 
-            
+
             <Slider x:Name="sldSpawn" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Minimum="1" SmallChange="1"/>
             <Button x:Name="btnAnalysis" Content="Auswertung" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Click="btnAnalysis_Click"/>
 
@@ -24,6 +24,8 @@
 
         <Grid x:Name="gr_mainGrid" Margin="50,50,0,0">
             <Border Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="999" Background="Gray" />
+           
+         <Grid x:Name="draw_Grid" Margin="10,10,0,0"/>
             
         </Grid>
 

@@ -39,6 +39,7 @@ namespace Projekt4GruppeA
         public static List<CarCasual> carListLeftToRight = new List<CarCasual>();
         public static List<CarCasual> carListRightToLeft = new List<CarCasual>();
         public static List<CarCasual> carListTopToBottom = new List<CarCasual>();
+        public static List<CarCasual> carListBottomToTop = new List<CarCasual>();
 
         public static List<Trafficlight> trafficLightList = new List<Trafficlight>();
 
@@ -53,9 +54,54 @@ namespace Projekt4GruppeA
 
             //spawntrafficlight(30,7);
             spawnTrafficLight(30, 7, 30, 5);
-            spawnTrafficLight(30, 2, 30, 4);
+            spawnTrafficLight(30, 2, 32, 2);
             spawnTrafficLight(35, 2, 35, 4);
-            spawnTrafficLight(35, 7, 35, 5);
+            spawnTrafficLight(35, 7, 33, 7);
+            drawstreet();
+           
+        }
+        public void drawstreet()
+        {
+           
+
+            int number = 20;
+            int width = 20;
+            int height = 20;
+            int top = 20;
+            int left = 20;
+
+            for (int i = 0; i < number; i++)
+            {
+                // Create the rectangle
+                Rectangle rec = new Rectangle()
+                {
+                    Width = width,
+                    Height = height,
+                    Fill = Brushes.Gray,
+                    
+                 
+                };
+
+                Grid.SetRow(rec, 8);
+                Grid.SetColumn(rec, i);
+                draw_Grid.Children.Add(rec);
+                
+            }
+
+
+
+            //for (int i = 2; i < 20; i++)
+            //{
+
+            //    r[i].Height = 10;
+            //    r[i].Width = 10;
+            //    r[i].Fill = new SolidColorBrush(Colors.Gray);
+            //    Grid.SetRow(r[i], i);
+            //    Grid.SetColumn(r[i], 9);
+            //    gr_mainGrid.Children.Add(r[i]);
+            //}
+
+
 
         }
 
@@ -74,6 +120,19 @@ namespace Projekt4GruppeA
                 var gridColumn = new ColumnDefinition();
                 gridColumn.Width = new GridLength(20);
                 gr_mainGrid.ColumnDefinitions.Add(gridColumn);
+            }
+
+            for (int i = 0; i < rowCount; i++)
+            {
+                var gridRow = new RowDefinition();
+                gridRow.Height = new GridLength(20);
+                draw_Grid.RowDefinitions.Add(gridRow);
+            }
+            for (int i = 0; i < columnCount; i++)
+            {
+                var gridColumn = new ColumnDefinition();
+                gridColumn.Width = new GridLength(20);
+                draw_Grid.ColumnDefinitions.Add(gridColumn);
             }
         }
 
@@ -172,14 +231,15 @@ namespace Projekt4GruppeA
         public void spawnCars(int carsToSpawn)
         {
             if (checkSpawn() == false)
-            {
+            {   
+                //cars left to right
                 if (rnd.Next(0, 3) == 0)
                 {
-                    CarCasual car = new CarCasual(2, 5);
-
+                    CarCasual car = new CarCasual(2, 5);                   
                     gr_mainGrid.Children.Add(car.body);
                     carListLeftToRight.Add(car);
                 }
+                //cars right to left
                 else if (rnd.Next(0, 3) == 1)
                 {
                     CarCasual car = new CarCasual(30, 4);
@@ -187,9 +247,13 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Add(car.body);
                     carListRightToLeft.Add(car);
                 }
+                //cars bottom to top, to to bottom
                 else
                 {
                     CarCasual car = new CarCasual(31, 0);
+                    CarCasual car1 = new CarCasual(34, 15);
+                    gr_mainGrid.Children.Add(car1.body);
+                    carListBottomToTop.Add(car1);
 
                     gr_mainGrid.Children.Add(car.body);
                     carListTopToBottom.Add(car);
@@ -211,6 +275,10 @@ namespace Projekt4GruppeA
                     return false;
                 }
                 else if (Grid.GetColumn(uiE) == 31 && Grid.GetRow(uiE) == 0)
+                {
+                    return false;
+                }
+                else if (Grid.GetColumn(uiE) == 34 && Grid.GetRow(uiE) == 15)
                 {
                     return false;
                 }
@@ -349,48 +417,112 @@ namespace Projekt4GruppeA
                 var gapSize = checkGapSize(thisCar);
 
                 //Stehen
-                if (gapSize == 0)
+                if (Grid.GetRow(thisCar.body) <= 15)
                 {
-                    thisCar.v = 0;
-                }
-                // Bremsen
-                else if (gapSize <= thisCar.v)
-                {
-                    thisCar.v = gapSize;
-                    var CurrentRow = Grid.GetRow(thisCar.body);
-                    CurrentRow += thisCar.v;
-                    Grid.SetRow(thisCar.body, CurrentRow);
-                }
-                //Beschleunigen
-                else if (gapSize > thisCar.v && thisCar.v < 2)
-                {
-                    var CurrentRow = Grid.GetRow(thisCar.body);
-                    CurrentRow += thisCar.v;
-                    Grid.SetRow(thisCar.body, CurrentRow);
-
-                    if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
+                    if (gapSize == 0)
                     {
-                        thisCar.v--;
+                        thisCar.v = 0;
                     }
-                    thisCar.v++;
-
-                }
-                // Höchstgeschw.
-                else if (gapSize > thisCar.v && thisCar.v >= 2)
-                {
-                    var CurrentRow = Grid.GetRow(thisCar.body);
-                    CurrentRow += thisCar.v;
-                    Grid.SetRow(thisCar.body, CurrentRow);
-
-                    if (rnd.Next(0, 3) == 2)
+                    // Bremsen
+                    else if (gapSize <= thisCar.v)
                     {
-                        thisCar.v--;
+                        thisCar.v = gapSize;
+                        var CurrentRow = Grid.GetRow(thisCar.body);
+                        CurrentRow += thisCar.v;
+                        Grid.SetRow(thisCar.body, CurrentRow);
                     }
+                    //Beschleunigen
+                    else if (gapSize > thisCar.v && thisCar.v < 2)
+                    {
+                        var CurrentRow = Grid.GetRow(thisCar.body);
+                        CurrentRow += thisCar.v;
+                        Grid.SetRow(thisCar.body, CurrentRow);
+
+                        if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
+                        {
+                            thisCar.v--;
+                        }
+                        thisCar.v++;
+
+                    }
+                    // Höchstgeschw.
+                    else if (gapSize > thisCar.v && thisCar.v >= 2)
+                    {
+                        var CurrentRow = Grid.GetRow(thisCar.body);
+                        CurrentRow += thisCar.v;
+                        Grid.SetRow(thisCar.body, CurrentRow);
+
+                        if (rnd.Next(0, 3) == 2)
+                        {
+                            thisCar.v--;
+                        }
+                    } 
+                }
+                else
+                {
+                    gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
             }
 
             #endregion TOPtoBOTTOM
+          
+            #region BOTTOMtoTOP
+
+            foreach (CarCasual thisCar in carListBottomToTop)
+            {
+                var gapSize = checkGapSize(thisCar);
+
+                //Stehen
+                if (Grid.GetRow(thisCar.body) >= 3)
+                {
+                    if (gapSize == 0)
+                    {
+                        thisCar.v = 0;
+                    }
+                    // Bremsen
+                    else if (gapSize <= thisCar.v)
+                    {
+                        thisCar.v = gapSize;
+                        var CurrentRow = Grid.GetRow(thisCar.body);
+                        CurrentRow -= thisCar.v;
+                        Grid.SetRow(thisCar.body, CurrentRow);
+                    }
+                    //Beschleunigen
+                    else if (gapSize > thisCar.v && thisCar.v < 2)
+                    {
+                        var CurrentRow = Grid.GetRow(thisCar.body);
+                        CurrentRow -= thisCar.v;
+                        Grid.SetRow(thisCar.body, CurrentRow);
+
+                        if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
+                        {
+                            thisCar.v--;
+                        }
+                        thisCar.v++;
+
+                    }
+                    // Höchstgeschw.
+                    else if (gapSize > thisCar.v && thisCar.v >= 2)
+                    {
+                        var CurrentRow = Grid.GetRow(thisCar.body);
+                        CurrentRow -= thisCar.v;
+                        Grid.SetRow(thisCar.body, CurrentRow);
+
+                        if (rnd.Next(0, 3) == 2)
+                        {
+                            thisCar.v--;
+                        }
+                    } 
+
+                }
+                else
+                {
+                    gr_mainGrid.Children.Remove(thisCar.body);
+                }
+
+            }
+            #endregion BOTTOMtoTop
 
         }
 
@@ -450,7 +582,6 @@ namespace Projekt4GruppeA
             }
 
 
-
             #endregion RIGHTtoLEFT
 
             #region TOPtoBOTTOM
@@ -476,11 +607,14 @@ namespace Projekt4GruppeA
             }
 
 
-            #endregion TOPtoBOTTOM
-
             return 5;
         }
+        #endregion TOPtoBOTTOM
+        #region BOTTOMtoTOP
 
+
+
+        #endregion BOTTOMtoTOP
         #endregion GAP
 
         #region TRAFFICLIGHT
