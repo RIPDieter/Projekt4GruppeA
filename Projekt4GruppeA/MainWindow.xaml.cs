@@ -44,7 +44,17 @@ namespace Projekt4GruppeA
         public static List<CarCasual> carListBottomToTop = new List<CarCasual>();
 
         public static List<Trafficlight> trafficLightList = new List<Trafficlight>();
+        int LeftRightColumn = 2;
+        int LeftRightRow = 5;
 
+        int RightLeftColumn = 30;
+        int RightLeftRow = 4;
+
+        int TopBottomColumn = 32;
+        int TopBottomRow = 0;
+
+        int BottomTopColumn = 33;
+        int BottomTopRow = 15;
         public MainWindow()
         {
             InitializeComponent();
@@ -53,8 +63,13 @@ namespace Projekt4GruppeA
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             createGrid(40, 200);
+            //first interstate
+            spawnTrafficLight(7, 7, 7, 5);
+            spawnTrafficLight(7, 2, 9, 2);
+            spawnTrafficLight(12, 2, 12, 4);
+            spawnTrafficLight(12, 7, 10, 7);
 
-            //spawntrafficlight(30,7);
+            //second interstate
             spawnTrafficLight(30, 7, 30, 5);
             spawnTrafficLight(30, 2, 32, 2);
             spawnTrafficLight(35, 2, 35, 4);
@@ -208,7 +223,8 @@ namespace Projekt4GruppeA
             timerCount++;
 
            
-            switchLight();
+            switchLight(0,1,2,3);
+            switchLight(4, 5, 6, 7);
 
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
             // trafficlightCircuit.switchLight();
@@ -236,14 +252,14 @@ namespace Projekt4GruppeA
                 //cars left to right
                 if (rnd.Next(0, 3) == 0)
                 {
-                    CarCasual car = new CarCasual(2, 5);                   
+                    CarCasual car = new CarCasual(LeftRightColumn, LeftRightRow);                   
                     gr_mainGrid.Children.Add(car.body);
                     carListLeftToRight.Add(car);
                 }
                 //cars right to left
                 else if (rnd.Next(0, 3) == 1)
                 {
-                    CarCasual car = new CarCasual(30, 4);
+                    CarCasual car = new CarCasual(RightLeftColumn, RightLeftRow);
 
                     gr_mainGrid.Children.Add(car.body);
                     carListRightToLeft.Add(car);
@@ -251,8 +267,8 @@ namespace Projekt4GruppeA
                 //cars bottom to top, to to bottom
                 else
                 {
-                    CarCasual car = new CarCasual(31, 0);
-                    CarCasual car1 = new CarCasual(34, 15);
+                    CarCasual car = new CarCasual(TopBottomColumn, TopBottomRow);
+                    CarCasual car1 = new CarCasual(BottomTopColumn, BottomTopRow);
                     gr_mainGrid.Children.Add(car1.body);
                     carListBottomToTop.Add(car1);
 
@@ -543,7 +559,7 @@ namespace Projekt4GruppeA
 
             #region  LEFTtoRIGHT
 
-            if (placeOfCarRow == 5)
+            if (placeOfCarRow == LeftRightRow)
             {
 
                 for (var searchPointColumn = placeOfCarColumn + 1;
@@ -567,7 +583,7 @@ namespace Projekt4GruppeA
 
             #region  RIGHTtoLEFT
 
-            if (placeOfCarRow == 4)
+            if (placeOfCarRow == RightLeftRow)
             {
                 for (var searchPointColumn = placeOfCarColumn - 1;
                     searchPointColumn >= 0;
@@ -591,7 +607,7 @@ namespace Projekt4GruppeA
 
             #region TOPtoBOTTOM
 
-            if (placeOfCarColumn == 30)
+            if (placeOfCarColumn == TopBottomColumn)
             {
 
                 for (var searchPointRow = placeOfCarRow + 1;
@@ -613,12 +629,33 @@ namespace Projekt4GruppeA
 
 
             return 5;
+
+            #endregion TOPtoBOTTOM
+            #region BOTTOMtoTOP
+            if (placeOfCarColumn == BottomTopColumn)
+            {
+
+                for (var searchPointRow = placeOfCarRow - 1;
+                    searchPointRow < gr_mainGrid.RowDefinitions.Count;
+                    searchPointRow++)
+                {
+                    for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                    {
+                        UIElement uiE = gr_mainGrid.Children[j];
+                        if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
+                        {
+                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 1;
+                            return gapSize;
+                        }
+                    }
+                }
+                return 5;
+            }
+
+
+            return 5;
+
         }
-        #endregion TOPtoBOTTOM
-        #region BOTTOMtoTOP
-
-
-
         #endregion BOTTOMtoTOP
         #endregion GAP
 
@@ -633,7 +670,7 @@ namespace Projekt4GruppeA
             //gr_mainGrid.Children.Add(ampel.blocker);
         }
 
-        public void switchLight()
+        public void switchLight(int a, int b, int c, int d)
         {
             //traffic light Circuit 1
             if (cbstreet.IsChecked == true)
@@ -641,42 +678,42 @@ namespace Projekt4GruppeA
                 if (timerCount%5 == 0)
                 {
                     //TODO auto change color of ampel when isRed changes
-                    if (trafficLightList[0].isRed == true)
+                    if (trafficLightList[a].isRed == true)
                     {
-                        gr_mainGrid.Children.Remove(trafficLightList[0].blocker);
-                        trafficLightList[0].isRed = false;
-                        trafficLightList[0].body.Fill = (new SolidColorBrush(Colors.Green));
+                        gr_mainGrid.Children.Remove(trafficLightList[a].blocker);
+                        trafficLightList[a].isRed = false;
+                        trafficLightList[a].body.Fill = (new SolidColorBrush(Colors.Green));
 
-                        trafficLightList[1].isRed = true;
-                        trafficLightList[1].body.Fill = (new SolidColorBrush(Colors.Red));
-                        gr_mainGrid.Children.Add(trafficLightList[1].blocker);
+                        trafficLightList[b].isRed = true;
+                        trafficLightList[b].body.Fill = (new SolidColorBrush(Colors.Red));
+                        gr_mainGrid.Children.Add(trafficLightList[b].blocker);
 
-                        gr_mainGrid.Children.Remove(trafficLightList[2].blocker);
-                        trafficLightList[2].isRed = false;
-                        trafficLightList[2].body.Fill = (new SolidColorBrush(Colors.Green));
+                        gr_mainGrid.Children.Remove(trafficLightList[c].blocker);
+                        trafficLightList[c].isRed = false;
+                        trafficLightList[c].body.Fill = (new SolidColorBrush(Colors.Green));
 
-                        trafficLightList[3].isRed = true;
-                        trafficLightList[3].body.Fill = (new SolidColorBrush(Colors.Red));
-                        gr_mainGrid.Children.Add(trafficLightList[3].blocker);
+                        trafficLightList[d].isRed = true;
+                        trafficLightList[d].body.Fill = (new SolidColorBrush(Colors.Red));
+                        gr_mainGrid.Children.Add(trafficLightList[d].blocker);
                     }
                     else
                     {
 
-                        trafficLightList[0].isRed = true;
-                        trafficLightList[0].body.Fill = (new SolidColorBrush(Colors.Red));
-                        gr_mainGrid.Children.Add(trafficLightList[0].blocker);
+                        trafficLightList[a].isRed = true;
+                        trafficLightList[a].body.Fill = (new SolidColorBrush(Colors.Red));
+                        gr_mainGrid.Children.Add(trafficLightList[a].blocker);
 
-                        gr_mainGrid.Children.Remove(trafficLightList[1].blocker);
-                        trafficLightList[1].isRed = false;
-                        trafficLightList[1].body.Fill = (new SolidColorBrush(Colors.Green));
+                        gr_mainGrid.Children.Remove(trafficLightList[b].blocker);
+                        trafficLightList[b].isRed = false;
+                        trafficLightList[b].body.Fill = (new SolidColorBrush(Colors.Green));
 
-                        trafficLightList[2].isRed = true;
-                        trafficLightList[2].body.Fill = (new SolidColorBrush(Colors.Red));
-                        gr_mainGrid.Children.Add(trafficLightList[2].blocker);
+                        trafficLightList[c].isRed = true;
+                        trafficLightList[c].body.Fill = (new SolidColorBrush(Colors.Red));
+                        gr_mainGrid.Children.Add(trafficLightList[c].blocker);
 
-                        gr_mainGrid.Children.Remove(trafficLightList[3].blocker);
-                        trafficLightList[3].isRed = false;
-                        trafficLightList[3].body.Fill = (new SolidColorBrush(Colors.Green));
+                        gr_mainGrid.Children.Remove(trafficLightList[d].blocker);
+                        trafficLightList[d].isRed = false;
+                        trafficLightList[d].body.Fill = (new SolidColorBrush(Colors.Green));
                     }
                 }
             }
