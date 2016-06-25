@@ -46,11 +46,10 @@ namespace Projekt4GruppeA
             tb_totalCarCountOnMap.Text = (MainWindow.carListLeftToRight.Count + MainWindow.carListRightToLeft.Count).ToString();
             tb_leftToRightCars.Text = MainWindow.carListLeftToRight.Count.ToString();
             tb_rightToLeftCars.Text = MainWindow.carListRightToLeft.Count.ToString();
-            
-            
-
 
             
+
+                        
         }
 
         #region OLD

@@ -364,10 +364,12 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
-                if (gapSize == 0  && thisCar.v <= 0)
+                if (gapSize == 0 && thisCar.v <= 0)
                 {
-                    analysisWindow.label.Content = "ACHTUNG STAU!!";
+                    analysisWindow.label1.Content = "STAU!!";
                 }
+
+
             }
 
             #endregion  LEFTtoRIGHT 
@@ -427,6 +429,11 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
+                if (gapSize == 0 && thisCar.v <= 0)
+                {
+                    analysisWindow.label1.Content = "STAU!!";
+                }
+
             }
 
             #endregion RIGHTtoLEFT
@@ -484,6 +491,11 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
+                if (gapSize == 0 && thisCar.v <= 0)
+                {
+                    analysisWindow.label1.Content = "STAU!!";
+                }
+
             }
 
             #endregion TOPtoBOTTOM
@@ -534,7 +546,12 @@ namespace Projekt4GruppeA
                         {
                             thisCar.v--;
                         }
-                    } 
+                    }
+
+                    if (gapSize == 0 && thisCar.v <= 0)
+                    {
+                        analysisWindow.label1.Content = "STAU!!";
+                    }
 
                 }
                 else
@@ -544,6 +561,9 @@ namespace Projekt4GruppeA
 
             }
             #endregion BOTTOMtoTop
+
+
+
 
         }
 
@@ -837,13 +857,16 @@ namespace Projekt4GruppeA
             
             analysisWindow.Show();
 
-            analysisWindow.label1.Content = timerCount.ToString();
-
 
             
             
+                analysisWindow.txtTimer.Text = timerCount.ToString();
+
+                    
             
         }
+
+        
 
 
         #endregion ANALYSIS
