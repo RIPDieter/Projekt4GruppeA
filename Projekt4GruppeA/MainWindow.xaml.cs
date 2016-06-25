@@ -32,6 +32,8 @@ namespace Projekt4GruppeA
         // Skalierungsvariable
         int s;
 
+        Analysis analysisWindow = new Analysis();
+
         //Klasse TrafficlightCircuit instanziieren
 
         int timerCount;
@@ -205,8 +207,7 @@ namespace Projekt4GruppeA
         {
             timerCount++;
 
-
-
+           
             switchLight();
 
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
@@ -347,6 +348,10 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
+                if (gapSize == 0  && thisCar.v <= 0)
+                {
+                    analysisWindow.label.Content = "ACHTUNG STAU!!";
+                }
             }
 
             #endregion  LEFTtoRIGHT 
@@ -786,16 +791,25 @@ namespace Projekt4GruppeA
         }
         #endregion SLIDER
 
+
         #region ANALYSIS
+
+
         private void btnAnalysis_Click(object sender, RoutedEventArgs e)
         {
-            Analysis analysisWindow = new Analysis();
+            
             analysisWindow.Show();
+
+            analysisWindow.label1.Content = timerCount.ToString();
+
+
+            
+            
+            
         }
+
+
         #endregion ANALYSIS
 
     }
 }
-
-
-

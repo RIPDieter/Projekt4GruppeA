@@ -36,6 +36,7 @@ namespace Projekt4GruppeA
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += tickThat;
             timer.Start();
+            
 
             ch_p1.Value = 10;
         }
@@ -45,6 +46,11 @@ namespace Projekt4GruppeA
             tb_totalCarCountOnMap.Text = (MainWindow.carListLeftToRight.Count + MainWindow.carListRightToLeft.Count).ToString();
             tb_leftToRightCars.Text = MainWindow.carListLeftToRight.Count.ToString();
             tb_rightToLeftCars.Text = MainWindow.carListRightToLeft.Count.ToString();
+            
+            
+
+
+            
         }
 
         #region OLD

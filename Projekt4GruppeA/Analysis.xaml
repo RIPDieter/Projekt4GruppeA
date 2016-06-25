@@ -14,14 +14,14 @@
     <Grid x:Name="gr_statisticsGrid">
 
 
-        <Label Content="Gesamt:" Margin="26,26,208,316" Height="30" Width="160"/>
-        <TextBlock x:Name="tb_totalCarCountOnMap" Width="60" Text="XXX" VerticalAlignment="Center" Height="30" Margin="177,31,157,311"/>
+        <Label Content="Gesamt:" Margin="31,13,203,329" Height="30" Width="160"/>
+        <TextBlock x:Name="tb_totalCarCountOnMap" Width="60" Text="XXX" VerticalAlignment="Center" Height="30" Margin="213,13,121,329"/>
 
-        <Label Content="Von Links nach Rechts" Height="30" Margin="26,66,208,276" Width="160"/>
-        <TextBlock x:Name="tb_leftToRightCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="177,71,157,271"/>
+        <Label Content="Von Links nach Rechts" Height="30" Margin="17,48,217,294" Width="160"/>
+        <TextBlock x:Name="tb_leftToRightCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="213,53,121,289"/>
 
-        <Label Content="Von Rechts nach Links" Height="30" Margin="31,101,203,241" Width="160"/>
-        <TextBlock x:Name="tb_rightToLeftCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="177,106,157,236"/>
+        <Label Content="Von Rechts nach Links" Height="30" Margin="17,83,217,259" Width="160"/>
+        <TextBlock x:Name="tb_rightToLeftCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="213,83,121,259"/>
 
         <sparrow:SparrowChart Margin="10,162,10,10" x:Name="ch_sparrowChart">
             <sparrow:SparrowChart.XAxis>
@@ -39,6 +39,8 @@
                 </sparrow:LineSeries.Points>
             </sparrow:LineSeries>
         </sparrow:SparrowChart>
+        <Label x:Name="label" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label x:Name="label1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="67,118,0,0" Width="80"/>
 
     </Grid>
 
