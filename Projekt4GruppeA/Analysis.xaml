@@ -41,7 +41,7 @@
         </sparrow:SparrowChart>
         <Label x:Name="tmrCount" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,103,0,0" Width="80" Content="Timer"/>
         <TextBlock x:Name="txtTimer" HorizontalAlignment="Left" Margin="200,108,0,0" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,48,0,0" Height="55" Width="96" FontSize="18.667"/>
+        <Label x:Name="label1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,53,0,0" Height="55" Width="96" FontSize="18.667"/>
 
     </Grid>
 

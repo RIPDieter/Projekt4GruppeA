@@ -373,7 +373,7 @@ namespace Projekt4GruppeA
 
                 if (gapSize == 0 && thisCar.v <= 0)
                 {
-                    analysisWindow.label1.Content = "STAU!!";
+                    analysisWindow.label1.Content = "STAUGEFAHR!!";
                 }
 
 
@@ -438,7 +438,7 @@ namespace Projekt4GruppeA
 
                 if (gapSize == 0 && thisCar.v <= 0)
                 {
-                    analysisWindow.label1.Content = "STAU!!";
+                    analysisWindow.label1.Content = "STAUGEFAHR!!";
                 }
 
             }
@@ -500,7 +500,7 @@ namespace Projekt4GruppeA
 
                 if (gapSize == 0 && thisCar.v <= 0)
                 {
-                    analysisWindow.label1.Content = "STAU!!";
+                    analysisWindow.label1.Content = "STAUGEFAHR!!";
                 }
 
             }
@@ -555,10 +555,11 @@ namespace Projekt4GruppeA
                         }
                     }
 
-                    if (gapSize == 0 && thisCar.v <= 0)
+                    if (gapSize == 0 && thisCar.v == 0)
                     {
-                        analysisWindow.label1.Content = "STAU!!";
+                        analysisWindow.label1.Content = "STAUGEFAHR!!";
                     }
+                     
 
                 }
                 else
@@ -869,9 +870,8 @@ namespace Projekt4GruppeA
             analysisWindow.Show();
 
 
+            analysisWindow.txtTimer.Text = timerCount.ToString();
             
-            
-                analysisWindow.txtTimer.Text = timerCount.ToString();
 
                     
             
