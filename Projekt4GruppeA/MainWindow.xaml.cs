@@ -44,17 +44,17 @@ namespace Projekt4GruppeA
         public static List<CarCasual> carListBottomToTop = new List<CarCasual>();
 
         public static List<Trafficlight> trafficLightList = new List<Trafficlight>();
-        int LeftRightColumn = 2;
-        int LeftRightRow = 5;
+        int LeftRightColumn = 30;
+        int LeftRightRow = 80;
 
-        int RightLeftColumn = 30;
-        int RightLeftRow = 4;
+        int RightLeftColumn = 300;
+        int RightLeftRow = 75;
 
-        int TopBottomColumn = 32;
+        int TopBottomColumn = 130;
         int TopBottomRow = 0;
 
-        int BottomTopColumn = 33;
-        int BottomTopRow = 15;
+        int BottomTopColumn =140;
+        int BottomTopRow = 140;
         public MainWindow()
         {
             InitializeComponent();
@@ -62,18 +62,18 @@ namespace Projekt4GruppeA
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            createGrid(40, 200);
+            createGrid(400, 2000);
             //first interstate
-            spawnTrafficLight(7, 7, 7, 5);
-            spawnTrafficLight(7, 2, 9, 2);
-            spawnTrafficLight(12, 2, 12, 4);
-            spawnTrafficLight(12, 7, 10, 7);
+            //spawnTrafficLight(7, 7, 7, 5);
+            //spawnTrafficLight(7, 2, 9, 2);
+            //spawnTrafficLight(12, 2, 12, 4);
+            //spawnTrafficLight(12, 7, 10, 7);
 
             //second interstate
-            spawnTrafficLight(30, 7, 30, 5);
-            spawnTrafficLight(30, 2, 32, 2);
-            spawnTrafficLight(35, 2, 35, 4);
-            spawnTrafficLight(35, 7, 33, 7);
+            spawnTrafficLight(250, 180, 129, LeftRightRow);
+            spawnTrafficLight(250, 140, TopBottomColumn, 74);
+            spawnTrafficLight(290, 140, 141, RightLeftRow);
+            spawnTrafficLight(290, 180, BottomTopColumn, 85);
             drawstreet();
            
         }
@@ -81,14 +81,14 @@ namespace Projekt4GruppeA
         {
            
 
-            int number = 20;
-            int width = 20;
-            int height = 20;
-            int top = 20;
-            int left = 20;
+            int number = 200;
+            int width = 10;
+            int height = 10;
+            
 
             for (int i = 0; i < number; i++)
             {
+
                 // Create the rectangle
                 Rectangle rec = new Rectangle()
                 {
@@ -99,9 +99,10 @@ namespace Projekt4GruppeA
                  
                 };
 
-                Grid.SetRow(rec, 8);
+                Grid.SetRow(rec, 410);
                 Grid.SetColumn(rec, i);
-                draw_Grid.Children.Add(rec);
+                gr_mainGrid.Children.Add(rec);
+
                 
             }
 
@@ -129,13 +130,13 @@ namespace Projekt4GruppeA
             for (int i = 0; i < rowCount; i++)
             {
                 var gridRow = new RowDefinition();
-                gridRow.Height = new GridLength(20);
+                gridRow.Height = new GridLength(5);
                 gr_mainGrid.RowDefinitions.Add(gridRow);
             }
             for (int i = 0; i < columnCount; i++)
             {
                 var gridColumn = new ColumnDefinition();
-                gridColumn.Width = new GridLength(20);
+                gridColumn.Width = new GridLength(5);
                 gr_mainGrid.ColumnDefinitions.Add(gridColumn);
             }
 
@@ -224,7 +225,7 @@ namespace Projekt4GruppeA
 
            
             switchLight(0,1,2,3);
-            switchLight(4, 5, 6, 7);
+            //switchLight(4, 5, 6, 7);
 
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
             // trafficlightCircuit.switchLight();
@@ -283,19 +284,19 @@ namespace Projekt4GruppeA
             for (int j = 0; j < gr_mainGrid.Children.Count; j++)
             {
                 UIElement uiE = gr_mainGrid.Children[j];
-                if (Grid.GetColumn(uiE) == 2 && Grid.GetRow(uiE) == 5)
+                if (Grid.GetColumn(uiE) == LeftRightColumn && Grid.GetRow(uiE) == LeftRightRow)
                 {
                     return false;
                 }
-                else if (Grid.GetColumn(uiE) == 30 && Grid.GetRow(uiE) == 4)
+                else if (Grid.GetColumn(uiE) == RightLeftColumn && Grid.GetRow(uiE) == RightLeftRow)
                 {
                     return false;
                 }
-                else if (Grid.GetColumn(uiE) == 31 && Grid.GetRow(uiE) == 0)
+                else if (Grid.GetColumn(uiE) == TopBottomColumn && Grid.GetRow(uiE) == TopBottomRow)
                 {
                     return false;
                 }
-                else if (Grid.GetColumn(uiE) == 34 && Grid.GetRow(uiE) == 15)
+                else if (Grid.GetColumn(uiE) == BottomTopColumn&& Grid.GetRow(uiE) == BottomTopRow)
                 {
                     return false;
                 }
@@ -316,7 +317,7 @@ namespace Projekt4GruppeA
             {
                 var gapSize = checkGapSize(thisCar);
 
-                if (Grid.GetColumn(thisCar.body) <= 40)
+                if (Grid.GetColumn(thisCar.body) <= 1000)
                 {
                     //Stehen
                     if (gapSize == 0)
@@ -445,7 +446,7 @@ namespace Projekt4GruppeA
                 var gapSize = checkGapSize(thisCar);
 
                 //Stehen
-                if (Grid.GetRow(thisCar.body) <= 15)
+                if (Grid.GetRow(thisCar.body) <= 1000)
                 {
                     if (gapSize == 0)
                     {
@@ -582,7 +583,7 @@ namespace Projekt4GruppeA
             if (placeOfCarRow == LeftRightRow)
             {
 
-                for (var searchPointColumn = placeOfCarColumn + 1;
+                for (var searchPointColumn = placeOfCarColumn + 3;
                     searchPointColumn < gr_mainGrid.ColumnDefinitions.Count;
                     searchPointColumn++)
                 {
@@ -591,7 +592,7 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                         {
-                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 1;
+                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 3;
                             return gapSize;
                         }
                     }
@@ -651,6 +652,7 @@ namespace Projekt4GruppeA
             return 5;
 
             #endregion TOPtoBOTTOM
+
             #region BOTTOMtoTOP
             if (placeOfCarColumn == BottomTopColumn)
             {
@@ -695,7 +697,7 @@ namespace Projekt4GruppeA
             //traffic light Circuit 1
             if (cbstreet.IsChecked == true)
             {
-                if (timerCount%5 == 0)
+                if (timerCount%10 == 0)
                 {
                     //TODO auto change color of ampel when isRed changes
                     if (trafficLightList[a].isRed == true)
@@ -839,7 +841,7 @@ namespace Projekt4GruppeA
         private void sldTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             //TODO Umdrehen
-            timer.Interval = TimeSpan.FromSeconds(sldTime.Value);
+            timer.Interval = TimeSpan.FromMilliseconds(sldTime.Value);
         }
 
         private void sldSpawn_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

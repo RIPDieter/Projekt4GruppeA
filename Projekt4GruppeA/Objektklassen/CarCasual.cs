@@ -53,6 +53,7 @@ namespace Projekt4GruppeA
             
             body.Height = 20;
             body.Width = 40;
+            
 
             Grid.SetRowSpan(body, 20);
             Grid.SetColumnSpan(body, 40);
