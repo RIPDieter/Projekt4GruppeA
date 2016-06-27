@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekt4GruppeA"
         xmlns:sparrow="http://sparrowtoolkit.codeplex.com/wpf"
         mc:Ignorable="d"
-        Title="Analysis" Height="400" Width="400"
+        Title="Analysis" Height="500" Width="500"
         ResizeMode="NoResize"
         Loaded="Window_Loaded"
         >
@@ -14,16 +14,16 @@
     <Grid x:Name="gr_statisticsGrid">
 
 
-        <Label Content="Gesamt:" Margin="10,8,224,334" Height="30" Width="160"/>
-        <TextBlock x:Name="tb_totalCarCountOnMap" Width="60" Text="XXX" VerticalAlignment="Center" Height="30" Margin="200,13,134,329"/>
+        <Label Content="Gesamt:" Margin="10,96,324,346" Height="30" Width="160"/>
+        <TextBlock x:Name="tb_totalCarCountOnMap" Width="60" Text="XXX" VerticalAlignment="Center" Height="30" Margin="160,46,274,396"/>
 
-        <Label Content="Von Links nach Rechts" Height="30" Margin="10,43,224,299" Width="160"/>
-        <TextBlock x:Name="tb_leftToRightCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="200,48,134,294"/>
+        <Label Content="Von Links nach Rechts" Height="30" Margin="10,36,324,406" Width="160"/>
+        <TextBlock x:Name="tb_leftToRightCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="160,76,274,366"/>
 
-        <Label Content="Von Rechts nach Links" Height="30" Margin="10,73,224,269" Width="160"/>
-        <TextBlock x:Name="tb_rightToLeftCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="200,78,134,264"/>
+        <Label Content="Von Rechts nach Links" Height="30" Margin="10,66,324,376" Width="160"/>
+        <TextBlock x:Name="tb_rightToLeftCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="110,106,324,336"/>
 
-        <sparrow:SparrowChart Margin="10,162,10,10" x:Name="ch_sparrowChart">
+        <sparrow:SparrowChart Margin="10,162,10,10" x:Name="ch_sparrowChart" RenderTransformOrigin="0.495,0.482">
             <sparrow:SparrowChart.XAxis>
                 <sparrow:LinearXAxis/>
             </sparrow:SparrowChart.XAxis>
@@ -39,9 +39,9 @@
                 </sparrow:LineSeries.Points>
             </sparrow:LineSeries>
         </sparrow:SparrowChart>
-        <Label x:Name="tmrCount" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,103,0,0" Width="80" Content="Timer"/>
-        <TextBlock x:Name="txtTimer" HorizontalAlignment="Left" Margin="200,108,0,0" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="265,53,0,0" Height="55" Width="96" FontSize="18.667"/>
+        <Label x:Name="tmrCount" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="80" Content="Timer"/>
+        <TextBlock x:Name="txtTimer" HorizontalAlignment="Left" Margin="120,15,0,0" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="225,10,0,0" Height="43" Width="259" FontSize="18.667"/>
 
     </Grid>
 

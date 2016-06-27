@@ -329,9 +329,10 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
-                if (gapSize == 0 && thisCar.v <= 0)
+                if (gapSize == 0 && thisCar.v == 0)
                 {
                     analysisWindow.label1.Content = "STAUGEFAHR!!";
+                    
                 }
 
                 
@@ -642,7 +643,11 @@ namespace Projekt4GruppeA
            return 5;
 
         }
+
         #endregion BOTTOMtoTOP
+
+        
+
         #endregion GAP
 
         #region TRAFFICLIGHT
@@ -840,11 +845,7 @@ namespace Projekt4GruppeA
             
             analysisWindow.Show();
 
-
-            
-            
-
-                    
+                        
             
         }
 
