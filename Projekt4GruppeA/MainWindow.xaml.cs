@@ -64,17 +64,24 @@ namespace Projekt4GruppeA
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             createGrid(400, 1000);
+           
             //first intersection
-            //spawnTrafficLight(7, 7, 7, 5);
-            //spawnTrafficLight(7, 2, 9, 2);
-            //spawnTrafficLight(12, 2, 12, 4);
-            //spawnTrafficLight(12, 7, 10, 7);
+            spawnTrafficLight(109, 180, 60, LeftRightRow);
+            spawnTrafficLight(109, 140, 60, 74);
+            spawnTrafficLight(149, 140, 70, RightLeftRow);
+            spawnTrafficLight(149, 180, 70, 85);
 
             //second intersection
-            spawnTrafficLight(250, 180, 129, LeftRightRow);
-            spawnTrafficLight(250, 140, TopBottomColumn, 74);
-            spawnTrafficLight(290, 140, 141, RightLeftRow);
-            spawnTrafficLight(290, 180, BottomTopColumn, 85);
+            spawnTrafficLight(249, 180, 129, LeftRightRow);
+            spawnTrafficLight(249, 140, TopBottomColumn, 74);
+            spawnTrafficLight(289, 140, 141, RightLeftRow);
+            spawnTrafficLight(289, 180, BottomTopColumn, 85);
+
+            //third intersection
+            spawnTrafficLight(392, 180, 200, LeftRightRow);
+            spawnTrafficLight(392, 140, 200, 74);
+            spawnTrafficLight(432, 140, 220, RightLeftRow);
+            spawnTrafficLight(432, 180, 220, 85);
 
             ImageBrush myBrush = new ImageBrush();
             myBrush.ImageSource =
@@ -171,10 +178,10 @@ namespace Projekt4GruppeA
         {
             timerCount++;
 
+            switchLight(0, 1, 2, 3, cbstreet.IsChecked, cbclock.IsChecked, Convert.ToInt32(sldLight1.Value));
+            switchLight(4,5,6,7 ,cbstreet2.IsChecked, cbclock2.IsChecked, Convert.ToInt32(sldLight2.Value));
+            switchLight(8, 9, 10, 11, cbstreet3.IsChecked, cbclock3.IsChecked, Convert.ToInt32(sldLight3.Value));
            
-            switchLight(0,1,2,3, cbstreet2.IsChecked, cbclock2.IsChecked, Convert.ToInt32(sldLight2.Value));
-            //switchLight(4, 5, 6, 7);
-
             //spawnCars(Convert.ToInt16(sldSpawn.Value));
             // trafficlightCircuit.switchLight();
 
@@ -699,7 +706,7 @@ namespace Projekt4GruppeA
 
 
             //traffic Light circuit 2
-            if (cbclock.IsChecked == true)
+            if (f == true)
             {
 
                 if (timerCount%g == 0)
@@ -805,10 +812,24 @@ namespace Projekt4GruppeA
         {
             
         }
+
         private void sldLight1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
         }
+
+        private void sldLight2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+        private void sldLight3_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+
+
         #endregion SLIDER
 
         #region ANALYSIS
@@ -830,8 +851,10 @@ namespace Projekt4GruppeA
 
 
 
+
+
         #endregion ANALYSIS
 
-        
+      
     }
 }

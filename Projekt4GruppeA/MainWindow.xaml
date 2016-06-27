@@ -30,8 +30,8 @@
         </Grid>
 
         <Slider x:Name="sldLight1" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="11.501,1.161" Height="19" Width="134" Margin="266,0,0,0" Minimum="20" SmallChange="1" Maximum="50" ValueChanged="sldLight1_ValueChanged"/>
-        <Slider x:Name="sldLight2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" Margin="694,1,0,0" Minimum="20" Maximum="50"/>
-        <Slider x:Name="sldLight3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="1150,1,0,0" Minimum="20" Maximum="50"/>
+        <Slider x:Name="sldLight2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" Margin="694,1,0,0" Minimum="20" Maximum="50" ValueChanged="sldLight2_ValueChanged"/>
+        <Slider x:Name="sldLight3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="1150,1,0,0" Minimum="20" Maximum="50" ValueChanged="sldLight3_ValueChanged"/>
         <CheckBox x:Name="cbstreet" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,18,0,0"  />
         <CheckBox x:Name="cbclock" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,33,0,0"  Click="cbclock_Click"/>
         <CheckBox x:Name="cbstreet2" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="694,18,0,0"  />
