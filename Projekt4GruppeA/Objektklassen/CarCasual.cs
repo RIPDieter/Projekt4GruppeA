@@ -89,7 +89,7 @@ namespace Projekt4GruppeA
 
             }
 
-            else if (columnSpawn == 140)
+            else if (columnSpawn == 135)
             {
                 var y = new BitmapImage();
                 y.BeginInit();

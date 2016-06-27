@@ -52,10 +52,10 @@ namespace Projekt4GruppeA
         int RightLeftRow = 75;
 
         int TopBottomColumn = 130;
-        int TopBottomRow = 0;
+        int TopBottomRow = 20;
 
-        int BottomTopColumn =140;
-        int BottomTopRow = 140;
+        int BottomTopColumn =135;
+        int BottomTopRow = 130;
         public MainWindow()
         {
             InitializeComponent();
@@ -63,7 +63,7 @@ namespace Projekt4GruppeA
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            createGrid(400, 2000);
+            createGrid(400, 1000);
             //first intersection
             //spawnTrafficLight(7, 7, 7, 5);
             //spawnTrafficLight(7, 2, 9, 2);
@@ -74,7 +74,13 @@ namespace Projekt4GruppeA
             spawnTrafficLight(250, 180, 129, LeftRightRow);
             spawnTrafficLight(250, 140, TopBottomColumn, 74);
             spawnTrafficLight(290, 140, 141, RightLeftRow);
-            spawnTrafficLight(290, 180, BottomTopColumn, 85);                     
+            spawnTrafficLight(290, 180, BottomTopColumn, 85);
+
+            ImageBrush myBrush = new ImageBrush();
+            myBrush.ImageSource =
+                 new BitmapImage(new Uri("Icons/Street.png", UriKind.Relative));
+            gr_mainGrid.Background = myBrush;
+
         }
 
         #region GRID
@@ -94,18 +100,6 @@ namespace Projekt4GruppeA
                 gr_mainGrid.ColumnDefinitions.Add(gridColumn);
             }
 
-            for (int i = 0; i < rowCount; i++)
-            {
-                var gridRow = new RowDefinition();
-                gridRow.Height = new GridLength(5);
-                draw_Grid.RowDefinitions.Add(gridRow);
-            }
-            for (int i = 0; i < columnCount; i++)
-            {
-                var gridColumn = new ColumnDefinition();
-                gridColumn.Width = new GridLength(5);
-                draw_Grid.ColumnDefinitions.Add(gridColumn);
-            }
         }
 
         #endregion GRID
@@ -277,7 +271,7 @@ namespace Projekt4GruppeA
             {
                 var gapSize = checkGapSize(thisCar);
 
-                if (Grid.GetColumn(thisCar.body) <= 1000)
+                if (Grid.GetColumn(thisCar.body) <= 700)
                 {
                     //Stehen
                     if (gapSize == 0)
@@ -406,7 +400,7 @@ namespace Projekt4GruppeA
                 var gapSize = checkGapSize(thisCar);
 
                 //Stehen
-                if (Grid.GetRow(thisCar.body) <= 1000)
+                if (Grid.GetRow(thisCar.body) <= 300)
                 {
                     if (gapSize == 0)
                     {
@@ -468,7 +462,7 @@ namespace Projekt4GruppeA
                 var gapSize = checkGapSize(thisCar);
 
                 //Stehen
-                if (Grid.GetRow(thisCar.body) >= 3)
+                if (Grid.GetRow(thisCar.body) >= 20)
                 {
                     if (gapSize == 0)
                     {
@@ -553,7 +547,7 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                         {
-                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 6;
+                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 7;
                             return gapSize;
                         }
                     }
