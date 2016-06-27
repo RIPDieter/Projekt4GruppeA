@@ -41,10 +41,7 @@ namespace Projekt4GruppeA
             location = 0;
 
             body = new Ellipse();
-            
-            body.Height = 40;
-            body.Width = 40;
-            
+                       
             Grid.SetRowSpan(body, 40);
             Grid.SetColumnSpan(body, 40);
             body.VerticalAlignment = VerticalAlignment.Top;
@@ -57,11 +54,12 @@ namespace Projekt4GruppeA
                 var x = new BitmapImage(new Uri("Icons/" + rnd.Next(1, 9) + ".png", UriKind.Relative));
                 ib.ImageSource = x;
                 body.Fill = ib;
-            
-            
+                body.Height = 20;
+                body.Width = 40;
+
+
             if (columnSpawn == 30)
             {
-
                 // y = rotated image
                 var y = new BitmapImage();
                 y.BeginInit();
@@ -71,6 +69,9 @@ namespace Projekt4GruppeA
 
                 ib.ImageSource = y;
                 body.Fill = ib;
+                body.Height = 20;
+                body.Width = 40;
+
             }
 
             else if (columnSpawn == 130)
@@ -83,6 +84,9 @@ namespace Projekt4GruppeA
 
                 ib.ImageSource = y;
                 body.Fill = ib;
+                body.Height = 40;
+                body.Width = 20;
+
             }
 
             else if (columnSpawn == 140)
@@ -95,6 +99,9 @@ namespace Projekt4GruppeA
 
                 ib.ImageSource = y;
                 body.Fill = ib;
+                body.Height = 40;
+                body.Width = 20;
+
             }
 
             Grid.SetColumn(body, columnSpawn);

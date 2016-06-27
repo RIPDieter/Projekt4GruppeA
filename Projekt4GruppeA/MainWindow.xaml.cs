@@ -74,54 +74,7 @@ namespace Projekt4GruppeA
             spawnTrafficLight(250, 180, 129, LeftRightRow);
             spawnTrafficLight(250, 140, TopBottomColumn, 74);
             spawnTrafficLight(290, 140, 141, RightLeftRow);
-            spawnTrafficLight(290, 180, BottomTopColumn, 85);
-            drawstreet();
-           
-        }
-        public void drawstreet()
-        {
-           
-
-            int number = 200;
-            int width = 10;
-            int height = 10;
-            
-
-            for (int i = 0; i < number; i++)
-            {
-               
-                // Create the rectangle
-                Rectangle rec = new Rectangle()
-                {
-                    Width = width,
-                    Height = height,
-                    Fill = Brushes.Gray,
-                    
-                 
-                };
-
-                Grid.SetRow(rec, 100);
-                Grid.SetColumn(rec, i);
-                gr_mainGrid.Children.Add(rec);
-
-                
-            }
-
-
-
-            //for (int i = 2; i < 20; i++)
-            //{
-
-            //    r[i].Height = 10;
-            //    r[i].Width = 10;
-            //    r[i].Fill = new SolidColorBrush(Colors.Gray);
-            //    Grid.SetRow(r[i], i);
-            //    Grid.SetColumn(r[i], 9);
-            //    gr_mainGrid.Children.Add(r[i]);
-            //}
-
-
-
+            spawnTrafficLight(290, 180, BottomTopColumn, 85);                     
         }
 
         #region GRID
@@ -249,7 +202,7 @@ namespace Projekt4GruppeA
 
         public void spawnCars(int carsToSpawn)
         {
-            if (checkSpawn() == false)
+            if (checkSpawn() == true)
             {   
                 //cars left to right
                 if (rnd.Next(0, 3) == 0)
@@ -291,19 +244,19 @@ namespace Projekt4GruppeA
             for (int j = 0; j < gr_mainGrid.Children.Count; j++)
             {
                 UIElement uiE = gr_mainGrid.Children[j];
-                if (Grid.GetColumn(uiE) == LeftRightColumn && Grid.GetRow(uiE) == LeftRightRow)
+                if (Grid.GetColumn(uiE) == LeftRightColumn + 10 && Grid.GetRow(uiE) == LeftRightRow)
                 {
                     return false;
                 }
-                else if (Grid.GetColumn(uiE) == RightLeftColumn && Grid.GetRow(uiE) == RightLeftRow)
+                else if (Grid.GetColumn(uiE) == RightLeftColumn - 10  && Grid.GetRow(uiE) == RightLeftRow)
                 {
                     return false;
                 }
-                else if (Grid.GetColumn(uiE) == TopBottomColumn && Grid.GetRow(uiE) == TopBottomRow)
+                else if (Grid.GetColumn(uiE) == TopBottomColumn && Grid.GetRow(uiE) == TopBottomRow + 10)
                 {
                     return false;
                 }
-                else if (Grid.GetColumn(uiE) == BottomTopColumn&& Grid.GetRow(uiE) == BottomTopRow)
+                else if (Grid.GetColumn(uiE) == BottomTopColumn&& Grid.GetRow(uiE) == BottomTopRow - 10)
                 {
                     return false;
                 }
@@ -340,7 +293,7 @@ namespace Projekt4GruppeA
                         Grid.SetColumn(thisCar.body, CurrentColumn);
                     }
                     //Beschleunigen
-                    else if (gapSize > thisCar.v && thisCar.v < 2)
+                    else if (gapSize > thisCar.v && thisCar.v < 5)
                     {
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
                         CurrentColumn += thisCar.v;
@@ -354,7 +307,7 @@ namespace Projekt4GruppeA
 
                     }
                     // Höchstgeschw.
-                    else if (gapSize > thisCar.v && thisCar.v >= 2)
+                    else if (gapSize > thisCar.v && thisCar.v >= 5)
                     {
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
                         CurrentColumn += thisCar.v;
@@ -591,7 +544,7 @@ namespace Projekt4GruppeA
             if (placeOfCarRow == LeftRightRow)
             {
 
-                for (var searchPointColumn = placeOfCarColumn + 3;
+                for (var searchPointColumn = placeOfCarColumn + 1;
                     searchPointColumn < gr_mainGrid.ColumnDefinitions.Count;
                     searchPointColumn++)
                 {
@@ -600,7 +553,7 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                         {
-                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 3;
+                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 6;
                             return gapSize;
                         }
                     }
@@ -623,7 +576,7 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                         {
-                            var gapSize = placeOfCarColumn - Grid.GetColumn(uiE) - 1;
+                            var gapSize = placeOfCarColumn - Grid.GetColumn(uiE) - 6;
                             return gapSize;
                         }
                     }
@@ -648,16 +601,13 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
                         {
-                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 1;
+                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 6;
                             return gapSize;
                         }
                     }
                 }
                 return 5;
-            }
-
-
-            return 5;
+            }         
 
             #endregion TOPtoBOTTOM
 
@@ -674,14 +624,13 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
                         {
-                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 1;
+                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 6;
                             return gapSize;
                         }
                     }
                 }
                 return 5;
             }
-
 
            return 5;
 
