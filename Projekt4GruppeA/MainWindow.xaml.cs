@@ -187,6 +187,9 @@ namespace Projekt4GruppeA
 
             moveCars();
 
+            analysisWindow.txtTimer.Text = timerCount.ToString();
+            
+
         }
 
 
@@ -324,6 +327,7 @@ namespace Projekt4GruppeA
                     analysisWindow.label1.Content = "STAUGEFAHR!!";
                 }
 
+                
 
             }
 
@@ -515,10 +519,12 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
+
+
             }
             #endregion BOTTOMtoTop
 
-
+       
 
 
         }
@@ -814,7 +820,7 @@ namespace Projekt4GruppeA
             analysisWindow.Show();
 
 
-            analysisWindow.txtTimer.Text = timerCount.ToString();
+            
             
 
                     
