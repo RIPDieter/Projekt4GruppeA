@@ -47,9 +47,10 @@ namespace Projekt4GruppeA
             tb_leftToRightCars.Text = MainWindow.carListLeftToRight.Count.ToString();
             tb_rightToLeftCars.Text = MainWindow.carListRightToLeft.Count.ToString();
 
-                       
+            // ch_sparrowChart.Series[0].XAxis
+            //ch_sparrowChart.Series[0].Points.Add(0, 1);
 
-                        
+              
         }
 
         #region OLD
