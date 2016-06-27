@@ -33,9 +33,7 @@ namespace Projekt4GruppeA
         int s;
 
         Analysis analysisWindow = new Analysis();
-
-        //Klasse TrafficlightCircuit instanziieren
-
+      
         int timerCount;
 
         public static List<CarCasual> carListLeftToRight = new List<CarCasual>();
@@ -56,6 +54,7 @@ namespace Projekt4GruppeA
 
         int BottomTopColumn =135;
         int BottomTopRow = 130;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -122,6 +121,7 @@ namespace Projekt4GruppeA
                 //spawnCars(1);
                 //spawntrafficlight(1);
             }
+
             else
             {
                 MessageBox.Show("Already running!");
@@ -136,13 +136,10 @@ namespace Projekt4GruppeA
             gr_mainGrid.Children.Remove(trafficLightList[2].blocker);
             gr_mainGrid.Children.Remove(trafficLightList[3].blocker);
 
-
             gr_mainGrid.Children.Add(trafficLightList[0].blocker);
             trafficLightList[0].body.Fill = (new SolidColorBrush(Colors.Red));
             gr_mainGrid.Children.Add(trafficLightList[2].blocker);
             trafficLightList[2].body.Fill = (new SolidColorBrush(Colors.Red));
-
-
         }
 
         private void cbclock_Click(object sender, RoutedEventArgs e)
@@ -196,9 +193,7 @@ namespace Projekt4GruppeA
 
             analysisWindow.txtTimer.Text = timerCount.ToString();
             
-
         }
-
 
         #endregion TIMER RELATED
 
@@ -281,7 +276,7 @@ namespace Projekt4GruppeA
             {
                 var gapSize = checkGapSize(thisCar);
 
-                if (Grid.GetColumn(thisCar.body) <= 700)
+                if (Grid.GetColumn(thisCar.body) <= 400)
                 {
                     //Stehen
                     if (gapSize == 0)
@@ -346,7 +341,7 @@ namespace Projekt4GruppeA
             {
                 var gapSize = checkGapSize(thisCar);
 
-                if (Grid.GetColumn(thisCar.body) >= 3)
+                if (Grid.GetColumn(thisCar.body) >= 5)
                 {
                     //Stehen
                     if (gapSize == 0)
@@ -362,7 +357,7 @@ namespace Projekt4GruppeA
                         Grid.SetColumn(thisCar.body, CurrentColumn);
                     }
                     //Beschleunigen
-                    else if (gapSize > thisCar.v && thisCar.v < 2)
+                    else if (gapSize > thisCar.v && thisCar.v < 5)
                     {
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
                         CurrentColumn -= thisCar.v;
@@ -376,7 +371,7 @@ namespace Projekt4GruppeA
 
                     }
                     // Höchstgeschw.
-                    else if (gapSize > thisCar.v && thisCar.v >= 2)
+                    else if (gapSize > thisCar.v && thisCar.v >= 5)
                     {
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
                         CurrentColumn -= thisCar.v;
@@ -426,7 +421,7 @@ namespace Projekt4GruppeA
                         Grid.SetRow(thisCar.body, CurrentRow);
                     }
                     //Beschleunigen
-                    else if (gapSize > thisCar.v && thisCar.v < 2)
+                    else if (gapSize > thisCar.v && thisCar.v < 5)
                     {
                         var CurrentRow = Grid.GetRow(thisCar.body);
                         CurrentRow += thisCar.v;
@@ -440,7 +435,7 @@ namespace Projekt4GruppeA
 
                     }
                     // Höchstgeschw.
-                    else if (gapSize > thisCar.v && thisCar.v >= 2)
+                    else if (gapSize > thisCar.v && thisCar.v >= 5)
                     {
                         var CurrentRow = Grid.GetRow(thisCar.body);
                         CurrentRow += thisCar.v;
@@ -488,7 +483,7 @@ namespace Projekt4GruppeA
                         Grid.SetRow(thisCar.body, CurrentRow);
                     }
                     //Beschleunigen
-                    else if (gapSize > thisCar.v && thisCar.v < 2)
+                    else if (gapSize > thisCar.v && thisCar.v < 5)
                     {
                         var CurrentRow = Grid.GetRow(thisCar.body);
                         CurrentRow -= thisCar.v;
@@ -502,7 +497,7 @@ namespace Projekt4GruppeA
 
                     }
                     // Höchstgeschw.
-                    else if (gapSize > thisCar.v && thisCar.v >= 2)
+                    else if (gapSize > thisCar.v && thisCar.v >= 5)
                     {
                         var CurrentRow = Grid.GetRow(thisCar.body);
                         CurrentRow -= thisCar.v;
@@ -530,12 +525,7 @@ namespace Projekt4GruppeA
 
             }
             #endregion BOTTOMtoTop
-
-       
-
-
         }
-
 
         #endregion  MOVE
 
@@ -560,7 +550,7 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                         {
-                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 7;
+                            var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 8;
                             return gapSize;
                         }
                     }
@@ -583,7 +573,7 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                         {
-                            var gapSize = placeOfCarColumn - Grid.GetColumn(uiE) - 6;
+                            var gapSize = placeOfCarColumn - Grid.GetColumn(uiE) - 8;
                             return gapSize;
                         }
                     }
@@ -608,7 +598,7 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
                         {
-                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 6;
+                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 8;
                             return gapSize;
                         }
                     }
@@ -631,7 +621,7 @@ namespace Projekt4GruppeA
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
                         {
-                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 6;
+                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 8;
                             return gapSize;
                         }
                     }
@@ -639,10 +629,11 @@ namespace Projekt4GruppeA
                 return 5;
             }
 
-           return 5;
+            #endregion BOTTOMtoTOP
+
+            return 5;
 
         }
-        #endregion BOTTOMtoTOP
         #endregion GAP
 
         #region TRAFFICLIGHT
