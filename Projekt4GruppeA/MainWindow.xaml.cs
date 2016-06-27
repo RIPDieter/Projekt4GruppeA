@@ -64,13 +64,13 @@ namespace Projekt4GruppeA
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             createGrid(400, 2000);
-            //first interstate
+            //first intersection
             //spawnTrafficLight(7, 7, 7, 5);
             //spawnTrafficLight(7, 2, 9, 2);
             //spawnTrafficLight(12, 2, 12, 4);
             //spawnTrafficLight(12, 7, 10, 7);
 
-            //second interstate
+            //second intersection
             spawnTrafficLight(250, 180, 129, LeftRightRow);
             spawnTrafficLight(250, 140, TopBottomColumn, 74);
             spawnTrafficLight(290, 140, 141, RightLeftRow);
@@ -254,7 +254,8 @@ namespace Projekt4GruppeA
                 //cars left to right
                 if (rnd.Next(0, 3) == 0)
                 {
-                    CarCasual car = new CarCasual(LeftRightColumn, LeftRightRow);                   
+                    CarCasual car = new CarCasual(LeftRightColumn, LeftRightRow);
+                 
                     gr_mainGrid.Children.Add(car.body);
                     carListLeftToRight.Add(car);
                 }

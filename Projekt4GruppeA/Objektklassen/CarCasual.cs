@@ -16,6 +16,7 @@ namespace Projekt4GruppeA
 {
 
     public class CarCasual 
+
     {
         //ID
         public double iD { get; set; }
@@ -40,43 +41,62 @@ namespace Projekt4GruppeA
             location = 0;
 
             body = new Ellipse();
-
-            Brush[] carColors = new Brush[]
-            {
-            Brushes.Red,
-            Brushes.Blue,
-            Brushes.Black,
-            Brushes.Green,
-            Brushes.Yellow,
-            Brushes.Fuchsia
-            };
             
-            body.Height = 20;
+            body.Height = 40;
             body.Width = 40;
             
-
-            Grid.SetRowSpan(body, 20);
+            Grid.SetRowSpan(body, 40);
             Grid.SetColumnSpan(body, 40);
             body.VerticalAlignment = VerticalAlignment.Top;
             body.HorizontalAlignment = HorizontalAlignment.Left;
 
             ImageBrush ib = new ImageBrush();
-            
-            var x =
-                new BitmapImage(new Uri("Icons/" + rnd.Next(1, 9) + ".png", UriKind.Relative));
-            
 
-            //TODO Rotationnotwurkung
-            x.Rotation = Rotation.Rotate180;
-          
-            ib.ImageSource = x;
-         
-
-            body.Fill = ib;
-
-            //for debugging
-            //car.body.Fill = carColors[rnd.Next(carColors.Length)];
             
+                // x = original image
+                var x = new BitmapImage(new Uri("Icons/" + rnd.Next(1, 9) + ".png", UriKind.Relative));
+                ib.ImageSource = x;
+                body.Fill = ib;
+            
+            
+            if (columnSpawn == 30)
+            {
+
+                // y = rotated image
+                var y = new BitmapImage();
+                y.BeginInit();
+                y.UriSource = x.UriSource;
+                y.Rotation = Rotation.Rotate180;
+                y.EndInit();
+
+                ib.ImageSource = y;
+                body.Fill = ib;
+            }
+
+            else if (columnSpawn == 130)
+            {              
+                var y = new BitmapImage();
+                y.BeginInit();
+                y.UriSource = x.UriSource;
+                y.Rotation = Rotation.Rotate270;
+                y.EndInit();
+
+                ib.ImageSource = y;
+                body.Fill = ib;
+            }
+
+            else if (columnSpawn == 140)
+            {
+                var y = new BitmapImage();
+                y.BeginInit();
+                y.UriSource = x.UriSource;
+                y.Rotation = Rotation.Rotate90;
+                y.EndInit();
+
+                ib.ImageSource = y;
+                body.Fill = ib;
+            }
+
             Grid.SetColumn(body, columnSpawn);
             Grid.SetRow(body, rowSpawn);
         }
