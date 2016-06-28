@@ -82,7 +82,7 @@ namespace Projekt4GruppeA
             //third intersection
             spawnTrafficLight(392, 180, 200, LeftRightRow);
             spawnTrafficLight(392, 140, 200, 74);
-            spawnTrafficLight(432, 140, 220, RightLeftRow);
+            spawnTrafficLight(432, 140, 205, RightLeftRow);
             spawnTrafficLight(432, 180, 220, 85);
 
             ImageBrush myBrush = new ImageBrush();
@@ -117,8 +117,9 @@ namespace Projekt4GruppeA
 
         public void btnSpawn_Click(object sender, RoutedEventArgs e)
         {
-            if (!cbstreet.IsChecked==false|| !cbstreet2.IsChecked == false || !cbstreet3.IsChecked == false 
-                 )
+            if ((cbstreet.IsChecked == true || cbclock.IsChecked == true) && (cbstreet2.IsChecked == true || cbclock2.IsChecked == true)
+                && (cbstreet3.IsChecked == true || cbclock3.IsChecked == true))
+                 
             {
                 if (!timer.IsEnabled)
                 {
@@ -130,7 +131,7 @@ namespace Projekt4GruppeA
 
                 else
                 {
-                    MessageBox.Show("Simulation bereist gestartet!");
+                    MessageBox.Show("Simulation bereits gestartet!");
                 }
 
                 if (cbstreet.IsChecked == true)
@@ -156,30 +157,9 @@ namespace Projekt4GruppeA
 
         }
 
-       
-
-        private void cbclock_Click(object sender, RoutedEventArgs e)
-        {
-            
-          
-            //gr_mainGrid.Children.Remove(trafficLightList[0].blocker);
-            //gr_mainGrid.Children.Remove(trafficLightList[1].blocker);
-            //gr_mainGrid.Children.Remove(trafficLightList[2].blocker);
-            //gr_mainGrid.Children.Remove(trafficLightList[3].blocker);
-
-            //gr_mainGrid.Children.Add(trafficLightList[1].blocker);
-            //trafficLightList[0].body.Fill = (new SolidColorBrush(Colors.Green));
-            ////gr_mainGrid.Children.Add(trafficLightList[2].blocker);
-            ////gr_mainGrid.Children.Add(trafficLightList[3].blocker);
-            //trafficLightList[1].body.Fill = (new SolidColorBrush(Colors.Red));
-            //trafficLightList[2].body.Fill = (new SolidColorBrush(Colors.Red));
-            //trafficLightList[3].body.Fill = (new SolidColorBrush(Colors.Red));
-
-        }
-
         private void cbstreet_Checked(object sender, RoutedEventArgs e)
         {
-          
+            cbclock.IsChecked = false;
            
             //trafficLightList[0].isRed = true;
             //trafficLightList[1].body.Fill = (new SolidColorBrush(Colors.Red));
@@ -192,6 +172,26 @@ namespace Projekt4GruppeA
         private void cbclock_Checked(object sender, RoutedEventArgs e)
         {
             cbstreet.IsChecked = false;
+        }
+
+        private void cbstreet2_Checked(object sender, RoutedEventArgs e)
+        {
+            cbclock2.IsChecked = false;
+        }
+
+        private void cbclock2_Checked(object sender, RoutedEventArgs e)
+        {
+            cbstreet2.IsChecked = false;
+        }
+
+        private void cbstreet3_Checked(object sender, RoutedEventArgs e)
+        {
+            cbclock3.IsChecked = false;
+        }
+
+        private void cbclock3_Checked(object sender, RoutedEventArgs e)
+        {
+            cbstreet3.IsChecked = false;
         }
 
         #endregion BUTTON CLICK EVENTS
@@ -903,8 +903,9 @@ namespace Projekt4GruppeA
         }
 
 
+
         #endregion ANALYSIS
 
-   
+       
     }
 }

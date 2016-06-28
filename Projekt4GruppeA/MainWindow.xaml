@@ -33,11 +33,11 @@
         <Slider x:Name="sldLight2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" Margin="633,1,0,0" Minimum="20" Maximum="50" ValueChanged="sldLight2_ValueChanged" SmallChange="1"/>
         <Slider x:Name="sldLight3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="133" Margin="1017,1,0,0" Minimum="20" Maximum="50" ValueChanged="sldLight3_ValueChanged" SmallChange="1"/>
         <CheckBox x:Name="cbstreet" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top"  Checked="cbstreet_Checked" Margin="266,17,0,0"   />
-        <CheckBox x:Name="cbclock" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,33,0,0"  Click="cbclock_Click" Checked="cbclock_Checked"/>
-        <CheckBox x:Name="cbstreet2" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="633,19,0,0"  />
-        <CheckBox x:Name="cbclock2" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="633,33,0,0"  Click="cbclock_Click"/>
-        <CheckBox x:Name="cbstreet3" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1017,19,0,0"  />
-        <CheckBox x:Name="cbclock3" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1017,33,0,0"  Click="cbclock_Click"/>
+        <CheckBox x:Name="cbclock" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,33,0,0" Checked="cbclock_Checked"/>
+        <CheckBox x:Name="cbstreet2" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="633,19,0,0" Checked="cbstreet2_Checked"  />
+        <CheckBox x:Name="cbclock2" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="633,33,0,0" Checked="cbclock2_Checked"/>
+        <CheckBox x:Name="cbstreet3" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1017,19,0,0" Checked="cbstreet3_Checked"  />
+        <CheckBox x:Name="cbclock3" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1017,33,0,0" Checked="cbclock3_Checked"  />
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Kreuzung 1" VerticalAlignment="Top" Height="23" Width="61" Margin="183,6,0,0"/>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="30" Width="63" Margin="557,0,0,731"><Run Text="Kreuzung "/><Run Text="2"/></TextBlock>
         <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="30" Width="64" Margin="939,0,0,731"><Run Text="Kreuzung "/><Run Text="3"/></TextBlock>
