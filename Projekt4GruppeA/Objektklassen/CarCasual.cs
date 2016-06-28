@@ -71,10 +71,9 @@ namespace Projekt4GruppeA
                 body.Fill = ib;
                 body.Height = 20;
                 body.Width = 40;
-
             }
 
-            else if (columnSpawn == 130)
+            else if (columnSpawn == 130 || columnSpawn == 60 || columnSpawn == 201)
             {              
                 var y = new BitmapImage();
                 y.BeginInit();
@@ -86,10 +85,9 @@ namespace Projekt4GruppeA
                 body.Fill = ib;
                 body.Height = 40;
                 body.Width = 20;
-
             }
 
-            else if (columnSpawn == 135)
+            else if (columnSpawn == 135 || columnSpawn == 65 || columnSpawn == 207)
             {
                 var y = new BitmapImage();
                 y.BeginInit();
@@ -107,7 +105,5 @@ namespace Projekt4GruppeA
             Grid.SetColumn(body, columnSpawn);
             Grid.SetRow(body, rowSpawn);
         }
-
-
     }
 }

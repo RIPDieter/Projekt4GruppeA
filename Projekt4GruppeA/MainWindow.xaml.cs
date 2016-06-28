@@ -26,6 +26,8 @@ namespace Projekt4GruppeA
         //TODO negative geschwindigkeit
         //TODO spawncheck bereich erweitern
 
+        #region INIT
+
         //Global Random Declaration
         Random rnd = new Random();
         //Global Timer Declaration
@@ -55,8 +57,14 @@ namespace Projekt4GruppeA
         int TopBottomColumn = 130;
         int TopBottomRow = 20;
 
-        int BottomTopColumn =135;
+        int BottomTopColumn = 135;
         int BottomTopRow = 130;
+
+        int TopBottomColumn2 = 60;
+        int BottomTopColumn2 = 65;
+
+        int TopBottomColumn3 = 201;
+        int BottomTopColumn3 = 207;
 
         public MainWindow()
         {
@@ -91,6 +99,8 @@ namespace Projekt4GruppeA
             gr_mainGrid.Background = myBrush;
 
         }
+
+        #endregion INIT
 
         #region GRID
 
@@ -238,36 +248,60 @@ namespace Projekt4GruppeA
             if (checkSpawn() == true)
             {   
                 //cars left to right
-                if (rnd.Next(0, 3) == 0)
+                if (rnd.Next(0, 7) == 0)
                 {
-                    CarCasual car = new CarCasual(LeftRightColumn, LeftRightRow);
-                 
+                    CarCasual car = new CarCasual(LeftRightColumn, LeftRightRow);                
                     gr_mainGrid.Children.Add(car.body);
                     carListLeftToRight.Add(car);
                 }
                 //cars right to left
-                else if (rnd.Next(0, 3) == 1)
+                else if (rnd.Next(0, 7) == 1)
                 {
                     CarCasual car = new CarCasual(RightLeftColumn, RightLeftRow);
-
                     gr_mainGrid.Children.Add(car.body);
                     carListRightToLeft.Add(car);
                 }
-                //cars top to bottom
-                else if((rnd.Next(0, 3) == 2))
+                //cars top to bottom 1
+                else if (rnd.Next(0, 7) == 2)
                 {
-                    CarCasual car = new CarCasual(TopBottomColumn, TopBottomRow);
-                   
-
+                    CarCasual car = new CarCasual(TopBottomColumn, TopBottomRow);                 
                     gr_mainGrid.Children.Add(car.body);
                     carListTopToBottom.Add(car);
                 }
-                //cars bottom to top
-                else
+                //cars bottom to top 1
+                else if (rnd.Next(0, 7) == 3)
                 {
                     CarCasual car = new CarCasual(BottomTopColumn, BottomTopRow);
                     gr_mainGrid.Children.Add(car.body);
                     carListBottomToTop.Add(car);
+                }
+                //cars bottom to top 2
+                else if (rnd.Next(0, 7) == 4)
+                {
+                    CarCasual car = new CarCasual(BottomTopColumn2, BottomTopRow);
+                    gr_mainGrid.Children.Add(car.body);
+                    carListBottomToTop.Add(car);
+                }
+                //cars top to bottom 2
+                else if (rnd.Next(0, 7) == 5)
+                {
+                    CarCasual car = new CarCasual(TopBottomColumn2, TopBottomRow);
+                    gr_mainGrid.Children.Add(car.body);
+                    carListTopToBottom.Add(car);
+                }
+                //cars bottom to top 3
+                else if (rnd.Next(0, 7) == 6)
+                {
+                    CarCasual car = new CarCasual(BottomTopColumn3, BottomTopRow);
+                    gr_mainGrid.Children.Add(car.body);
+                    carListBottomToTop.Add(car);
+                }
+                //cars top to bottom 3
+                else 
+                {
+                    CarCasual car = new CarCasual(TopBottomColumn3, TopBottomRow);
+                    gr_mainGrid.Children.Add(car.body);
+                    carListTopToBottom.Add(car);
                 }
             }
         }
@@ -358,14 +392,14 @@ namespace Projekt4GruppeA
                     {
                         thisCar.v = gapSize;
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
-                        CurrentColumn += thisCar.v;
+                        CurrentColumn += Math.Abs(thisCar.v);
                         Grid.SetColumn(thisCar.body, CurrentColumn);
                     }
                     //Beschleunigen
                     else if (gapSize > thisCar.v && thisCar.v < 5)
                     {
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
-                        CurrentColumn += thisCar.v;
+                        CurrentColumn += Math.Abs(thisCar.v);
                         Grid.SetColumn(thisCar.body, CurrentColumn);
 
                         if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
@@ -379,7 +413,7 @@ namespace Projekt4GruppeA
                     else if (gapSize > thisCar.v && thisCar.v >= 5)
                     {
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
-                        CurrentColumn += thisCar.v;
+                        CurrentColumn += Math.Abs(thisCar.v);
                         Grid.SetColumn(thisCar.body, CurrentColumn);
 
                         if (rnd.Next(0, 3) == 2)
@@ -423,14 +457,14 @@ namespace Projekt4GruppeA
                     {
                         thisCar.v = gapSize;
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
-                        CurrentColumn -= thisCar.v;
+                        CurrentColumn -= Math.Abs(thisCar.v);
                         Grid.SetColumn(thisCar.body, CurrentColumn);
                     }
                     //Beschleunigen
                     else if (gapSize > thisCar.v && thisCar.v < 5)
                     {
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
-                        CurrentColumn -= thisCar.v;
+                        CurrentColumn -= Math.Abs(thisCar.v);
                         Grid.SetColumn(thisCar.body, CurrentColumn);
 
                         if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
@@ -444,7 +478,7 @@ namespace Projekt4GruppeA
                     else if (gapSize > thisCar.v && thisCar.v >= 5)
                     {
                         var CurrentColumn = Grid.GetColumn(thisCar.body);
-                        CurrentColumn -= thisCar.v;
+                        CurrentColumn -= Math.Abs(thisCar.v);
                         Grid.SetColumn(thisCar.body, CurrentColumn);
 
                         if (rnd.Next(0, 3) == 2)
@@ -456,7 +490,10 @@ namespace Projekt4GruppeA
                 }
                 else
                 {
+                    //carListLeftToRight.Remove(thisCar);
                     //carListRightToLeft.Remove(thisCar);
+                    //carListTopToBottom.Remove(thisCar);
+                    //carListBottomToTop.Remove(thisCar);
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
@@ -487,14 +524,14 @@ namespace Projekt4GruppeA
                     {
                         thisCar.v = gapSize;
                         var CurrentRow = Grid.GetRow(thisCar.body);
-                        CurrentRow += thisCar.v;
+                        CurrentRow += Math.Abs(thisCar.v);
                         Grid.SetRow(thisCar.body, CurrentRow);
                     }
                     //Beschleunigen
                     else if (gapSize > thisCar.v && thisCar.v < 5)
                     {
                         var CurrentRow = Grid.GetRow(thisCar.body);
-                        CurrentRow += thisCar.v;
+                        CurrentRow += Math.Abs(thisCar.v);
                         Grid.SetRow(thisCar.body, CurrentRow);
 
                         if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
@@ -508,7 +545,7 @@ namespace Projekt4GruppeA
                     else if (gapSize > thisCar.v && thisCar.v >= 5)
                     {
                         var CurrentRow = Grid.GetRow(thisCar.body);
-                        CurrentRow += thisCar.v;
+                        CurrentRow += Math.Abs(thisCar.v);
                         Grid.SetRow(thisCar.body, CurrentRow);
 
                         if (rnd.Next(0, 3) == 2)
@@ -549,14 +586,14 @@ namespace Projekt4GruppeA
                     {
                         thisCar.v = gapSize;
                         var CurrentRow = Grid.GetRow(thisCar.body);
-                        CurrentRow -= thisCar.v;
+                        CurrentRow -= Math.Abs(thisCar.v);
                         Grid.SetRow(thisCar.body, CurrentRow);
                     }
                     //Beschleunigen
                     else if (gapSize > thisCar.v && thisCar.v < 5)
                     {
                         var CurrentRow = Grid.GetRow(thisCar.body);
-                        CurrentRow -= thisCar.v;
+                        CurrentRow -= Math.Abs(thisCar.v);
                         Grid.SetRow(thisCar.body, CurrentRow);
 
                         if (rnd.Next(0, 3) == 2 && thisCar.v > 0)
@@ -570,7 +607,7 @@ namespace Projekt4GruppeA
                     else if (gapSize > thisCar.v && thisCar.v >= 5)
                     {
                         var CurrentRow = Grid.GetRow(thisCar.body);
-                        CurrentRow -= thisCar.v;
+                        CurrentRow -= Math.Abs(thisCar.v);
                         Grid.SetRow(thisCar.body, CurrentRow);
 
                         if (rnd.Next(0, 3) == 2)
@@ -896,13 +933,10 @@ namespace Projekt4GruppeA
 
         #region ANALYSIS
 
-
         private void btnAnalysis_Click(object sender, RoutedEventArgs e)
         {          
             analysisWindow.Show();     
         }
-
-
 
         #endregion ANALYSIS
 
