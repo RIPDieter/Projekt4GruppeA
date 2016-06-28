@@ -22,6 +22,9 @@ namespace Projekt4GruppeA
 
     public partial class MainWindow : Window
     {
+        //TODO performance: elemente aus liste löschen
+        //TODO negative geschwindigkeit
+        //TODO spawncheck bereich erweitern
 
         //Global Random Declaration
         Random rnd = new Random();
@@ -43,7 +46,7 @@ namespace Projekt4GruppeA
 
         public static List<Trafficlight> trafficLightList = new List<Trafficlight>();
 
-        int LeftRightColumn = 30;
+        int LeftRightColumn = 10;
         int LeftRightRow = 80;
 
         int RightLeftColumn = 300;
@@ -219,7 +222,7 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Add(car.body);
                     carListRightToLeft.Add(car);
                 }
-                //cars top to Bottom
+                //cars top to bottom
                 else if((rnd.Next(0, 3) == 2))
                 {
                     CarCasual car = new CarCasual(TopBottomColumn, TopBottomRow);
@@ -240,27 +243,63 @@ namespace Projekt4GruppeA
 
         private bool checkSpawn()
         {
-            for (int j = 0; j < gr_mainGrid.Children.Count; j++)
-            {
-                UIElement uiE = gr_mainGrid.Children[j];
-                if (Grid.GetColumn(uiE) == LeftRightColumn + 10 && Grid.GetRow(uiE) == LeftRightRow)
-                {
-                    return false;
-                }
-                else if (Grid.GetColumn(uiE) == RightLeftColumn - 10  && Grid.GetRow(uiE) == RightLeftRow)
-                {
-                    return false;
-                }
-                else if (Grid.GetColumn(uiE) == TopBottomColumn && Grid.GetRow(uiE) == TopBottomRow + 10)
-                {
-                    return false;
-                }
-                else if (Grid.GetColumn(uiE) == BottomTopColumn&& Grid.GetRow(uiE) == BottomTopRow - 10)
-                {
-                    return false;
-                }
 
+            //check spawn left to right
+            for (var searchSpawnColumn = LeftRightColumn; searchSpawnColumn < LeftRightColumn + 3; searchSpawnColumn++)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+
+                    if (Grid.GetColumn(uiE) == searchSpawnColumn && Grid.GetRow(uiE) == LeftRightRow)
+                    {
+                        return false;
+                    }
+                }
             }
+
+            //check spawn right to left
+            for (var searchSpawnColumn2 = RightLeftColumn; searchSpawnColumn2 > RightLeftColumn - 3; searchSpawnColumn2--)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+
+                    if (Grid.GetColumn(uiE) == searchSpawnColumn2 && Grid.GetRow(uiE) == RightLeftRow)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            //check spawn top to bottom
+            for (var searchSpawnRow = TopBottomRow; searchSpawnRow < TopBottomRow + 3; searchSpawnRow++)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+
+                    if (Grid.GetColumn(uiE) == TopBottomColumn && Grid.GetRow(uiE) == searchSpawnRow)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            //check spawn bottom to top
+            for (var searchSpawnRow2 = BottomTopRow; searchSpawnRow2 > BottomTopRow - 3; searchSpawnRow2--)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+
+                    if (Grid.GetColumn(uiE) == BottomTopColumn && Grid.GetRow(uiE) == searchSpawnRow2)
+                    {
+                        return false;
+                    }
+                }
+            }
+                          
             return true;
         }
 
@@ -551,11 +590,11 @@ namespace Projekt4GruppeA
                         if (Grid.GetColumn(uiE) == searchPointColumn && Grid.GetRow(uiE) == placeOfCarRow)
                         {
                             var gapSize = Grid.GetColumn(uiE) - placeOfCarColumn - 8;
-                            return gapSize;
+                            return Math.Abs(gapSize);
                         }
                     }
                 }
-                return 5;
+                return 8;
             }
 
             #endregion  LEFTtoRIGHT
@@ -578,7 +617,7 @@ namespace Projekt4GruppeA
                         }
                     }
                 }
-                return 5;
+                return 8;
             }
 
 
@@ -603,35 +642,36 @@ namespace Projekt4GruppeA
                         }
                     }
                 }
-                return 5;
-            }         
+                return 8;
+            }
 
             #endregion TOPtoBOTTOM
 
             #region BOTTOMtoTOP
+
             if (placeOfCarColumn == BottomTopColumn)
             {
 
-                for (var searchPointRow = placeOfCarRow + 1;
-                    searchPointRow < gr_mainGrid.RowDefinitions.Count;
-                    searchPointRow++)
+                for (var searchPointRow = placeOfCarRow - 1;
+                    searchPointRow > gr_mainGrid.RowDefinitions.Count;
+                    searchPointRow--)
                 {
                     for (int j = 0; j < gr_mainGrid.Children.Count; j++)
                     {
                         UIElement uiE = gr_mainGrid.Children[j];
                         if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
                         {
-                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 8;
+                            var gapSize = placeOfCarRow - Grid.GetRow(uiE) - 8;
                             return gapSize;
                         }
                     }
                 }
-                return 5;
+                return 8;
             }
 
             #endregion BOTTOMtoTOP
 
-            return 5;
+            return 8;
 
         }
         #endregion GAP
@@ -827,23 +867,10 @@ namespace Projekt4GruppeA
 
 
         private void btnAnalysis_Click(object sender, RoutedEventArgs e)
-        {
-            
-            analysisWindow.Show();
-
-
-            
-            
-
-                    
-            
+        {          
+            analysisWindow.Show();     
         }
-
-
-
-
-
-
+        
         #endregion ANALYSIS
 
       

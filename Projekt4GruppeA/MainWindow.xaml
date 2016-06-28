@@ -23,7 +23,7 @@
 
 
         <Grid x:Name="gr_mainGrid" Margin="50,50,0,0">
-            <Border Grid.Column="30" Grid.Row="80" Grid.ColumnSpan="999" Background="Gray" />
+            <Border Grid.Column="13" Grid.Row="80" Grid.ColumnSpan="999" Background="Gray" />
 
             <Grid x:Name="draw_Grid" Margin="10,10,0,0"/>
 

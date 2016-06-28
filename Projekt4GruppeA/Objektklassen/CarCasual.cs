@@ -58,7 +58,7 @@ namespace Projekt4GruppeA
                 body.Width = 40;
 
 
-            if (columnSpawn == 30)
+            if (columnSpawn == 10)
             {
                 // y = rotated image
                 var y = new BitmapImage();
