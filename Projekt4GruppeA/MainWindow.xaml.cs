@@ -70,13 +70,13 @@ namespace Projekt4GruppeA
             //first intersection
             spawnTrafficLight(109, 180, 60, LeftRightRow);
             spawnTrafficLight(109, 140, 60, 74);
-            spawnTrafficLight(149, 140, 70, RightLeftRow);
+            spawnTrafficLight(149, 140, 65, RightLeftRow);
             spawnTrafficLight(149, 180, 70, 85);
 
             //second intersection
             spawnTrafficLight(249, 180, 129, LeftRightRow);
             spawnTrafficLight(249, 140, TopBottomColumn, 74);
-            spawnTrafficLight(289, 140, 141, RightLeftRow);
+            spawnTrafficLight(289, 140, 132, RightLeftRow);
             spawnTrafficLight(289, 180, BottomTopColumn, 85);
 
             //third intersection
@@ -117,50 +117,81 @@ namespace Projekt4GruppeA
 
         public void btnSpawn_Click(object sender, RoutedEventArgs e)
         {
-            if (!timer.IsEnabled)
+            if (!cbstreet.IsChecked==false|| !cbstreet2.IsChecked == false || !cbstreet3.IsChecked == false 
+                 )
             {
-                startTimer(1);
-                //spawnCars(Convert.ToInt16(sldSpawn.Value));
-                //spawnCars(1);
-                //spawntrafficlight(1);
-            }
+                if (!timer.IsEnabled)
+                {
+                    startTimer(1);
+                    //spawnCars(Convert.ToInt16(sldSpawn.Value));
+                    //spawnCars(1);
+                    //spawntrafficlight(1);
+                }
 
+                else
+                {
+                    MessageBox.Show("Simulation bereist gestartet!");
+                }
+
+                if (cbstreet.IsChecked == true)
+                { cbclock.IsEnabled = false; }
+                else if (cbclock.IsChecked == true)
+                { cbstreet.IsEnabled = false; }
+
+                if (cbstreet2.IsChecked == true)
+                { cbclock2.IsEnabled = false; }
+                else if (cbclock2.IsChecked == true)
+                { cbstreet2.IsEnabled = false; }
+
+                if (cbstreet3.IsChecked == true)
+                { cbclock3.IsEnabled = false; }
+                else if (cbclock3.IsChecked == true)
+                { cbstreet3.IsEnabled = false; }
+
+            }
             else
             {
-                MessageBox.Show("Already running!");
+                MessageBox.Show("Bitte zuerst Ampelschaltungen wählen !");
             }
+
         }
 
-        private void cbstreet_Click(object sender, RoutedEventArgs e)
-        {
-            cbclock.IsChecked = false;
-            gr_mainGrid.Children.Remove(trafficLightList[0].blocker);
-            gr_mainGrid.Children.Remove(trafficLightList[1].blocker);
-            gr_mainGrid.Children.Remove(trafficLightList[2].blocker);
-            gr_mainGrid.Children.Remove(trafficLightList[3].blocker);
-
-            gr_mainGrid.Children.Add(trafficLightList[0].blocker);
-            trafficLightList[0].body.Fill = (new SolidColorBrush(Colors.Red));
-            gr_mainGrid.Children.Add(trafficLightList[2].blocker);
-            trafficLightList[2].body.Fill = (new SolidColorBrush(Colors.Red));
-        }
+       
 
         private void cbclock_Click(object sender, RoutedEventArgs e)
         {
-            cbstreet.IsChecked = false;
-            gr_mainGrid.Children.Remove(trafficLightList[0].blocker);
-            gr_mainGrid.Children.Remove(trafficLightList[1].blocker);
-            gr_mainGrid.Children.Remove(trafficLightList[2].blocker);
-            gr_mainGrid.Children.Remove(trafficLightList[3].blocker);
+            
+          
+            //gr_mainGrid.Children.Remove(trafficLightList[0].blocker);
+            //gr_mainGrid.Children.Remove(trafficLightList[1].blocker);
+            //gr_mainGrid.Children.Remove(trafficLightList[2].blocker);
+            //gr_mainGrid.Children.Remove(trafficLightList[3].blocker);
 
             //gr_mainGrid.Children.Add(trafficLightList[1].blocker);
             //trafficLightList[0].body.Fill = (new SolidColorBrush(Colors.Green));
-            //gr_mainGrid.Children.Add(trafficLightList[2].blocker);
-            //gr_mainGrid.Children.Add(trafficLightList[3].blocker);
+            ////gr_mainGrid.Children.Add(trafficLightList[2].blocker);
+            ////gr_mainGrid.Children.Add(trafficLightList[3].blocker);
             //trafficLightList[1].body.Fill = (new SolidColorBrush(Colors.Red));
             //trafficLightList[2].body.Fill = (new SolidColorBrush(Colors.Red));
             //trafficLightList[3].body.Fill = (new SolidColorBrush(Colors.Red));
 
+        }
+
+        private void cbstreet_Checked(object sender, RoutedEventArgs e)
+        {
+          
+           
+            //trafficLightList[0].isRed = true;
+            //trafficLightList[1].body.Fill = (new SolidColorBrush(Colors.Red));
+
+           
+
+            
+        }
+
+        private void cbclock_Checked(object sender, RoutedEventArgs e)
+        {
+            cbstreet.IsChecked = false;
         }
 
         #endregion BUTTON CLICK EVENTS
@@ -740,7 +771,7 @@ namespace Projekt4GruppeA
             if (f == true)
             {
 
-                if (timerCount%g == 0)
+                if (timerCount%(g) == 0)
                 {
 
                     if (trafficLightList[a].isRed == true)
@@ -761,7 +792,7 @@ namespace Projekt4GruppeA
 
                     }
                 }
-                if (timerCount%2*g == 0)
+                if (timerCount%(2*g) == 0)
                 {
                     if (trafficLightList[b].isRed == true)
                     {
@@ -780,7 +811,7 @@ namespace Projekt4GruppeA
                         trafficLightList[d].body.Fill = (new SolidColorBrush(Colors.Red));
                     }
                 }
-                if (timerCount%3*g == 0)
+                if (timerCount%(3*g) == 0)
                 {
                     if (trafficLightList[c].isRed == true)
                     {
@@ -799,7 +830,7 @@ namespace Projekt4GruppeA
                         trafficLightList[d].body.Fill = (new SolidColorBrush(Colors.Red));
                     }
                 }
-                if (timerCount%4*g == 0)
+                if (timerCount%(4*g) == 0)
                 {
                     if (trafficLightList[d].isRed == true)
                     {
@@ -870,9 +901,10 @@ namespace Projekt4GruppeA
         {          
             analysisWindow.Show();     
         }
-        
+
+
         #endregion ANALYSIS
 
-      
+   
     }
 }
