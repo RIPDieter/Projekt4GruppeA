@@ -11,13 +11,11 @@
     <Grid x:Name="gr_outerGrid">
         <StackPanel>
             <Button x:Name="button" Content="Spawn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="35" Click="btnSpawn_Click"/>
-
-
-            <Slider x:Name="sldSpawn" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Minimum="1" SmallChange="1"/>
-            <Button x:Name="btnAnalysis" Content="Auswertung" HorizontalAlignment="Right" VerticalAlignment="Top" Width="80" Click="btnAnalysis_Click" Margin="0,0,1414,0"/>
-
-            <Border BorderBrush="Black" BorderThickness="1" Height="100"/>
-            <Slider x:Name="sldTime" ValueChanged="sldTime_ValueChanged" Minimum="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="1000"/>
+            <Slider x:Name="sldSpawn" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Minimum="1" SmallChange="1" Maximum="8"/>
+            <Label x:Name="label" Content="Verkehr"/>
+            <Button x:Name="btnAnalysis" Content="Analyse" HorizontalAlignment="Right" VerticalAlignment="Top" Width="50" Click="btnAnalysis_Click" Margin="0,0,1434,0" Height="30"/>
+            <Border BorderBrush="White" BorderThickness="1" Height="100"/>
+            <Slider x:Name="sldTime" ValueChanged="sldTime_ValueChanged" Minimum="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="1000" Height="21" Cursor="Hand" Value="1000"/>
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Zeitraffer"/>
         </StackPanel>
 

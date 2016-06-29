@@ -22,13 +22,9 @@ namespace Projekt4GruppeA
 
     public partial class MainWindow : Window
     {
-        
-        //TODO spawncheck bereich erweitern
+            
         //TODO analysefenster
-        //TODO bottomtop ampelblocker
-        //TODO stackende autos vermeiden
-        //TODO Analysiswindow schliessen und wieder öffnen -> EXCEPTION
-        //TODO mainwindow slider beschriften und korrigieren
+        //TODO Analysiswindow schliessen und wieder öffnen   
 
         #region INIT
 
@@ -59,7 +55,7 @@ namespace Projekt4GruppeA
         int RightLeftRow = 75;
 
         int TopBottomColumn = 130;
-        int TopBottomRow = 20;
+        int TopBottomRow = 15;
 
         int BottomTopColumn = 135;
         int BottomTopRow = 130;
@@ -356,19 +352,73 @@ namespace Projekt4GruppeA
             }
 
             //check spawn bottom to top
-            for (var searchSpawnRow2 = BottomTopRow; searchSpawnRow2 > BottomTopRow - 3; searchSpawnRow2--)
+            for (var searchSpawnRow = BottomTopRow; searchSpawnRow > BottomTopRow - 3; searchSpawnRow--)
             {
                 for (int j = 0; j < gr_mainGrid.Children.Count; j++)
                 {
                     UIElement uiE = gr_mainGrid.Children[j];
 
-                    if (Grid.GetColumn(uiE) == BottomTopColumn && Grid.GetRow(uiE) == searchSpawnRow2)
+                    if (Grid.GetColumn(uiE) == BottomTopColumn && Grid.GetRow(uiE) == searchSpawnRow)
                     {
                         return false;
                     }
                 }
             }
-                          
+
+            //check spawn top to bottom 2
+            for (var searchSpawnRow = TopBottomRow; searchSpawnRow < TopBottomRow + 3; searchSpawnRow++)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+
+                    if (Grid.GetColumn(uiE) == TopBottomColumn2 && Grid.GetRow(uiE) == searchSpawnRow)
+                    {
+                        return false;
+                    }
+                }
+            }
+            //check spawn bottom to top 2
+            for (var searchSpawnRow = BottomTopRow; searchSpawnRow > BottomTopRow - 3; searchSpawnRow--)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+
+                    if (Grid.GetColumn(uiE) == BottomTopColumn2 && Grid.GetRow(uiE) == searchSpawnRow)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            //check spawn top to bottom 3
+            for (var searchSpawnRow = TopBottomRow; searchSpawnRow < TopBottomRow + 3; searchSpawnRow++)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+
+                    if (Grid.GetColumn(uiE) == TopBottomColumn3 && Grid.GetRow(uiE) == searchSpawnRow)
+                    {
+                        return false;
+                    }
+                }
+            }
+           
+            //check spawn bottom to top 3
+            for (var searchSpawnRow = BottomTopRow; searchSpawnRow > BottomTopRow - 3; searchSpawnRow--)
+            {
+                for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                {
+                    UIElement uiE = gr_mainGrid.Children[j];
+
+                    if (Grid.GetColumn(uiE) == BottomTopColumn3 && Grid.GetRow(uiE) == searchSpawnRow)
+                    {
+                        return false;
+                    }
+                }
+            }          
             return true;
         }
 
@@ -847,7 +897,6 @@ namespace Projekt4GruppeA
             {
                 if (timerCount%g == 0)
                 {
-                    //TODO auto change color of ampel when isRed changes
                     if (trafficLightList[a].isRed == true)
                     {
                         gr_mainGrid.Children.Remove(trafficLightList[a].blocker);
@@ -988,7 +1037,7 @@ namespace Projekt4GruppeA
 
         private void sldTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //TODO Umdrehen
+            
             timer.Interval = TimeSpan.FromMilliseconds(sldTime.Value);
         }
 
