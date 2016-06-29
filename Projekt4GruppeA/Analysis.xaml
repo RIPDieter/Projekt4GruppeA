@@ -15,7 +15,7 @@
     <Grid x:Name="gr_statisticsGrid">
 
 
-        <wpf:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left" Height="600" Width="1000" Margin="0,10,0,0">
+        <wpf:CartesianChart Series="{Binding SeriesCollection}" LegendLocation="Left" Width="1000" Margin="0,94,-6,81">
             <wpf:CartesianChart.AxisX>
                 <wpf:Axis Title="Zeitintervall" Labels="{Binding Labels}"/>
             </wpf:CartesianChart.AxisX>
@@ -34,8 +34,8 @@
         <Label Content="Von Rechts nach Links" Height="30" Margin="458,9,376,733" Width="160"/>
         <TextBlock x:Name="tb_rightToLeftCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="645,14,289,728"/>
 
-        <Label x:Name="tmrCount" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="80" Content="Timer"/>
-        <TextBlock x:Name="txtTimer" HorizontalAlignment="Left" Margin="69,15,0,0" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top" Height="12"/>
+        <Label x:Name="tmrCount" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,9,0,0" Width="105" Content="Simulationsdauer &#xD;&#xA;in &quot;timertick&quot;:" Height="56"/>
+        <TextBlock x:Name="txtTimer" HorizontalAlignment="Left" Margin="28,54,0,0" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top" Height="12"/>
         <Label x:Name="label1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="725,45,0,0" Height="44" Width="259" FontSize="18.667" RenderTransformOrigin="-0.12,2.698"/>
         <Label x:Name="label" Content="Von Oben nach Unten" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="158,40,0,0"/>
         <Label x:Name="label_Copy" Content="Von Unten nach Oben" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="458,40,0,0"/>

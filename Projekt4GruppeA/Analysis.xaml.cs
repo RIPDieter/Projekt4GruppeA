@@ -75,7 +75,8 @@ namespace Projekt4GruppeA
             lstOnaU.Text = MainWindow.carListTopToBottom.Count.ToString();
             lstUnaO.Text = MainWindow.carListBottomToTop.Count.ToString();
 
-            //TODO fehlen von oben und drunten
+            
+
 
 
             updateChart(totalCarsOnMap);
