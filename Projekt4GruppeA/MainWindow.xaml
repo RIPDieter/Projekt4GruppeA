@@ -17,6 +17,7 @@
             <Border BorderBrush="White" BorderThickness="1" Height="100"/>
             <Slider x:Name="sldTime" ValueChanged="sldTime_ValueChanged" Minimum="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="1000" Height="21" Cursor="Hand" Value="1000"/>
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Zeitraffer"/>
+            <Label x:Name="label2" Content="Label"/>
         </StackPanel>
 
 
@@ -30,7 +31,7 @@
         <Slider x:Name="sldLight1" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="11.501,1.161" Height="19" Width="140" Margin="266,0,0,0" Minimum="20" SmallChange="1" Maximum="50" ValueChanged="sldLight1_ValueChanged"/>
         <Slider x:Name="sldLight2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="633,1,0,0" Minimum="20" Maximum="50" ValueChanged="sldLight2_ValueChanged" SmallChange="1"/>
         <Slider x:Name="sldLight3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Margin="1017,1,0,0" Minimum="20" Maximum="50" ValueChanged="sldLight3_ValueChanged" SmallChange="1"/>
-        <CheckBox x:Name="cbstreet" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top"  Checked="cbstreet_Checked" Margin="266,17,0,0"   />
+        <CheckBox x:Name="cbstreet" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top"  Checked="cbstreet_Checked" Margin="266,19,0,0"   />
         <CheckBox x:Name="cbclock" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,33,0,0" Checked="cbclock_Checked"/>
         <CheckBox x:Name="cbstreet2" Content="Straße" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="633,19,0,0" Checked="cbstreet2_Checked"  />
         <CheckBox x:Name="cbclock2" Content="Uhrzeigersinn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="633,33,0,0" Checked="cbclock2_Checked"/>
@@ -39,6 +40,9 @@
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Kreuzung 1" VerticalAlignment="Top" Height="24" Width="61" Margin="184,10,0,0"/>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="30" Width="63" Margin="557,0,0,731"><Run Text="Kreuzung "/><Run Text="2"/></TextBlock>
         <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="30" Width="64" Margin="939,0,0,731"><Run Text="Kreuzung "/><Run Text="3"/></TextBlock>
+        <Label x:Name="label1" Content="Umlaufzeit" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="411,-1,0,0"/>
+        <Label x:Name="label1_Copy" Content="Umlaufzeit" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="778,-1,0,0"/>
+        <Label x:Name="label1_Copy1" Content="Umlaufzeit" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="1162,-1,0,0"/>
 
 
 

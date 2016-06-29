@@ -63,7 +63,7 @@ namespace Projekt4GruppeA
             Grid.SetColumn(blocker, blockerColumn);
             Grid.SetRow(blocker, blockerRow);
 
-            blocker.Fill = (new SolidColorBrush(Colors.Black));
+            //blocker.Fill = (new SolidColorBrush(Colors.Black));
         }
     }
 }
