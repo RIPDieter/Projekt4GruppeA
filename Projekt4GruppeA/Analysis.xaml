@@ -25,18 +25,22 @@
         </wpf:CartesianChart>
 
 
-        <Label Content="Gesamt:" Margin="630,10,204,731" Height="30" Width="160"/>
-        <TextBlock x:Name="tb_totalCarCountOnMap" Width="60" Text="XXX" VerticalAlignment="Center" Height="30" Margin="248,13,686,728" RenderTransformOrigin="0.033,0.667"/>
+        <Label Content="Gesamt:" Margin="731,10,103,732" Height="30" Width="160"/>
+        <TextBlock x:Name="tb_totalCarCountOnMap" Width="60" Text="XXX" VerticalAlignment="Center" Height="30" Margin="856,15,78,727" RenderTransformOrigin="0.033,0.667"/>
 
-        <Label Content="Von Links nach Rechts" Height="30" Margin="110,10,724,731" Width="160"/>
-        <TextBlock x:Name="tb_leftToRightCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="444,14,490,727"/>
+        <Label Content="Von Links nach Rechts" Height="30" Margin="158,10,676,732" Width="160"/>
+        <TextBlock x:Name="tb_leftToRightCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="354,15,580,727"/>
 
-        <Label Content="Von Rechts nach Links" Height="30" Margin="313,10,521,731" Width="160"/>
-        <TextBlock x:Name="tb_rightToLeftCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="684,15,250,726"/>
+        <Label Content="Von Rechts nach Links" Height="30" Margin="458,9,376,733" Width="160"/>
+        <TextBlock x:Name="tb_rightToLeftCars" Width="60" Text="XXX" Height="30" VerticalAlignment="Center" Margin="645,14,289,728"/>
 
         <Label x:Name="tmrCount" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="80" Content="Timer"/>
         <TextBlock x:Name="txtTimer" HorizontalAlignment="Left" Margin="69,15,0,0" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top" Height="12"/>
-        <Label x:Name="label1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="744,0,-9,0" Height="43" Width="259" FontSize="18.667" RenderTransformOrigin="-0.12,2.698"/>
+        <Label x:Name="label1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="725,45,0,0" Height="44" Width="259" FontSize="18.667" RenderTransformOrigin="-0.12,2.698"/>
+        <Label x:Name="label" Content="Von Oben nach Unten" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="158,40,0,0"/>
+        <Label x:Name="label_Copy" Content="Von Unten nach Oben" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="458,40,0,0"/>
+        <TextBlock x:Name="lstUnaO" HorizontalAlignment="Left" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top" Margin="354,45,0,0"/>
+        <TextBlock x:Name="lstOnaU" HorizontalAlignment="Left" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top" Margin="645,45,0,0"/>
 
     </Grid>
 

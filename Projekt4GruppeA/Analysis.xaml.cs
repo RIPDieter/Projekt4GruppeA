@@ -72,6 +72,9 @@ namespace Projekt4GruppeA
             tb_totalCarCountOnMap.Text = totalCarsOnMap.ToString();
             tb_leftToRightCars.Text = MainWindow.carListLeftToRight.Count.ToString();
             tb_rightToLeftCars.Text = MainWindow.carListRightToLeft.Count.ToString();
+            lstOnaU.Text = MainWindow.carListTopToBottom.Count.ToString();
+            lstUnaO.Text = MainWindow.carListBottomToTop.Count.ToString();
+
             //TODO fehlen von oben und drunten
 
 

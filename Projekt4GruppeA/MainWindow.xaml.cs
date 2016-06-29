@@ -482,7 +482,7 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
-                if (gapSize == 0 && thisCar.v <= 0)
+                if (gapSize == 0 && thisCar.v <= 0 && carListTopToBottom.Count >= 75)
                 {
                     analysisWindow.label1.Content = "STAUGEFAHR!!";
                 }
@@ -551,7 +551,7 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
-                if (gapSize == 0 && thisCar.v <= 0)
+                if (gapSize == 0 && thisCar.v <= 0 && carListTopToBottom.Count >= 75)
                 {
                     analysisWindow.label1.Content = "STAUGEFAHR!!";
                 }
@@ -613,7 +613,7 @@ namespace Projekt4GruppeA
                     gr_mainGrid.Children.Remove(thisCar.body);
                 }
 
-                if (gapSize == 0 && thisCar.v <= 0)
+                if (gapSize == 0 && thisCar.v <= 0 && carListTopToBottom.Count >= 110)
                 {
                     analysisWindow.label1.Content = "STAUGEFAHR!!";
                 }
@@ -670,7 +670,7 @@ namespace Projekt4GruppeA
                         }
                     }
 
-                    if (gapSize == 0 && thisCar.v == 0)
+                    if (gapSize == 0 && thisCar.v == 0 && carListTopToBottom.Count >= 75)
                     {
                         analysisWindow.label1.Content = "STAUGEFAHR!!";
                     }
@@ -1068,8 +1068,17 @@ namespace Projekt4GruppeA
         #region ANALYSIS
 
         private void btnAnalysis_Click(object sender, RoutedEventArgs e)
-        {          
-            analysisWindow.Show();     
+        {
+            try
+            {
+                analysisWindow.Show();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Bereits geöffnet!");
+            }
         }
 
         #endregion ANALYSIS
