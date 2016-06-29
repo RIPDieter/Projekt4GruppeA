@@ -28,17 +28,17 @@
         <Label Content="Gesamt:" Margin="722,36,112,723" Height="30" Width="160"/>
         <TextBlock x:Name="tb_totalCarCountOnMap" Text="XXX" VerticalAlignment="Center" Height="24" Margin="857,41,95,724" RenderTransformOrigin="0.033,0.667"/>
 
-        <Label Content="Von Links nach Rechts" Height="30" Margin="158,36,676,723" Width="160"/>
+        <Label Content="Von Links nach Rechts:" Height="30" Margin="158,36,676,723" Width="160"/>
         <TextBlock x:Name="tb_leftToRightCars" Text="XXX" Height="21" VerticalAlignment="Center" Margin="354,41,593,727"/>
 
-        <Label Content="Von Rechts nach Links" Height="30" Margin="458,35,376,724" Width="160"/>
+        <Label Content="Von Rechts nach Links:" Height="30" Margin="458,35,376,724" Width="160"/>
         <TextBlock x:Name="tb_rightToLeftCars" Text="XXX" Height="21" VerticalAlignment="Center" Margin="645,41,299,727"/>
 
         <Label x:Name="tmrCount" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,25,0,0" Width="105" Content="Simulationsdauer &#xD;&#xA;in &quot;timertick&quot;:" Height="56"/>
         <TextBlock x:Name="txtTimer" HorizontalAlignment="Left" Margin="29,73,0,0" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top" Height="26" Width="32"/>
         <Label x:Name="label1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="710,65,0,0" Height="44" Width="259" FontSize="18.667" RenderTransformOrigin="-0.12,2.698"/>
-        <Label x:Name="label" Content="Von Oben nach Unten" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="158,63,0,0"/>
-        <Label x:Name="label_Copy" Content="Von Unten nach Oben" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="458,63,0,0"/>
+        <Label x:Name="label" Content="Von Oben nach Unten:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="158,63,0,0"/>
+        <Label x:Name="label_Copy" Content="Von Unten nach Oben:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="458,63,0,0"/>
         <TextBlock x:Name="lstUnaO" HorizontalAlignment="Left" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top" Margin="354,66,0,0" RenderTransformOrigin="0.571,1.125" Height="19" Width="25"/>
         <TextBlock x:Name="lstOnaU" HorizontalAlignment="Left" TextWrapping="Wrap" Text="XXX" VerticalAlignment="Top" Margin="645,69,0,0" Height="20" Width="26"/>
 

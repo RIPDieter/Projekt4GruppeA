@@ -13,27 +13,19 @@ namespace Projekt4GruppeA
 {
     public class Trafficlight 
     {
-        //Ort
+        //place
         public int location { get; set; }
 
-        //Form
+        //shape
         public Ellipse body { get; set; }
 
-        //Blocker UIElement
+        //UIElement on streets blocking cars
         public Ellipse blocker { get; set; }
 
-        //Zustand
+        //state
         public bool isRed { get; set; }
-        
-        //Konstruktor - im Moment nicht benutzt  
-        //public Trafficlight()
-        //{
-        //    Ellipse body = new Ellipse();
-        //    body.Width = 10;
-        //    body.Height = 10;
-        //    isRed = true;
-        //}
 
+        //constructor 
         public Trafficlight(int trafficLightcolumn, int trafficLightRow, int blockerColumn, int blockerRow)
         {
             Brush[] trafficLightColors = new Brush[]
@@ -50,10 +42,7 @@ namespace Projekt4GruppeA
             
             Grid.SetRowSpan(body, trafficLightRow);
             Grid.SetColumnSpan(body,trafficLightcolumn );
-            //Grid.SetColumn(body, trafficLightcolumn);
-            //Grid.SetRow(body, trafficLightRow);
-            
-
+           
             body.Fill = trafficLightColors[1];
 
             blocker = new Ellipse();

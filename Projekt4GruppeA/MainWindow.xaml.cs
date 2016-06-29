@@ -23,9 +23,6 @@ namespace Projekt4GruppeA
     public partial class MainWindow : Window
     {
             
-        //TODO analysefenster
-        //TODO Analysiswindow schliessen und wieder öffnen   
-
         #region INIT
 
         //Global Random Declaration
@@ -34,17 +31,15 @@ namespace Projekt4GruppeA
         DispatcherTimer timer = new DispatcherTimer();
         //Global ID Counter
         public static int idCounter = 0;
-        // Skalierungsvariable
-        int s;
 
         Analysis analysisWindow = new Analysis();
       
         int timerCount;
 
-        public static List<CarCasual> carListLeftToRight = new List<CarCasual>();
-        public static List<CarCasual> carListRightToLeft = new List<CarCasual>();
-        public static List<CarCasual> carListTopToBottom = new List<CarCasual>();
-        public static List<CarCasual> carListBottomToTop = new List<CarCasual>();
+        public static List<Cars> carListLeftToRight = new List<Cars>();
+        public static List<Cars> carListRightToLeft = new List<Cars>();
+        public static List<Cars> carListTopToBottom = new List<Cars>();
+        public static List<Cars> carListBottomToTop = new List<Cars>();
 
         public static List<Trafficlight> trafficLightList = new List<Trafficlight>();
 
@@ -250,56 +245,56 @@ namespace Projekt4GruppeA
                 //cars left to right
                 if (rnd.Next(0, 7) == 0)
                 {
-                    CarCasual car = new CarCasual(LeftRightColumn, LeftRightRow);                
+                    Cars car = new Cars(LeftRightColumn, LeftRightRow);                
                     gr_mainGrid.Children.Add(car.body);
                     carListLeftToRight.Add(car);
                 }
                 //cars right to left
                 else if (rnd.Next(0, 7) == 1)
                 {
-                    CarCasual car = new CarCasual(RightLeftColumn, RightLeftRow);
+                    Cars car = new Cars(RightLeftColumn, RightLeftRow);
                     gr_mainGrid.Children.Add(car.body);
                     carListRightToLeft.Add(car);
                 }
                 //cars top to bottom 1
                 else if (rnd.Next(0, 7) == 2)
                 {
-                    CarCasual car = new CarCasual(TopBottomColumn, TopBottomRow);                 
+                    Cars car = new Cars(TopBottomColumn, TopBottomRow);                 
                     gr_mainGrid.Children.Add(car.body);
                     carListTopToBottom.Add(car);
                 }
                 //cars bottom to top 1
                 else if (rnd.Next(0, 7) == 3)
                 {
-                    CarCasual car = new CarCasual(BottomTopColumn, BottomTopRow);
+                    Cars car = new Cars(BottomTopColumn, BottomTopRow);
                     gr_mainGrid.Children.Add(car.body);
                     carListBottomToTop.Add(car);
                 }
                 //cars bottom to top 2
                 else if (rnd.Next(0, 7) == 4)
                 {
-                    CarCasual car = new CarCasual(BottomTopColumn2, BottomTopRow);
+                    Cars car = new Cars(BottomTopColumn2, BottomTopRow);
                     gr_mainGrid.Children.Add(car.body);
                     carListBottomToTop.Add(car);
                 }
                 //cars top to bottom 2
                 else if (rnd.Next(0, 7) == 5)
                 {
-                    CarCasual car = new CarCasual(TopBottomColumn2, TopBottomRow);
+                    Cars car = new Cars(TopBottomColumn2, TopBottomRow);
                     gr_mainGrid.Children.Add(car.body);
                     carListTopToBottom.Add(car);
                 }
                 //cars bottom to top 3
                 else if (rnd.Next(0, 7) == 6)
                 {
-                    CarCasual car = new CarCasual(BottomTopColumn3, BottomTopRow);
+                    Cars car = new Cars(BottomTopColumn3, BottomTopRow);
                     gr_mainGrid.Children.Add(car.body);
                     carListBottomToTop.Add(car);
                 }
                 //cars top to bottom 3
                 else 
                 {
-                    CarCasual car = new CarCasual(TopBottomColumn3, TopBottomRow);
+                    Cars car = new Cars(TopBottomColumn3, TopBottomRow);
                     gr_mainGrid.Children.Add(car.body);
                     carListTopToBottom.Add(car);
                 }
@@ -430,7 +425,7 @@ namespace Projekt4GruppeA
         {
             #region  LEFTtoRIGHT
 
-            foreach (CarCasual thisCar in carListLeftToRight)
+            foreach (Cars thisCar in carListLeftToRight)
             {
                 var gapSize = checkGapSize(thisCar);
 
@@ -495,7 +490,7 @@ namespace Projekt4GruppeA
 
             #region RIGHTtoLEFT
 
-            foreach (CarCasual thisCar in carListRightToLeft)
+            foreach (Cars thisCar in carListRightToLeft)
             {
                 var gapSize = checkGapSize(thisCar);
 
@@ -555,14 +550,13 @@ namespace Projekt4GruppeA
                 {
                     analysisWindow.label1.Content = "STAUGEFAHR!!";
                 }
-
             }
 
             #endregion RIGHTtoLEFT
 
             #region TOPtoBOTTOM
 
-            foreach (CarCasual thisCar in carListTopToBottom)
+            foreach (Cars thisCar in carListTopToBottom)
             {
                 var gapSize = checkGapSize(thisCar);
 
@@ -624,7 +618,7 @@ namespace Projekt4GruppeA
           
             #region BOTTOMtoTOP
 
-            foreach (CarCasual thisCar in carListBottomToTop)
+            foreach (Cars thisCar in carListBottomToTop)
             {
                 var gapSize = checkGapSize(thisCar);
 
@@ -692,7 +686,7 @@ namespace Projekt4GruppeA
 
         #region GAP
 
-        private int checkGapSize(CarCasual thisCar)
+        private int checkGapSize(Cars thisCar)
         {
             var placeOfCarColumn = Grid.GetColumn(thisCar.body);
             var placeOfCarRow = Grid.GetRow(thisCar.body);
@@ -746,6 +740,7 @@ namespace Projekt4GruppeA
             #endregion RIGHTtoLEFT
 
             #region TOPtoBOTTOM
+           
             //second lane
             if (placeOfCarColumn == TopBottomColumn)
             {
@@ -811,6 +806,7 @@ namespace Projekt4GruppeA
             #endregion TOPtoBOTTOM
 
             #region BOTTOMtoTOP
+            
             //lane 2
             if (placeOfCarColumn == BottomTopColumn)
             {
@@ -852,6 +848,7 @@ namespace Projekt4GruppeA
                 }
                 return 8;
             }
+            
             //lane 3
             if (placeOfCarColumn == BottomTopColumn3)
             {
@@ -881,13 +878,11 @@ namespace Projekt4GruppeA
 
         #region TRAFFICLIGHT
 
-
         public void spawnTrafficLight(int trafficLightColumn, int trafficLightRow, int blockerColumn, int blockerRow)
         {
             Trafficlight ampel = new Trafficlight(trafficLightColumn, trafficLightRow, blockerColumn, blockerRow);
             trafficLightList.Add(ampel);
-            gr_mainGrid.Children.Add(ampel.body);
-            //gr_mainGrid.Children.Add(ampel.blocker);
+            gr_mainGrid.Children.Add(ampel.body);           
         }
 
         public void switchLight(int a, int b, int c, int d, bool? e, bool?f, int g)
@@ -917,7 +912,6 @@ namespace Projekt4GruppeA
                     }
                     else
                     {
-
                         trafficLightList[a].isRed = true;
                         trafficLightList[a].body.Fill = (new SolidColorBrush(Colors.Red));
                         gr_mainGrid.Children.Add(trafficLightList[a].blocker);
@@ -937,14 +931,11 @@ namespace Projekt4GruppeA
                 }
             }
 
-
             //traffic Light circuit 2
             if (f == true)
             {
-
                 if (timerCount%(g) == 0)
                 {
-
                     if (trafficLightList[a].isRed == true)
                     {
                         trafficLightList[a].isRed = false;
@@ -1020,16 +1011,8 @@ namespace Projekt4GruppeA
                         gr_mainGrid.Children.Remove(trafficLightList[d].blocker);
                     }
                 }
-
             }
-
         }
-
-
-
-
-
-    
 
     #endregion TRAFFICLIGHT
 
@@ -1061,8 +1044,6 @@ namespace Projekt4GruppeA
 
         }
 
-
-
         #endregion SLIDER
 
         #region ANALYSIS
@@ -1075,7 +1056,7 @@ namespace Projekt4GruppeA
 
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Bereits geöffnet!");
             }

@@ -6,32 +6,32 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Shapes; // für Ellipse
+using System.Windows.Shapes; // for Ellipse
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-// für Brushes
+
 
 namespace Projekt4GruppeA
 {
 
-    public class CarCasual 
+    public class Cars
 
     {
         //ID
         public double iD { get; set; }
 
-        //Geschwindigkeit
+        //velocity
         public int v { get; set; }
 
-        //Ort
+        //place
         public int location { get; set; }
 
-        //Form
+        //shape
         public Ellipse body { get; set; }
 
-        //Konstruktor, ID hochzählen, Standardparameter  
-        public CarCasual(int columnSpawn, int rowSpawn)
+        //constructor  
+        public Cars(int columnSpawn, int rowSpawn)
         {
             Random rnd = new Random();
             
