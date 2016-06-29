@@ -82,20 +82,20 @@ namespace Projekt4GruppeA
             //first intersection
             spawnTrafficLight(109, 180, 59, LeftRightRow);
             spawnTrafficLight(109, 140, TopBottomColumn2, 74);
-            spawnTrafficLight(149, 140, 65, RightLeftRow);
-            spawnTrafficLight(149, 180, BottomTopColumn2, 85);
+            spawnTrafficLight(149, 140, 66, RightLeftRow);
+            spawnTrafficLight(149, 180, BottomTopColumn2, 77);
 
             //second intersection
             spawnTrafficLight(249, 180, 129, LeftRightRow);
             spawnTrafficLight(249, 140, TopBottomColumn, 74);
             spawnTrafficLight(289, 140, 132, RightLeftRow);
-            spawnTrafficLight(289, 180, BottomTopColumn, 85);
+            spawnTrafficLight(289, 180, BottomTopColumn, 77);
 
             //third intersection
             spawnTrafficLight(392, 180, 200, LeftRightRow);
             spawnTrafficLight(392, 140, TopBottomColumn3, 74);
             spawnTrafficLight(432, 140, 205, RightLeftRow);
-            spawnTrafficLight(432, 180, BottomTopColumn3, 85);
+            spawnTrafficLight(432, 180, BottomTopColumn3, 77);
 
             ImageBrush myBrush = new ImageBrush();
             myBrush.ImageSource =
@@ -761,12 +761,12 @@ namespace Projekt4GruppeA
             #endregion TOPtoBOTTOM
 
             #region BOTTOMtoTOP
-
+            //lane 2
             if (placeOfCarColumn == BottomTopColumn)
             {
 
                 for (var searchPointRow = placeOfCarRow - 1;
-                    searchPointRow > gr_mainGrid.RowDefinitions.Count;
+                    searchPointRow >=0;
                     searchPointRow--)
                 {
                     for (int j = 0; j < gr_mainGrid.Children.Count; j++)
@@ -782,6 +782,46 @@ namespace Projekt4GruppeA
                 return 8;
             }
 
+            //lane 1
+            if (placeOfCarColumn == BottomTopColumn2)
+            {
+
+                for (var searchPointRow = placeOfCarRow - 1;
+                    searchPointRow >= 0;
+                    searchPointRow--)
+                {
+                    for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                    {
+                        UIElement uiE = gr_mainGrid.Children[j];
+                        if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
+                        {
+                            var gapSize = placeOfCarRow - Grid.GetRow(uiE) - 8;
+                            return gapSize;
+                        }
+                    }
+                }
+                return 8;
+            }
+            //lane 3
+            if (placeOfCarColumn == BottomTopColumn3)
+            {
+
+                for (var searchPointRow = placeOfCarRow - 1;
+                    searchPointRow >= 0;
+                    searchPointRow--)
+                {
+                    for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                    {
+                        UIElement uiE = gr_mainGrid.Children[j];
+                        if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
+                        {
+                            var gapSize = placeOfCarRow - Grid.GetRow(uiE) - 8;
+                            return gapSize;
+                        }
+                    }
+                }
+                return 8;
+            }
             #endregion BOTTOMtoTOP
 
             return 8;
