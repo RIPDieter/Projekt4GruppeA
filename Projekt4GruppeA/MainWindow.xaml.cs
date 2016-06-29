@@ -74,12 +74,12 @@ namespace Projekt4GruppeA
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             createGrid(400, 1000);
-           
+                    
             //first intersection
-            spawnTrafficLight(109, 180, 60, LeftRightRow);
-            spawnTrafficLight(109, 140, 60, 74);
+            spawnTrafficLight(109, 180, 59, LeftRightRow);
+            spawnTrafficLight(109, 140, TopBottomColumn2, 74);
             spawnTrafficLight(149, 140, 65, RightLeftRow);
-            spawnTrafficLight(149, 180, 70, 85);
+            spawnTrafficLight(149, 180, BottomTopColumn2, 85);
 
             //second intersection
             spawnTrafficLight(249, 180, 129, LeftRightRow);
@@ -89,9 +89,9 @@ namespace Projekt4GruppeA
 
             //third intersection
             spawnTrafficLight(392, 180, 200, LeftRightRow);
-            spawnTrafficLight(392, 140, 200, 74);
+            spawnTrafficLight(392, 140, TopBottomColumn3, 74);
             spawnTrafficLight(432, 140, 205, RightLeftRow);
-            spawnTrafficLight(432, 180, 220, 85);
+            spawnTrafficLight(432, 180, BottomTopColumn3, 85);
 
             ImageBrush myBrush = new ImageBrush();
             myBrush.ImageSource =
@@ -692,8 +692,49 @@ namespace Projekt4GruppeA
             #endregion RIGHTtoLEFT
 
             #region TOPtoBOTTOM
-
+            //second lane
             if (placeOfCarColumn == TopBottomColumn)
+            {
+
+                for (var searchPointRow = placeOfCarRow + 1;
+                    searchPointRow < gr_mainGrid.RowDefinitions.Count;
+                    searchPointRow++)
+                {
+                    for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                    {
+                        UIElement uiE = gr_mainGrid.Children[j];
+                        if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
+                        {
+                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 8;
+                            return gapSize;
+                        }
+                    }
+                }
+                return 8;
+            }
+
+            //first lane
+            if (placeOfCarColumn == TopBottomColumn2)
+            {
+
+                for (var searchPointRow = placeOfCarRow + 1;
+                    searchPointRow < gr_mainGrid.RowDefinitions.Count;
+                    searchPointRow++)
+                {
+                    for (int j = 0; j < gr_mainGrid.Children.Count; j++)
+                    {
+                        UIElement uiE = gr_mainGrid.Children[j];
+                        if (Grid.GetRow(uiE) == searchPointRow && Grid.GetColumn(uiE) == placeOfCarColumn)
+                        {
+                            var gapSize = Grid.GetRow(uiE) - placeOfCarRow - 8;
+                            return gapSize;
+                        }
+                    }
+                }
+                return 8;
+            }
+            //third lane
+            if (placeOfCarColumn == TopBottomColumn3)
             {
 
                 for (var searchPointRow = placeOfCarRow + 1;
