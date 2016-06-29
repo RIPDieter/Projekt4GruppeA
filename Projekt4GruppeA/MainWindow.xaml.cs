@@ -22,9 +22,13 @@ namespace Projekt4GruppeA
 
     public partial class MainWindow : Window
     {
-        //TODO performance: elemente aus liste löschen
-        //TODO negative geschwindigkeit
+        
         //TODO spawncheck bereich erweitern
+        //TODO analysefenster
+        //TODO bottomtop ampelblocker
+        //TODO stackende autos vermeiden
+        //TODO Analysiswindow schliessen und wieder öffnen -> EXCEPTION
+        //TODO mainwindow slider beschriften und korrigieren
 
         #region INIT
 
@@ -218,7 +222,7 @@ namespace Projekt4GruppeA
         public void timerTick(object sender, EventArgs e)
         {
             timerCount++;
-
+            var x = timer.Interval;
             switchLight(0, 1, 2, 3, cbstreet.IsChecked, cbclock.IsChecked, Convert.ToInt32(sldLight1.Value));
             switchLight(4,5,6,7 ,cbstreet2.IsChecked, cbclock2.IsChecked, Convert.ToInt32(sldLight2.Value));
             switchLight(8, 9, 10, 11, cbstreet3.IsChecked, cbclock3.IsChecked, Convert.ToInt32(sldLight3.Value));
@@ -980,7 +984,6 @@ namespace Projekt4GruppeA
         }
 
         #endregion ANALYSIS
-
-       
+      
     }
 }

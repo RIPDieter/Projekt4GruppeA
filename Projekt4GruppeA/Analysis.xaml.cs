@@ -14,6 +14,9 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Threading;
+using LiveCharts;
+using LiveCharts.Wpf;
+
 
 namespace Projekt4GruppeA
 {
@@ -36,21 +39,48 @@ namespace Projekt4GruppeA
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += tickThat;
             timer.Start();
+
+
+            SeriesCollection = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Title = "Anzahl Autos",
+                    Values = new ChartValues<double> { 10 }
+                }
+            };
             
 
-            ch_p1.Value = 10;
+            //also adding values updates and animates the chart automatically
+            //SeriesCollection[1].Values.Add(48d);
+
+            Labels = new[] { "CARS"};
+            Formatter = value => value.ToString("N");
+
+            DataContext = this;
         }
+
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
+
 
         private void tickThat(object sender, EventArgs e)
         {
-            tb_totalCarCountOnMap.Text = (MainWindow.carListLeftToRight.Count + MainWindow.carListRightToLeft.Count).ToString();
+            var totalCarsOnMap = (MainWindow.carListLeftToRight.Count + MainWindow.carListRightToLeft.Count + MainWindow.carListTopToBottom.Count + MainWindow.carListBottomToTop.Count);
+
+            tb_totalCarCountOnMap.Text = totalCarsOnMap.ToString();
             tb_leftToRightCars.Text = MainWindow.carListLeftToRight.Count.ToString();
             tb_rightToLeftCars.Text = MainWindow.carListRightToLeft.Count.ToString();
+            //TODO fehlen von oben und drunten
 
-            // ch_sparrowChart.Series[0].XAxis
-            //ch_sparrowChart.Series[0].Points.Add(0, 1);
 
-              
+            updateChart(totalCarsOnMap);
+        }
+
+        private void updateChart(int value)
+        {
+            SeriesCollection[0].Values.Add(Convert.ToDouble(value));
         }
 
         #region OLD
