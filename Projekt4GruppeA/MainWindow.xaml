@@ -17,7 +17,6 @@
             <Border BorderBrush="White" BorderThickness="1" Height="100"/>
             <Slider x:Name="sldTime" ValueChanged="sldTime_ValueChanged" Minimum="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="1000" Height="21" Cursor="Hand" Value="1000"/>
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Zeitraffer"/>
-            <Label x:Name="label2" Content="Label"/>
         </StackPanel>
 
 
